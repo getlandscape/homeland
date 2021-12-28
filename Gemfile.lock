@@ -533,8 +533,4 @@ DEPENDENCIES
   webpacker (= 6.0.0.rc.6)
 
 BUNDLED WITH
-<<<<<<< HEAD
    2.3.3
-=======
-   2.2.32
->>>>>>> 4bb8ce7c (bundle update bootsnap to fix for ruby 3.0.3: (#1311))
