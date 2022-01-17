@@ -1,0 +1,11 @@
+ <% @group_users.each do |group_user| %>
+   <tr class="team-user clearfix" data-id="<%= group_user.id %>">
+    <td class="avatar"><%= user_avatar_tag(group_user.user, :sm, link: false) %></div>
+    <td class="name">
+      <%= group_user&.user&.name %>
+    </td>
+    <td class="role">
+      <%= group_user.accepted? ? group_user.role : group_user.status %>
+    </div>
+  </tr>
+ <% end %>

@@ -53,9 +53,9 @@ module UsersHelper
       end
 
     html_options = {}
-    html_options[:title] = user.fullname
+    html_options[:title] = user.try(:fullname) || user.try(:name)
 
-    if link
+    if link && user.class == User
       link_to(raw(img), "/#{user.login}", html_options)
     else
       raw img

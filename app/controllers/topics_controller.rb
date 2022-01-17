@@ -161,11 +161,12 @@ class TopicsController < ApplicationController
   private
 
   def set_topic
+    @group_id = params[:group_id] if params[:group_id].present?
     @topic ||= Topic.find(params[:id])
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :body, :node_id, :team_id)
+    params.require(:topic).permit(:title, :body, :node_id, :team_id, :group_id)
   end
 
   def ability_team_id

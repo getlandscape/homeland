@@ -1,0 +1,37 @@
+<% cache([group, group.avatar]) do %>
+  <div class="topic media topic-<%= group.id %>" data-prefetch="<%= main_app.group_path(group) %>">
+    <div class="avatar">
+      <% if group.avatar_url.present? %>
+        <%= user_avatar_tag(group, :md) %>
+      <% end %>
+    </div>
+    <div class="infos media-body">
+      <div class="title media-heading">
+        <% if group.group_member? current_user %>
+          <%= link_to(main_app.topics_group_path(group), title: group.name) do %>
+            <%= group.name %>
+          <% end %>
+        <% else %>
+          <%= link_to(main_app.group_path(group), title: group.name) do %>
+            <%= group.name %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="info">
+        <%= group.description %>
+      </div>
+    </div>
+    <div class="count media-right">
+      <% group_user = group.group_users.where(user_id: current_user.id).last %>
+      <% if group_user.present? %>
+        <% if group_user.accepted? %>
+          <a> 已经加入 </a>
+        <% elsif group_user.pendding? %>
+          <a> 等待审核 </a>
+        <% end %>
+      <% else %>
+        <a> 申请加入 </a>
+      <% end %>
+    </div>
+  </div>
+<% end %>

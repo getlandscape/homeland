@@ -1,0 +1,26 @@
+<% if action_name != "index" %>
+  <% title_tag(@page_title || t('menu.groups')) %>
+<% end %>
+<%= render "topics/node_info", node: @node %>
+<div class="row">
+  <div class="col-lg-9">
+    <div class="topics topics-<%= action_name %> card">
+      <div class="card-body item-list">
+        <%= render GroupComponent.with_collection(@groups, current_user: current_user) %>
+      </div>
+      <% if  @groups.total_pages > 1 %>
+        <div class="card-footer clearfix">
+          <% if (action_name.in? %(index recent)) && (controller_name == "groups") %>
+            <%= paginate @groups, total_pages: Group.total_pages %>
+          <% else %>
+            <%= paginate @groups %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="sidebar col-lg-3">
+    <%= render "groups/sidebar_for_group_index" %>
+  </div>
+</div>
+

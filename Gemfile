@@ -95,6 +95,8 @@ gem "bootsnap"
 
 gem "puma_worker_killer"
 
+gem "slim"
+
 group :development do
   gem "spring"
   gem "byebug"

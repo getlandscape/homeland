@@ -57,6 +57,24 @@ Rails.application.routes.draw do
   get "topics/node:id", to: "topics#node", as: "node_topics"
   get "topics/node:id/feed", to: "topics#node_feed", as: "feed_node_topics", defaults: {format: "xml"}
 
+  resources :groups do
+    member do
+      get :members
+      post :join
+      post :quite
+      get :topics
+    end
+
+    resources :group_users, only: [:index, :update, :destroy] do
+      member do
+        post :join
+        post :quite
+        post :approve
+        post :reject
+      end
+    end
+  end
+
   resources :topics do
     member do
       post :favorite

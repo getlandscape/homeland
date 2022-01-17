@@ -1,0 +1,15 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+  <div class="media user-card mb-4">
+    <div class="media-body">
+      <div class="media-heading">
+        <%= @group.name %>
+      </div>
+      <% if @group.avatar.url.present? %>
+        <div class="media-left mr-3"><%= image_tag(@group.avatar.url(:md), class: "media-object avatar-48") %></div>
+      <% end %>
+      <div class="infos">
+        <div class="item opts"><%= @group.description %></div>
+      </div>
+    </div>
+  </div>
+</div>

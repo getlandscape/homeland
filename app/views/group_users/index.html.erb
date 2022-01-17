@@ -1,0 +1,14 @@
+<% title_tag t('groups.users') %>
+<div class="card group-users">
+  <% if can? :update, @group %>
+    <div class="card-header"><%= link_to t('groups.new_group_user'), new_group_group_user_path(@group), class: 'btn btn-secondary' %></div>
+  <% end %>
+  <div class="card-body">
+    <table class="table">
+      <%= render partial: '/group_users/group_user' %>
+    </table>
+  </div>
+  <div class="card-footer">
+    <%= paginate @group_users %>
+  </div>
+</div>

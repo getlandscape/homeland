@@ -35,6 +35,8 @@ class User < ApplicationRecord
   has_many :team_users
   has_many :teams, through: :team_users
   has_one :sso, class_name: "UserSSO", dependent: :destroy
+  has_many :group_users
+  has_many :groups, through: :group_users
 
   attr_accessor :password_confirmation
 

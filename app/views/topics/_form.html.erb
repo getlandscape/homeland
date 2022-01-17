@@ -1,5 +1,6 @@
 <%= form_for @topic, remote: true, class: "form", html: { tb: 'edit-topic' } do |f| %>
   <%= render "shared/error_messages", target: @topic %>
+  <%= f.hidden_field :group_id, value: @group_id %>
   <%= f.hidden_field :node_id %>
   <div class="form-group">
     <div class="input-group">
