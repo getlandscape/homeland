@@ -410,9 +410,6 @@ GEM
     sidekiq-cron (1.2.0)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
-    slim (4.1.0)
-      temple (>= 0.7.6, < 0.9)
-      tilt (>= 2.0.6, < 2.1)
     social-share-button (1.2.4)
       coffee-rails
     spring (2.1.1)
@@ -428,7 +425,6 @@ GEM
       rubocop (= 1.20.0)
       rubocop-performance (= 1.11.5)
     strscan (3.0.1)
-    temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.10)
     timeout (0.2.0)
@@ -524,7 +520,6 @@ DEPENDENCIES
   second_level_cache
   sidekiq
   sidekiq-cron
-  slim
   social-share-button
   spring
   standard
