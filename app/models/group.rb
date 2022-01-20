@@ -34,6 +34,7 @@ class Group < ApplicationRecord
   end
 
   def group_member?(user)
+    return false unless user.present?
     group_users.accepted.pluck(:user_id).include? user.id
   end
 end

@@ -1,7 +1,7 @@
 class CreateGroups < ActiveRecord::Migration[7.0]
   def change
     create_table :groups do |t|
-      t.string :title, null: false
+      t.string :name, null: false
       t.string :description
       t.string :avatar
       t.integer :topics_count, default: 0, null: false

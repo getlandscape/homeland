@@ -22,15 +22,15 @@
       </div>
     </div>
     <div class="count media-right">
-      <% group_user = group.group_users.where(user_id: current_user.id).last %>
+      <% group_user = group.group_users.where(user_id: current_user.id).last if current_user.present? %>
       <% if group_user.present? %>
         <% if group_user.accepted? %>
-          <a> 已经加入 </a>
+          <%= link_to('Joined', main_app.quite_group_group_users_path(group_id: group.id), method: :post) %>
         <% elsif group_user.pendding? %>
-          <a> 等待审核 </a>
+          <%= link_to('Waiting', main_app.group_path(group)) %>
         <% end %>
       <% else %>
-        <a> 申请加入 </a>
+        <%= link_to('Apply to join', main_app.join_group_group_users_path(group_id: group.id), method: :post) %>
       <% end %>
     </div>
   </div>

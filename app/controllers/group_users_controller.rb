@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupUsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[update destroy new quite approve reject]
+  before_action :authenticate_user!, only: %i[join quite update destroy new approve reject]
   before_action :set_group
   before_action :set_group_user, only: %i[approve reject]
 
@@ -20,14 +20,21 @@ class GroupUsersController < ApplicationController
 
   def join
     @group_user = GroupUser.find_or_initialize_by(user_id: current_user.id, group_id: @group.id)
-    @group_user.text = group_user_params[:msg]
     @group_user.status = @group.public_group? ? 'accepted' : 'pendding'
     @group_user.save
+
+    if @group.public_group?
+      redirect_to(topics_group_path(@group), notice: t("groups.join_group_success"))
+    elsif @group.private_group?
+      redirect_to(group_path(@group), notice: t("groups.waiting_approvement"))
+    end
   end
 
   def quite
     @group_user = GroupUser.find_or_initialize_by(user_id: current_user.id, group_id: @group.id)
     @group_user.delete
+
+    redirect_to(groups_path, notice: t("groups.quite_group_success"))
   end
 
   def approve

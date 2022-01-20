@@ -60,17 +60,13 @@ Rails.application.routes.draw do
   resources :groups do
     member do
       get :members
-      post :join
-      post :quite
       get :topics
     end
 
     resources :group_users, only: [:index, :update, :destroy] do
-      member do
+      collection do
         post :join
         post :quite
-        post :approve
-        post :reject
       end
     end
   end
