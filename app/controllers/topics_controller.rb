@@ -42,7 +42,8 @@ class TopicsController < ApplicationController
   end
 
   def show
-    @topic = Topic.unscoped.includes(:user).find(params[:id])
+    # @topic = Topic.unscoped.includes(:user).find(params[:id])
+    @topic = Topic.unscoped.find(params[:id])
     render_404 if @topic.deleted?
 
     @node = @topic.node

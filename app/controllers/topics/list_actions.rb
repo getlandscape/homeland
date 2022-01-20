@@ -64,7 +64,8 @@ module Topics
       end
 
       # must include :user, because it's uses for _topic.html.erb fragment cache_key
-      scope.includes(:user)
+      # scope.includes(:user)
+      scope
     end
   end
 end
