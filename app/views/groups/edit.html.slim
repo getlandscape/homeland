@@ -1,0 +1,17 @@
+- title_tag t("groups.edit_group")
+.card
+  .card-body.col-md-8.mx-auto
+    = form_for @group do |f|
+      = render "shared/error_messages", target: @group
+      .form-group
+        = f.label :name
+        = f.text_field :name, class: "form-control"
+      .form-group
+        = f.label :description
+        = f.text_field :description, class: "form-control"
+      .form-group.row
+        .col-sm-7
+          = f.label :avatar
+          = f.file_field :avatar, class: "form-control"
+      .form-actions
+        = f.submit t("common.save"), class: "btn btn-primary", 'data-disable-with' => t("common.saving")

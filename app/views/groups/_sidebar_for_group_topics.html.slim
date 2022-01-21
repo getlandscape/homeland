@@ -1,0 +1,25 @@
+.card
+  .card-body
+    div class=("group topic media topic-#{group.id}") data-prefetch="#{main_app.group_path(group)}" 
+      .avatar
+        - if group.avatar_url.present?
+          = user_avatar_tag(group, :md)
+      .infos.media-body
+        .title.media-heading
+          - if group.group_member? current_user
+            = link_to(main_app.topics_group_path(group), title: group.name) do
+              = group.name
+          - else
+            = link_to(main_app.group_path(group), title: group.name) do
+              = group.name
+  .card-body
+    .info
+        = group.description
+  .card-body
+    - if current_user.present? && group.group_member?(current_user)
+      = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block btn-joined', method: :post
+    - else
+      = link_to t('groups.join_group'), main_app.join_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :post
+.card
+  .card-body
+    = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-primary btn-block'

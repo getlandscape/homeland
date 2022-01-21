@@ -63,10 +63,11 @@ Rails.application.routes.draw do
       get :topics
     end
 
-    resources :group_users, only: [:index, :edit, :update, :destroy] do
+    resources :group_users, only: [:index, :update, :destroy] do
       collection do
         post :join
         post :quite
+        get :edit
       end
     end
   end

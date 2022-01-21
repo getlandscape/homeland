@@ -120,3 +120,27 @@ h2 {
     }
   }
 }
+
+.edit-group-user-modal {
+  top: -50px;
+}
+
+.group-user-modal-content {
+  border-radius: 10px;
+  width: 400px;
+  max-height: 432px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.08);
+  .header {
+    height: 52px;
+    background: rgba(34, 94, 218, 0.1);
+    border-radius: 10px 10px 0px 0px;
+  }
+  .body {
+    background-color: #ffffff;
+  }
+  .footer {
+    min-height: 50px;
+    background-color: #F4F4F4;
+    border-radius: 0px 0px 10px 10px;
+  }
+}

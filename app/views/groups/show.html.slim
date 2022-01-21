@@ -1,0 +1,20 @@
+.row
+  .col-lg-9
+    .topic-detail.card
+      .media.user-card.mb-4
+        .media-body
+          .media-heading
+            = @group.name
+          - if @group.avatar.url.present?
+            .media-left.mr-3= image_tag(@group.avatar.url(:md), class: "media-object avatar-48")
+          .infos
+            .item.opts= @group.description
+          .infos
+             = @group.users.count.to_s + ' people joined this group.'
+          - if current_user.present? && @group.group_member?(current_user)
+            = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: @group.id), class: 'btn btn-primary btn-block btn-joined', method: :post
+          - else
+            = link_to t('groups.join_now'), main_app.join_group_group_users_path(group_id: @group.id), class: 'btn btn-primary', method: :post 
+  .sidebar.col-lg-3
+    = render "groups/sidebar_for_group_topics", group: @group
+

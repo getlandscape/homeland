@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GroupUsersController < ApplicationController
-  before_action :authenticate_user!, only: %i[join quite update destroy new approve reject]
+  before_action :authenticate_user!, only: %i[edit join quite update destroy new approve reject]
   before_action :set_group
   before_action :set_group_user, only: %i[approve reject]
 
@@ -15,6 +15,7 @@ class GroupUsersController < ApplicationController
   end
 
   def edit
+    @group_user = GroupUser.find_or_initialize_by(user_id: current_user.id, group_id: @group.id)
   end
 
   def destroy

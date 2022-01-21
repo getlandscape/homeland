@@ -1,0 +1,20 @@
+- if action_name != "index"
+  - title_tag(@page_title || t('menu.groups'))
+.row
+  .col-lg-9
+    div class=("topics topics-#{action_name} card") 
+      .card-body.item-list
+        = render GroupComponent.with_collection(@groups, current_user: current_user)
+      - if  @groups.total_pages > 1
+        .card-footer.clearfix
+          - if (action_name.in? %(index recent)) && (controller_name == "groups")
+            = paginate @groups, total_pages: Group.total_pages
+          - else
+            = paginate @groups
+  .sidebar.col-lg-3
+    = render "groups/sidebar_for_group_index"
+
+.modal.edit-group-user-modal.fade#edit-group-user-modal[tabindex='-1' role='dialog']
+  .modal-dialog.modal-dialog-centered[role='document']
+    .modal-content.group-user-modal-content#edit-group-user-modal-body.edit-group-user-modal
+
