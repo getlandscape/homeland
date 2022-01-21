@@ -14,6 +14,9 @@ class GroupUsersController < ApplicationController
     @group_user.update(group_user_params) if current_user.id == @group.user_id
   end
 
+  def edit
+  end
+
   def destroy
     @group_user.delete
   end

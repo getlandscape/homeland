@@ -96,6 +96,10 @@ gem "bootsnap"
 
 gem "puma_worker_killer"
 
+gem "slim-rails"
+gem 'jquery-rails'
+gem 'bootstrap-sass'
+
 group :development do
   gem "spring"
   gem "byebug"

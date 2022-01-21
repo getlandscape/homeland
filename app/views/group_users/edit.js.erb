@@ -1,0 +1,5 @@
+(function () {
+    target = "<%= escape_javascript(render partial: '/group_users/edit', locals: { group_user: @group_user })%>"
+	replaceHTML($('#edit-group-user-modal-body'), target);
+    $('#edit-group-user-modal').modal('show');
+})();

@@ -40,6 +40,7 @@ module UsersHelper
   def user_avatar_tag(user, version = :md, link: true, timestamp: nil)
     width = user_avatar_width_for_size(version)
     img_class = "media-object avatar-#{width}"
+    img_class = "media-square-object-object avatar-square-#{width}" if user.class == Group
 
     return "" if user.blank?
 

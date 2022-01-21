@@ -1,0 +1,21 @@
+.card.group-users
+  - if can? :update, @group
+    .card-header= link_to t('groups.new_group_user'), new_group_group_user_path(@group), class: 'btn btn-secondary'
+  .card-body
+    table.table
+      = render partial: '/group_users/group_user'
+  .card-footer
+    = paginate @group_users
+
+.modal.edit-group-user-modal.fade#edit-group-user-modal[tabindex='-1' role='dialog']
+  .modal-dialog.modal-dialog-centered[role='document']
+    .modal-content#edit-group-user-modal-body.edit-group-user-modal
+      = "dadadas"
+
+
+css:
+  .edit-group-user-modal {
+     width: 600px;
+     height: 600px;
+     background-color: white;
+  }

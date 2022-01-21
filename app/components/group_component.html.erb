@@ -1,5 +1,5 @@
 <% cache([group, group.avatar]) do %>
-  <div class="topic media topic-<%= group.id %>" data-prefetch="<%= main_app.group_path(group) %>">
+  <div class="group topic media topic-<%= group.id %>" data-prefetch="<%= main_app.group_path(group) %>">
     <div class="avatar">
       <% if group.avatar_url.present? %>
         <%= user_avatar_tag(group, :md) %>

@@ -6,6 +6,7 @@
     </td>
     <td class="role">
       <%= group_user.accepted? ? group_user.role : group_user.status %>
+      <%= link_to 'edit', edit_group_group_user_path(group_d: group_user.group_id, id: 2), remote: true %>
     </div>
   </tr>
  <% end %>
