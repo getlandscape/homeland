@@ -134,13 +134,23 @@ h2 {
     height: 52px;
     background: rgba(34, 94, 218, 0.1);
     border-radius: 10px 10px 0px 0px;
+    .content {
+      padding: 15px;
+    }
   }
   .body {
     background-color: #ffffff;
+    min-height: 200px;
+    .content {
+      padding: 15px;
+    }
   }
   .footer {
     min-height: 50px;
     background-color: #F4F4F4;
     border-radius: 0px 0px 10px 10px;
+    .content {
+      padding: 15px;
+    }
   }
 }
