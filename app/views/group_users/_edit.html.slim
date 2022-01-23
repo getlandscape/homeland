@@ -5,7 +5,7 @@
       button.close[type='button' data-bs-dismiss='modal' aria-label='Close']
         span[aria-hidden='true'] &times;
   .body
-    .content.topic.media
+    .content.topic.media.content-hearder
       .avatar
         - if group.avatar_url.present?
           = user_avatar_tag(group, :md)
@@ -17,6 +17,8 @@
           = t('groups.welcome_to') + group.name
     .content
       .infos.media-body
+        .info
+          = t('grouups.group_introduction')
         .info
           = group.description
   .footer
