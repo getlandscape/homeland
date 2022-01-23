@@ -13,7 +13,7 @@
             = group.name
       .info
         = group.description
-    .count.media-right
+    .media-right
       - group_user = group.group_users.where(user_id: current_user.id).last if current_user.present?
       - if group_user.present?
         - if group_user.accepted?

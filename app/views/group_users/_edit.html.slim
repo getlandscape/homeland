@@ -1,18 +1,31 @@
 .edit-group-user-body
   .header
     .content
-      = group.name
+      = t('groups.welcome_to_join') + group.name
       button.close[type='button' data-bs-dismiss='modal' aria-label='Close']
         span[aria-hidden='true'] &times;
   .body
+    .content.topic.media
+      .avatar
+        - if group.avatar_url.present?
+          = user_avatar_tag(group, :md)
+      .infos.media-body
+        .title.media-heading
+          = t('groups.group_owner')
+          = link_to(group.owner.name, main_app.user_path(group.owner))
+        .info
+          = t('groups.welcome_to') + group.name
     .content
-      = group.owner.try(:name)
-      = group.description
+      .infos.media-body
+        .info
+          = group.description
   .footer
     .content
       - if group_user.accepted?
-        = link_to('Quite', main_app.quite_group_group_users_path(group_id: group.id), class: "btn btn-primary", method: :post)
+        = link_to('Quite', main_app.quite_group_group_users_path(group_id: group.id), class: "btn btn-primary btn-join", method: :post)
       - elsif group_user.pendding?
-        = link_to('waiting', main_app.group_path(group), class: "btn btn-primary",)
+        = link_to('waiting', main_app.group_path(group), class: "btn btn-primary btn-join",)
       - elsif group_user.rejected? || group_user.status == nil
-        = link_to('Join', main_app.join_group_group_users_path(group_id: group.id), class: "btn btn-primary", method: :post)
+        = link_to('Join', main_app.join_group_group_users_path(group_id: group.id), class: "btn btn-primary btn-join", method: :post)
+      button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
+        = t('group.cancel')

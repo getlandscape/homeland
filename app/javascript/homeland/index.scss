@@ -815,6 +815,34 @@ kbd {
 /* Modal */
 .modal {
   top: 120px;
+  .close {
+    float: right;
+    background-color: transparent;
+    border: transparent
+  }
+  .btn-join {
+    float: right;
+    height: 26px;
+    font-size: 14px;
+    padding-left: 14px;
+    padding-right:14px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-radius: 4px;
+  }
+  .modal-close-button {
+    float: right;
+    height: 26px;
+    font-size: 14px;
+    padding-left: 14px;
+    padding-right:14px;
+    padding-top: 3px;
+    padding-bottom: 3px; 
+    background: #BBBBBB;
+    color: #FFFFFF;
+    margin-right: 10px;
+    border-color: #BBBBBB;
+  }
   .modal-dialog {
     max-width: 640px;
   }
