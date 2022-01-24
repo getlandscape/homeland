@@ -13,14 +13,15 @@
         .title.media-heading
           = t('groups.group_owner')
           = link_to(group.owner.name, main_app.user_path(group.owner))
-        .info
+        .info.sub-title
           = t('groups.welcome_to') + group.name
     .content
       .infos.media-body
-        .info
+        .info.content-title
           = t('grouups.group_introduction')
-        .info
-          = group.description
+        .info.content-body
+          pre
+            = group.description
   .footer
     .content
       - if group_user.accepted?

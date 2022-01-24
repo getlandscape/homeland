@@ -123,6 +123,27 @@ h2 {
 
 .edit-group-user-modal {
   top: -50px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.edit-group-user-body {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  color: #111111;
+  .sub-title{
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .content-title {
+    font-size: 15px;
+    line-height: 21px;
+  }
+  .content-body {
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 20px;
+  }
 }
 
 .group-user-modal-content {
@@ -185,11 +206,74 @@ h2 {
     }
     .btn {
       height: 26px;
-      min-width: 56px;
+      width: 75px;
       margin-left: 10px;
     }
     font-size: 14px;
     line-height: 20px;
     color: #FFFFFF;
   }
+}
+
+.group-sidebar {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  color: #111111;
+  .content-header {
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 1, 0.03);
+    .title {
+      font-size: 16px;
+      line-height: 22px;
+    }
+    .sub-title {
+      font-size: 14px;
+      line-height: 20px;
+      color: #666666;
+    }
+  }
+  .content-body {
+    padding-top: 10px;
+    font-size: 13px;
+    line-height: 18px;
+    .title {
+      color: #666666;
+    }
+    .body {
+      padding-top: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(0, 0, 1, 0.03);
+    }
+    .user-title {
+      margin-left: 8px;
+      font-size: 16px;
+      line-height: 22px;
+      color: #111111;
+    }
+    .user-title:hover {
+      text-decoration: underline;
+      color: #225EDA;
+    }
+  }
+  .title {
+    margin-left: 8px;
+  }
+  .sub-title {
+    margin-left: 10px;
+    margin-top: 2px;
+  }
+  .content-footer {
+    padding-top: 16px;
+    .invite-link{
+      padding-top: 10px;
+    }
+  }
+}
+
+.btn-joined {
+  border: 1px solid #BBBBBB;
+  box-sizing: border-box;
+  background-color: white;
+  color: #666666;
 }

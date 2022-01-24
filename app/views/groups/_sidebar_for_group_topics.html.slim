@@ -1,10 +1,10 @@
-.card
+.card.group-sidebar
   .card-body
     div class=("group topic media topic-#{group.id}") data-prefetch="#{main_app.group_path(group)}" 
       .avatar
         - if group.avatar_url.present?
           = user_avatar_tag(group, :md)
-      .infos.media-body
+      .infos.media-body.content-header
         .title.media-heading
           - if group.group_member? current_user
             = link_to(main_app.topics_group_path(group), title: group.name) do
@@ -12,14 +12,29 @@
           - else
             = link_to(main_app.group_path(group), title: group.name) do
               = group.name
-  .card-body
-    .info
-        = group.description
-  .card-body
-    - if current_user.present? && group.group_member?(current_user)
-      = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block btn-joined', method: :post
-    - else
-      = link_to t('groups.join_group'), main_app.join_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :post
+        .info.sub-title
+          = group.description_first_line
+    .info.content-body
+      .title
+        = t('groups.created_at')
+        = group.created_at.strftime("%Y-%m-%d")
+        = t('groups.group_owner')
+        = link_to(group.owner.name, main_app.user_path(group.owner), title: group.owner.name, class: 'user-title')
+      .body
+        pre
+          = group.description
+    .info.content-footer 
+      a
+        = link_to(group.group_users.count, main_app.group_path(group))
+        = ' '
+        = t('groups.people_in_this_group')
+      .invite-link
+        = link_to(t('groups.invite_friends'), main_app.group_path(group))
+    .info.content-footer
+      - if current_user.present? && group.group_member?(current_user)
+        = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block btn-joined', method: :post
+      - else
+        = link_to t('groups.join_group'), main_app.join_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :post
 .card
   .card-body
     = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-primary btn-block'
