@@ -3,6 +3,8 @@
 class Group < ApplicationRecord
   mount_uploader :avatar, GroupPhotoUploader
 
+  LETTER_AVATAR_REGEXP = /([a-z0-9])/i
+
   enum group_type: %i[public_group private_group]
   enum status: %i[pendding approved rejected]
 
@@ -29,8 +31,16 @@ class Group < ApplicationRecord
     group_users.find_by(role: :owner).try(:user)
   end
 
+  def letter_avatar_char
+    matchs = name.scan(/[a-zA-Z]{1}/)
+    return "G" if matchs.blank?
+    (matchs[0] || "-").downcase
+  end
+
   def letter_avatar_url(size)
-    avatar_url
+    avatar_path = File.join("letter_avatars", letter_avatar_char + ".png")
+
+    "#{Setting.base_url}/system/#{avatar_path}"
   end
 
   def group_member?(user)
