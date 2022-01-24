@@ -1,5 +1,5 @@
 - cache([group, group.avatar]) do
-  div class=("group media group-#{group.id}") data-prefetch="#{main_app.group_path(group)}"
+  .group.media class="group-#{group.id}" data-prefetch="#{main_app.group_path(group)}"
     .avatar
       = user_avatar_tag(group, :md)
     .infos.media-body

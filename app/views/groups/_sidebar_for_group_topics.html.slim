@@ -1,10 +1,10 @@
 .card.group-sidebar
   .card-body
-    div class=("group topic media topic-#{group.id}") data-prefetch="#{main_app.group_path(group)}" 
+    div class=("group topic media topic-#{group.id} content-header") data-prefetch="#{main_app.group_path(group)}" 
       .avatar
         - if group.avatar_url.present?
           = user_avatar_tag(group, :md)
-      .infos.media-body.content-header
+      .infos.media-body
         .title.media-heading
           - if group.group_member? current_user
             = link_to(main_app.topics_group_path(group), title: group.name) do
