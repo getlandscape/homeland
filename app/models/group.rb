@@ -27,6 +27,10 @@ class Group < ApplicationRecord
     @total_pages
   end
 
+  def description_first_line
+    description.lines.first.chomp
+  end
+
   def owner
     group_users.find_by(role: :owner).try(:user)
   end

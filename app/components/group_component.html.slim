@@ -9,7 +9,7 @@
         - else
           = link_to(group.name, main_app.group_path(group), title: group.name, class: 'group-title')
       .info
-        = group.description
+        = group.description_first_line
     .media-right
       - group_user = group.group_users.where(user_id: current_user.id).last if current_user.present?
       - if group_user.present?

@@ -12,7 +12,7 @@
     .col-sm-7
       = f.file_field :avatar, class: "form-control"
   .form-group
-    = f.text_area :description, class: "group-editor form-control", placeholder: t("groups.form.title_placeholder"), rows: 1
+    = f.text_area :description, class: "group-editor form-control", placeholder: t("groups.form.title_placeholder"), rows: 10
   .form-actions.jcsb.hide-ios
     = f.submit t("common.create"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
     .hide-ios
