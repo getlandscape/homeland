@@ -2,7 +2,7 @@
   - title_tag(@page_title || t('menu.groups'))
 .row
   .col-lg-9
-    div class=("topics topics-#{action_name} card") 
+    div class=("groups groups-#{action_name} card") 
       .card-body.item-list
         = render GroupComponent.with_collection(@groups, current_user: current_user)
       - if  @groups.total_pages > 1

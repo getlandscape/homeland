@@ -397,6 +397,69 @@ hr {
     }
   }
 }
+.groups {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  color: #111111;
+  border: 1px solid #EEEEEE;
+  .group {
+    border: 1px solid #EEEEEE;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-right: 39px;
+    margin-bottom: 30px;
+    width: 423px;
+    .group-title {
+      margin-left: 8px;
+      font-size: 16px;
+      line-height: 22px;
+      color: #111111;
+    }
+    .group-title:hover {
+      text-decoration: underline;
+      color: #225EDA;
+    }
+    .info{
+      margin-left: 10px;
+      margin-top: 2px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #666666;
+    }
+  }
+  .item-list{
+    display: flex;
+    flex-flow: wrap;
+  }
+  .card-body {
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-bottom: 40px;
+    padding-right: 0px;
+  }
+  .btn-joined {
+    border: 1px solid #BBBBBB;
+    box-sizing: border-box;
+    background-color: white;
+    color: #666666;
+  }  
+  .btn-borderless {
+    padding: 0px;
+    margin-top: 24px;
+    border: none;
+    background-color: transparent;
+    color: #225EDA;
+    box-shadow: none;
+  }
+  .btn-borderless:hover {
+    transition: .4s;
+    text-decoration: underline;
+  }
+  .item-list {
+    margin: 0px;
+  }
+}
 
 .topic-detail {
   margin-bottom: 15px;
@@ -1031,11 +1094,4 @@ textarea.div-dropzone-focus {
       color: #aaa;
     }
   }
-}
-
-.btn-joined {
-  border: 1px solid #BBBBBB;
-  box-sizing: border-box;
-  background-color: white;
-  color: #666666;
 }
