@@ -35,6 +35,7 @@
         = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block btn-joined', method: :post
       - else
         = link_to t('groups.join_group'), main_app.join_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :post
-.card
-  .card-body
-    = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-primary btn-block'
+- if current_user.present? && group.group_member?(current_user)
+  .card
+    .card-body
+      = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-primary btn-block'
