@@ -2,12 +2,13 @@
   .group.media class="group-#{group.id}" data-prefetch="#{main_app.group_path(group)}"
     .avatar
       = user_avatar_tag(group, :md)
-    .infos.media-body
-      .title.media-heading
-        - if group.public_group? || group.group_member?(current_user)
-          = link_to(group.name, main_app.topics_group_path(group), title: group.name, class: 'group-title')
-        - else
-          = link_to(group.name, main_app.group_path(group), title: group.name, class: 'group-title')
+    - if group.public_group? || group.group_member?(current_user)
+      - path = main_app.topics_group_path(group)
+    - else
+      - path = main_app.group_path(group)
+    = link_to(path, title: group.name, class: 'infos media-body') do
+      .title.media-heading.group-title
+        = group.name
       .info
         = group.description_first_line
     .media-right

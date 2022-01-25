@@ -427,6 +427,9 @@ hr {
       color: #666666;
     }
   }
+  .group:hover {
+      background-color: rgba(0, 0, 1, 0.03);
+  }
   .item-list{
     display: flex;
     flex-flow: wrap;
