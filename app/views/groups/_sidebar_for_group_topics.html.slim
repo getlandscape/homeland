@@ -30,6 +30,8 @@
         = t('groups.people_in_this_group')
       .invite-link
         = link_to(t('groups.invite_friends'), main_app.group_path(group))
+      .invite-link
+        = link_to(t('groups.group_management'), main_app.group_path(group))
     .info.content-footer
       - if current_user.present? && group.group_member?(current_user)
         = link_to t('groups.Joined'), main_app.quite_group_group_users_path(group_id: group.id), class: 'btn btn-primary btn-block btn-joined', method: :post

@@ -1,7 +1,7 @@
 - title_tag(t('groups.edit_group'))
 .row
   .col-lg-9
-    div class=("groups groups-#{action_name} card card-lg") 
+    .groups.card.card-lg class="groups-#{action_name}"
       .card-body.item-list
         .group-form style="width: 100%;"
           = form_for @group, method: 'put', remote: true, class: "form", html: { tb: 'edit-group' } do |f|

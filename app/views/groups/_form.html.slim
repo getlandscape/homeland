@@ -2,18 +2,20 @@
   .input-text.sub-title
     = t('groups.group_type')
   .input-group
-    .form-check.form-check-inline.privacy-check
+    .form-check.form-check-inline.privacy-check-box
       = f.radio_button :group_type, 'public_group', class: "radio-button" do
       = f.label :group_type do
-        = '公开小组'
+        a.heading
+          = '公开小组'
         br
         = '- 小组内容对论坛任何人可见'
         br
         = '- 以后可以变为私密小组'
-    .form-check.form-check-inline.privacy-check
+    .form-check.form-check-inline.privacy-check-box
       = f.radio_button :group_type, 'private_group', class: "radio-button" do
       = f.label :group_type do
-        = '私密小组'
+        a.heading
+          = '私密小组'
         br
         = '- 创建私密小组的行为是公开的'
         br
