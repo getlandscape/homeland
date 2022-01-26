@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
     action favorites]
   load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
   before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban]
+  before_action :set_group, only: %i[new]
 
   def index
     @suggest_topics = []
@@ -44,7 +45,7 @@ class TopicsController < ApplicationController
   def show
     # @topic = Topic.unscoped.includes(:user).find(params[:id])
     @topic = Topic.unscoped.find(params[:id])
-    render_404 if @topic.deleted?
+    render_404 if @topic.deleted? || private_group_validation
 
     @node = @topic.node
     @show_raw = params[:raw] == "1"
@@ -162,7 +163,6 @@ class TopicsController < ApplicationController
   private
 
   def set_topic
-    @group_id = params[:group_id] if params[:group_id].present?
     @topic ||= Topic.find(params[:id])
   end
 
@@ -175,5 +175,16 @@ class TopicsController < ApplicationController
     return nil if team.blank?
     return nil if cannot?(:show, team)
     team.id
+  end
+
+  def set_group
+    @group_id = params[:group_id] if params[:group_id].present?
+  end
+
+  def private_group_validation
+    group = @topic.group
+    return false unless group.present? && group.private_group?
+    return false if current_user.present? && group.group_member?(current_user)
+    true
   end
 end
