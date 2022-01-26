@@ -1,30 +1,46 @@
-. style="width: 100%;"
+.group-form style="width: 100%;"
   = form_for @group, method: 'put', remote: true, class: "form", html: { tb: 'edit-group' } do |f|
     = render "shared/error_messages", target: @group
+    .form-group.form-title
+      = t('groups.create_group')
     .form-group
-      .input-text
+      .input-text.sub-title
         = t('groups.group_type')
       .input-group
         .form-check.form-check-inline
-          = f.radio_button :group_type, 'public_group'
-          = f.label :group_type, 'public_group', :value => 'public_group'
+          = f.radio_button :group_type, 'public_group', class: "radio-button" do
+          = f.label :group_type do
+            = '公开小组'
+            br
+            = '- 小组内容对论坛任何人可见'
+            br
+            = '- 以后可以变为私密小组'
         .form-check.form-check-inline
-          = f.radio_button :group_type, 'private_group'
-          = f.label :group_type, 'private_group', :value => 'private_group'
+          = f.radio_button :group_type, 'private_group', class: "radio-button" do
+          = f.label :group_type do
+            = '私密小组'
+            br
+            = '- 创建私密小组的行为是公开的'
+            br
+            = '- 小组内容仅组员可见'
+            br
+            = '- 只有接受组员邀请才能加入小组'
+            br
+            = '- 以后可以变为公开的小组'
     .form-group
-      .input-text
+      .input-text.sub-title
         = t('groups.group_name')
-      .input-group
-        = f.text_field :name, class: "form-control", placeholder: t("groups.form.title_placeholder")
+      .input-group.name-field
+        = f.text_field :name, class: "form-control"
     .form-group.row
-      .input-text
+      .input-text.sub-title
         = t('groups.group_avatar')
-      .col-sm-7
+      .input-group.avatar-field
         = f.file_field :avatar, class: "form-control"
     .form-group
-      .input-text
+      .input-text.sub-title
         = t('groups.group_description')
-      = f.text_area :description, class: "group-editor form-control", placeholder: t("groups.form.title_placeholder"), rows: 10
+      = f.text_area :description, class: "group-editor form-control", rows: 10
     .form-actions.jcsb.hide-ios
       - text = action_name == 'edit' ? t("common.save") : t("common.create")
       = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"

@@ -461,6 +461,47 @@ hr {
   .new-group {
     width: 100%;
   }
+  .group-form {
+    .form-title {
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 36px;
+      color: #494949;
+    }
+    .sub-title {
+      margin-top: 20px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #111111;
+    }
+    .form-check {
+      padding: 9px;
+      width: 260px;
+      height: 136px;
+    }
+    .radio-button {
+      width: 12px;
+      height: 12px;
+      position: absolute;
+    }
+    .form-label {
+      margin-left: 24px;
+    }
+    .name-field {
+      width: 260px;
+      height: 36px;
+    }
+    .avatar-field {
+      width: 530px;
+      height: 36px;
+      .form-control {
+        padding-bottom: 8px;
+        padding-top: 8px;
+        padding-left: 28px;
+      }
+    }
+  }
 }
 
 .topic-detail {

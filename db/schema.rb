@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_24_132914) do
+ActiveRecord::Schema.define(version: 2022_01_26_063208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 2022_01_24_132914) do
     t.integer "status", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "show_members", default: true
+    t.boolean "auto_approvce", default: false
+    t.boolean "policy_agree", default: false
   end
 
   create_table "locations", id: :serial, force: :cascade do |t|
