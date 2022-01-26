@@ -461,6 +461,9 @@ hr {
   .new-group {
     width: 100%;
   }
+  .group-form-card-body {
+    padding: 30px;
+  }
   .group-form {
     .form-title {
       font-weight: 600;
@@ -474,8 +477,9 @@ hr {
       font-size: 14px;
       line-height: 20px;
       color: #111111;
+      padding: 0px;
     }
-    .form-check {
+    .privacy-check {
       padding: 9px;
       width: 260px;
       height: 136px;
@@ -493,6 +497,7 @@ hr {
       height: 36px;
     }
     .avatar-field {
+      padding: 0px;
       width: 530px;
       height: 36px;
       .form-control {
@@ -500,6 +505,37 @@ hr {
         padding-top: 8px;
         padding-left: 28px;
       }
+    }
+    .form-switch {
+      padding: 0px;
+    }
+    .row {
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+    .switch-text {
+      font-size: 14px;
+      line-height: 20px;
+      color: #111111;
+      padding: 0px;
+    }
+    .form-check-input {
+      margin-top: 2px;
+      margin-left: 10px;
+      height: 16px;
+      width: 30px;
+    }
+    .policy-check {
+      padding: 0px;
+    }
+    .agreement-checkbox {
+      width: 12px;
+      height: 12px;
+      margin-top: 5px;
+    }
+    .agreement-text {
+      margin-left: 10px;
     }
   }
 }
