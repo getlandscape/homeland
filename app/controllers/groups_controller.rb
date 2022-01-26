@@ -21,11 +21,13 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    if @group.save
-      GroupUser.create(user_id: current_user.id, group_id: @group.id, role: :owner, status: :accepted)
-      redirect_to(edit_group_path(@group), notice: t("common.create_success"))
+    if @group.policy_agree
+      if @group.save
+        GroupUser.create(user_id: current_user.id, group_id: @group.id, role: :owner, status: :accepted)
+        redirect_to(group_path(@group), notice: t("common.create_success"))
+      end
     else
-      render action: "new"
+      @group.errors.add(:group, t('groups.check_agreements_and_policies'))
     end
   end
 

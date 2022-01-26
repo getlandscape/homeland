@@ -1,0 +1,7 @@
+<% if @group.errors.empty? %>
+  <% flash[:notice] = t('groups.create_group_success') %>
+  Turbolinks.visit('<%= group_path(@group.id) %>');
+<% else %>
+  $('form[tb="edit-group"] .alert').remove();
+  $('form[tb="edit-group"]').prepend('<%= j render("shared/error_messages", target: @group) %>');
+<% end %>

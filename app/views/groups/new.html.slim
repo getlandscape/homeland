@@ -3,6 +3,11 @@
   .col-lg-9
     div class=("groups groups-#{action_name} card")
       .card-body.item-list.group-form-card-body
-        = render 'form'
+        .group-form style="width: 100%;"
+          = form_for @group, method: 'post', remote: true, class: "form", html: { tb: 'edit-group' } do |f|
+            = render "shared/error_messages", target: @group
+            .form-group.form-title
+              = t('groups.create_group')
+            = render 'form', f: f
   .sidebar.col-lg-3
     = render "groups/sidebar_for_group_create"

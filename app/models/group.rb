@@ -8,6 +8,9 @@ class Group < ApplicationRecord
   enum group_type: %i[public_group private_group]
   enum status: %i[pendding approved rejected]
 
+  validates :name, :description, presence: true
+  validate :check_topic_ban_words, on: :create
+
   has_many :group_users
   has_many :users, through: :group_users
 
