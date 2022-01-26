@@ -1,21 +1,34 @@
-= form_for @group, remote: true, class: "form", html: { tb: 'edit-group' } do |f|
-  = render "shared/error_messages", target: @group
-  .form-group
-    .input-group
-      .input-group-prepend.mr-1
-        = f.select :group_type, [:public_group, :private_group], {}, class: "bootstrap-select", data: { "live-search": true }
-  .form-group
-    .input-group
-      .input-group-prepend.mr-1
-      = f.text_field :name, class: "form-control", placeholder: t("groups.form.title_placeholder")
-  .form-group.row
-    .col-sm-7
-      = f.file_field :avatar, class: "form-control"
-  .form-group
-    = f.text_area :description, class: "group-editor form-control", placeholder: t("groups.form.title_placeholder"), rows: 10
-  .form-actions.jcsb.hide-ios
-    = f.submit t("common.create"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
-    .hide-ios
-      a href="/markdown" target="_blank" 
-        i.fa.fa-life-ring
-        = t("groups.form.markdown_guides")
+. style="width: 100%;"
+  = form_for @group, method: 'put', remote: true, class: "form", html: { tb: 'edit-group' } do |f|
+    = render "shared/error_messages", target: @group
+    .form-group
+      .input-text
+        = t('groups.group_type')
+      .input-group
+        .form-check.form-check-inline
+          = f.radio_button :group_type, 'public_group'
+          = f.label :group_type, 'public_group', :value => 'public_group'
+        .form-check.form-check-inline
+          = f.radio_button :group_type, 'private_group'
+          = f.label :group_type, 'private_group', :value => 'private_group'
+    .form-group
+      .input-text
+        = t('groups.group_name')
+      .input-group
+        = f.text_field :name, class: "form-control", placeholder: t("groups.form.title_placeholder")
+    .form-group.row
+      .input-text
+        = t('groups.group_avatar')
+      .col-sm-7
+        = f.file_field :avatar, class: "form-control"
+    .form-group
+      .input-text
+        = t('groups.group_description')
+      = f.text_area :description, class: "group-editor form-control", placeholder: t("groups.form.title_placeholder"), rows: 10
+    .form-actions.jcsb.hide-ios
+      - text = action_name == 'edit' ? t("common.save") : t("common.create")
+      = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
+      .hide-ios
+        a href="/markdown" target="_blank" 
+          i.fa.fa-life-ring
+          = t("groups.form.markdown_guides")

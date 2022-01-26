@@ -1,6 +1,9 @@
 - title_tag(t('groups.edit_group'))
-.card.card-lg
-  .card-body
-    .card-title.hide-ios
-      = t('groups.new_group')
-    = render 'form'
+.row
+  .col-lg-9
+    div class=("groups groups-#{action_name} card card-lg") 
+      .card-body.item-list
+        = render 'form'
+  .sidebar.col-lg-3
+    = render "groups/sidebar_for_group_create"
+

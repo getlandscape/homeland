@@ -1,0 +1,19 @@
+.card
+  .card-body
+    div class=("group topic media topic-#{@group.id} content-header")
+    .info.content-body
+      .title
+        = t('groups.create')
+      .body
+        pre
+          = t('groups.create_details')
+    .info.content-body
+      .title
+        = t('groups.cautions')
+      .body
+        pre
+          = t('groups.caution_details')
+
+.card
+  .card-body
+    = t('groups.create_group_policy')
