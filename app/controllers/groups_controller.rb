@@ -6,10 +6,16 @@ class GroupsController < ApplicationController
 
   def index
     params[:page] ||= 1
-    @groups = Group.approved_groups.includes(:group_users).order(:id).page(params[:page])
+    params[:per] ||= 18
+    @groups = Group.approved_groups
+    @group = @groups.includes(:group_users).where(group_users: {user_id: current_user.id}) if current_user.present?
+    @groups = @groups.order(:id).page(params[:page]).per(params[:per])
   end
 
   def show
+    params[:page] ||= 1
+    params[:per] ||= 27
+    @group_users = GroupUser.where(group_id: @group.id).joins(:user).order(role: :asc, status: :asc).page(params[:page]).per(params[:per])
   end
 
   def new
@@ -34,7 +40,10 @@ class GroupsController < ApplicationController
   def update
     @group.update(group_params)
 
-    redirect_to(edit_group_path(@group), notice: t("common.update_success"))
+    respond_to do |format|
+      format.js
+      format.html { redirect_to(edit_group_path(@group), notice: t("common.update_success")) }
+    end
   end
 
   def destroy

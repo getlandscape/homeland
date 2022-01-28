@@ -54,4 +54,9 @@ class Group < ApplicationRecord
     return false unless user.present?
     group_users.accepted.pluck(:user_id).include? user.id
   end
+
+  def group_admin?(user)
+    return false unless user.present?
+    group_users.accepted.admin_only.pluck(:user_id).include? user.id
+  end
 end

@@ -1,19 +1,31 @@
 .row
-  .col-lg-9
-    ul#myTab.nav.nav-tabs role="tablist"
-      li.nav-item
-        a#home-tab.nav-link.active aria-controls="home" aria-selected="true" data-toggle="tab" href="#home" role="tab"
-          = t('groups.infos')
-      li.nav-item
-        a#profile-tab.nav-link aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" role="tab"
-          = t('groups.members')
-    #myTabContent.tab-content
-      #home.tab-pane.fade.show.active aria-labelledby="home-tab" role="tabpanel"
-        = 'infos'
-      #profile.tab-pane.fade aria-labelledby="profile-tab" role="tabpanel"
-        = 'members'
+  .col-lg-9.group-tab
+    ul#myTab.nav.nav-tabs.group-nav-tab role="tablist"
+      - if current_user.present? && @group.group_admin?(current_user)
+        li.nav-item
+          a#home-tab.tab-text.nav-link.active aria-controls="home" aria-selected="true" data-toggle="tab" href="#home" role="tab"
+            = t('groups.infos')
+        li.nav-item
+          a#profile-tab.tab-text.nav-link aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" role="tab"
+            = t('groups.members')
+      - else
+        li.nav-item
+          a#profile-tab.tab-text.nav-link.active aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile" role="tab"
+            = t('groups.members')
+    #myTabContent.tab-content.groups
+      - if current_user.present? && @group.group_admin?(current_user)
+        #home.tab-pane.fade.show.active aria-labelledby="home-tab" role="tabpanel"
+          .group-form.group-tab-content#group-info-content style="width: 100%;"
+            = render partial: 'groups/content_form'
+        #profile.tab-pane.fade aria-labelledby="profile-tab" role="tabpanel"
+          .group-form.group-tab-content#group-members-content style="width: 100%;"
+            = render partial: 'groups/members'
+      - else
+        #profile.tab-pane.show.active aria-labelledby="profile-tab" role="tabpanel"
+          .group-form.group-tab-content#group-members-content style="width: 100%;"
+            = render partial: 'groups/members'
 
-  .sidebar.col-lg-3
+  .sidebar.col-lg-3#group-sidebar-content
     = render "groups/sidebar_for_group_topics", group: @group
 
 javascript:
@@ -21,24 +33,3 @@ javascript:
     e.preventDefault()
     $(this).tab('show')
   })
-
-css:
-  .tab-content {
-    width: 100%;
-  }
-  .tab-pane {
-    background-color: white;
-    width: 100%;
-    min-height: 924px;
-  }
-  .nav-tabs li:first-child {
-    margin-left: 0px;
-  }
-  .nav-tabs .nav-item .nav-link.active {
-    color: #666;
-    color: var(--text-color1);
-    background: #fff;
-    background: var(--card-background-color);
-    border: 1px solid white;
-    border: 1px solid white;
-  }

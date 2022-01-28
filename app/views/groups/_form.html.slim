@@ -1,4 +1,7 @@
 .form-group
+  - if action_name != 'new'
+    .input-group
+      = user_avatar_tag(@group, :lg)
   .input-text.sub-title
     = t('groups.group_type')
   .input-group
@@ -50,16 +53,15 @@
       .switch-text
         = t('groups.show_group_members_to_public')
         = f.check_box :show_members, class: 'form-check-input'
-.form-group.sub-title
-  .row
-    .form-check.policy-check
-      = f.check_box :policy_agree, class: 'agreement-checkbox'
-      a.agreement-text
-        = t('groups.agreements_and_policies')
+- if action_name == 'new'
+  .form-group.sub-title
+    .row
+      .form-check.policy-check
+        = f.check_box :policy_agree, class: 'agreement-checkbox'
+        a.agreement-text
+          = t('groups.agreements_and_policies')
 .form-actions.jcsb.hide-ios
-  - text = action_name == 'edit' ? t("common.save") : t("common.create")
+  - text = t("common.create") if action_name == 'new'
+  - text ||= t("common.save")
   = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
-  .hide-ios
-    a href="/markdown" target="_blank" 
-      i.fa.fa-life-ring
-      = t("groups.form.markdown_guides")
+  

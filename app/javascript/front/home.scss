@@ -271,6 +271,46 @@ h2 {
   }
 }
 
+.group-tab {
+  .tab-content {
+    width: 100%;
+  }
+  .tab-pane {
+    background-color: white;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .nav-tabs {
+    border-bottom: none;
+  }
+  .nav-tabs li:first-child {
+    margin-left: 0px;
+  }
+  .tab-text {
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-right: 40px;
+    padding-left: 40px;
+    border-radius: 4px 4px 0px 0px;
+  }
+  .nav-tabs .nav-item .nav-link.active {
+    color: #666;
+    color: var(--text-color1);
+    background: #fff;
+    background: var(--card-background-color);
+    border: 1px solid white;
+    border: 1px solid white;
+  }
+  .group-tab-content {
+    padding: 30px;
+  }
+  .groups {
+    padding: 0px;
+    border: 0px;
+  }
+}
+
 .btn-joined {
   border: 1px solid #BBBBBB;
   box-sizing: border-box;

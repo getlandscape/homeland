@@ -1,0 +1,4 @@
+(function () {
+    target = "<%= escape_javascript(render '/groups/members')%>"
+	replaceHTML($('#group-members-content'), target);
+})();
