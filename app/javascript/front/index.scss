@@ -414,6 +414,7 @@ hr {
       margin-left: 8px;
       font-size: 16px;
       line-height: 22px;
+      max-width: 189px;
     }
     .group-title:hover {
       text-decoration: underline;
@@ -425,6 +426,8 @@ hr {
       font-size: 14px;
       line-height: 20px;
       color: #666666;
+      max-width: 196px;
+      height: 20px;
     }
   }
   .group:hover {

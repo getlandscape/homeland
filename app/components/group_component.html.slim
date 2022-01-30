@@ -7,9 +7,9 @@
     - else
       - path = main_app.group_path(group)
     = link_to(path, title: group.name, class: 'infos media-body') do
-      .title.media-heading.group-title
+      .title.media-heading.group-title.text-truncate
         = group.name
-      .info
+      .info.text-truncate
         = group.description_first_line
     .media-right
       - group_user = group.group_users.where(user_id: current_user.id).last if current_user.present?
