@@ -226,11 +226,13 @@ h2 {
     .title {
       font-size: 16px;
       line-height: 22px;
+      max-width: 189px;
     }
     .sub-title {
       font-size: 14px;
       line-height: 20px;
       color: #666666;
+      max-width: 196px;
     }
   }
   .content-body {
@@ -303,7 +305,13 @@ h2 {
     border: 1px solid white;
   }
   .group-tab-content {
-    padding: 30px;
+    padding: 40px;
+    .user-list-body {
+      padding: 10px;
+    }
+    .user-list-footer {
+      margin-top: 20px;
+    }
   }
   .groups {
     padding: 0px;

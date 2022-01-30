@@ -1,12 +1,11 @@
 - if action_name != "index"
   - title_tag(@page_title || t('menu.groups'))
 .row
-  .col-lg-9
-    div class=("groups groups-#{action_name} card") 
-      .card-body.item-list
-        - @group_users.each do |group_user|
-          = render partial: 'groups/group_user_card', locals: { user: group_user.user }
-      - total_pages = @group_users.total_pages
-      - if total_pages.to_i > 1
-        .card-footer.clearfix
-          = paginate @group_users, remote: true, total_pages: total_pages
+  .groups
+    .user-list-body.card-body.item-list
+      - @group_users.each do |group_user|
+        = render partial: 'groups/group_user_card', locals: { group_user: group_user }
+    - total_pages = @group_users.total_pages
+    - if total_pages.to_i > 1
+      .user-list-footer.clearfix
+        = paginate @group_users, remote: true, total_pages: total_pages

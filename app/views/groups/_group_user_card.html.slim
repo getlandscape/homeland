@@ -1,3 +1,84 @@
-= user_avatar_tag(user, :sm)
-= user.name
-= user.tagline
+- user = group_user.user
+.media.group-user-card class="group-user-#{user.id}"
+  .card-avatar.avatar
+    = user_avatar_tag(user, :md)
+  .media-body
+    .media-heading.text-truncate
+      .card-name
+        a
+          = user.name
+        a.role-tag class="#{group_user.role}-tag"
+          = group_user.role
+      .card-tag.text-truncate
+        = user.tagline
+      .card-button
+        - if group_user.pendding?
+          = link_to :approve, '', remote: true, class: 'btn-opt btn-approve'
+          = link_to :reject, '', remote: true, class: 'btn-opt btn-approve'
+        - if group_user.member?
+          = link_to :upgrade, '', remote: true, class: 'btn-opt btn-upgrade'
+        - if group_user.admin?
+          = link_to :downgrade, '', remote: true, class: 'btn-opt btn-downgrade'
+        - if group_user.accepted?
+          = link_to :remove, '', remote: true, class: 'btn-opt btn-remove'
+
+css:
+  .group-user-card {
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    height: 60px;
+    width: 276px;
+    margin-bottom: 30px;
+    margin-right: 12px;
+  }
+  .card-avatar {
+    margin-right: 6px;
+  }
+  .card-name {
+    font-size: 14px;
+    line-height: 20px;
+    color: #111111;
+    height: 20px;
+    max-length: 200px;
+  }
+  .card-tag {
+    font-size: 12px;
+    line-height: 17px;
+    color: #666666;
+    height: 17px;
+    margin-top: 3px;
+  }
+  .card-button {
+    font-size: 12px;
+    line-height: 17px;
+    color: #225EDA;
+    height: 17px;
+    margin-top: 3px;
+  }
+  .btn-opt {
+    margin-right: 12px;
+  }
+  .role-tag {
+    padding-top: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 2px;
+    font-size: 12px;
+    line-height: 17px;
+    color: #FFFFFF;
+    border-radius: 2px;
+    margin-left: 7px;
+  }
+  .role-tag:hover {
+    color: #ffffff;
+  }
+  .owner-tag {
+    background: #F54821;
+  }
+  .admin-tag {
+    background: #12CE0F;
+  }
+  .member-tag {
+    background: #ffffff;
+  }

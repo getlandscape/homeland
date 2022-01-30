@@ -5,14 +5,14 @@
         - if group.avatar_url.present?
           = user_avatar_tag(group, :md)
       .infos.media-body
-        .title.media-heading
+        .title.media-heading.text-truncate
           - if group.group_member? current_user
             = link_to(main_app.topics_group_path(group), title: group.name) do
               = group.name
           - else
             = link_to(main_app.group_path(group), title: group.name) do
               = group.name
-        .info.sub-title
+        .info.sub-title.text-truncate
           = group.description_first_line
     .info.content-body
       .title
