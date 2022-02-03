@@ -2,7 +2,7 @@
 
 class GroupUser < ApplicationRecord
   enum role: %i[owner admin member]
-  enum status: %i[pendding accepted rejected]
+  enum status: %i[pendding accepted]
 
   belongs_to :group
   belongs_to :user

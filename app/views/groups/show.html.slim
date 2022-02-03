@@ -1,3 +1,4 @@
+- @current_group_user = GroupUser.find_by(group_id: @group.id, user_id: current_user.id)
 .row
   .col-lg-9.group-tab
     ul#myTab.nav.nav-tabs.group-nav-tab role="tablist"
@@ -10,7 +11,7 @@
             = t('groups.members')
       - else
         li.nav-item
-          a#members-one-tab.tab-text.nav-link.active aria-controls="members-one" aria-selected="false" data-toggle="tab" href="#members" role="tab"
+          a#members-one-tab.tab-text.nav-link.active aria-controls="members-one" aria-selected="false" data-toggle="tab" href="#members-one" role="tab"
             = t('groups.members')
     #myTabContent.tab-content.groups
       - if current_user.present? && @group.group_admin?(current_user)
@@ -29,29 +30,22 @@
       - if current_user.present? && @group.group_admin?(current_user)
         li.nav-item
           a#info-two-tab.nav-link.active aria-controls="info-two" aria-selected="true" data-toggle="tab" href="#info-two" role="tab"
-            = '0'
         li.nav-item
           a#members-two-tab.nav-link aria-controls="members-two" aria-selected="false" data-toggle="tab" href="#members-two" role="tab"
-            = '1'
       - else
         li.nav-item
           a#members-two-tab.nav-link.active aria-controls="members-two" aria-selected="false" data-toggle="tab" href="#members-two" role="tab"
-            = '1'
     #myTabContent.tab-content
       - if current_user.present? && @group.group_admin?(current_user)
         #info-two.tab-pane.fade.show.active aria-labelledby="info-two-tab" role="tabpanel"
-          = render "groups/sidebar_for_group_topics", group: @group
+          .card
+            .card-body
+              = link_to(t('groups.group_path'), topics_group_path(@group), class: 'btn btn-primary btn-block')
         #members-two.tab-pane.fade aria-labelledby="members-two-tab" role="tabpanel"
-          - if current_user.present? && @group.group_member?(current_user)
-            .card
-              .card-body
-                = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: @group.id), class: 'btn btn-primary btn-block'
+          = render "groups/sidebar_group_card_small", group: @group
       - else
         #members-two.tab-pane.show.active aria-labelledby="members-two-tab" role="tabpanel"
-          - if current_user.present? && @group.group_member?(current_user)
-            .card
-              .card-body
-                = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: @group.id), class: 'btn btn-primary btn-block'
+          = render "groups/sidebar_group_card_small", group: @group
 
 javascript:
   $('#info-one-tab').on('click', function (e) {

@@ -15,9 +15,9 @@
       - group_user = group.group_users.where(user_id: current_user.id).last if current_user.present?
       - if group_user.present?
         - if group_user.accepted?
-          = link_to(t('groups.joined'), edit_group_group_users_path(group_id: group.id), class: "btn btn-joined btn-borderless", remote: true)
+          = link_to(t('groups.joined'), edit_group_group_user_path(id: group_user.id, group_id: group.id), class: "btn btn-joined btn-borderless", remote: true)
         - elsif group_user.pendding?
-          = link_to(t('groups.waiting'), edit_group_group_users_path(group_id: group.id), class: "btn btn-borderless", remote: true)
+          = link_to(t('groups.waiting'), edit_group_group_user_path(id: group_user.id, group_id: group.id), class: "btn btn-borderless", remote: true)
       - else
-        - text = group.private_group? ? t('groups.apply_to_join_group') : t('groups.join_group')
-        = link_to(text, edit_group_group_users_path(group_id: group.id), class: "btn btn-borderless", remote: true)
+        - text = group.private_group? ? t('groups.apply') : t('groups.join_group')
+        = link_to(text, new_group_group_user_path(group_id: group.id), class: "btn btn-borderless", remote: true)

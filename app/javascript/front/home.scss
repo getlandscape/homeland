@@ -319,6 +319,66 @@ h2 {
   }
 }
 
+.group-user-card {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  height: 60px;
+  width: 276px;
+  margin-bottom: 30px;
+  margin-right: 12px;
+  .card-avatar {
+    margin-right: 6px;
+  }
+  .card-name {
+    font-size: 14px;
+    line-height: 20px;
+    color: #111111;
+    height: 20px;
+    max-length: 200px;
+    .role-tag {
+      padding-top: 1px;
+      padding-left: 4px;
+      padding-right: 4px;
+      padding-bottom: 2px;
+      font-size: 12px;
+      line-height: 17px;
+      color: #FFFFFF;
+      border-radius: 2px;
+      margin-left: 7px;
+    }
+    .role-tag:hover {
+      color: #ffffff;
+    }
+    .owner-tag {
+      background: #F54821;
+    }
+    .admin-tag {
+      background: #12CE0F;
+    }
+    .member-tag {
+      background: #ffffff;
+    }
+  }
+  .card-tag {
+    font-size: 12px;
+    line-height: 17px;
+    color: #666666;
+    height: 17px;
+    margin-top: 3px;
+  }
+  .card-button {
+    font-size: 12px;
+    line-height: 17px;
+    color: #225EDA;
+    height: 17px;
+    margin-top: 3px;
+    .btn-opt {
+      margin-right: 12px;
+    }
+  }
+}
+
 .btn-joined {
   border: 1px solid #BBBBBB;
   box-sizing: border-box;
