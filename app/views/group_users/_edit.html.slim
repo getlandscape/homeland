@@ -22,16 +22,32 @@
         .info.content-body
           pre
             = group.description
-  .footer
-    .content
-      - if group_user.accepted?
+
+  - if group_user.accepted?
+    .footer
+      .content
         = link_to(t('groups.quite'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: "btn btn-primary btn-join", method: :delete)
-      - elsif group_user.pendding?
+        button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
+          = t('groups.cancel')
+  - elsif group_user.pendding?
+    .footer
+      .content
         = link_to(t('groups.waiting'), main_app.group_path(group), class: "btn btn-primary btn-join",)
-      - elsif group_user.status == nil
-        - if group.public_group?
+        button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
+          = t('groups.cancel')
+  - elsif group_user.status == nil
+    - if group.public_group?
+      .footer
+        .content
           = link_to(t('groups.join'), main_app.group_group_users_path(group_id: group.id), class: "btn btn-primary btn-join", method: :post)
-        - else
-          = link_to(t('groups.apply'), main_app.group_group_users_path(group_id: group.id), class: "btn btn-primary btn-join", method: :post)
-      button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
-        = t('groups.cancel')
+          button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
+            = t('groups.cancel')
+    - else
+      .footer
+        .content.text-area-content
+          = form_for GroupUser.new(group_id: group.id), url: admin_plugins_path, method: :post, html: { enctype: "multipart/form-data" } do |f|
+            = f.text_area :msg, rows: 3, placeholder: t('groups.default_apply')
+            button.btn.btn-primary.btn-join type='submit'
+              = t('groups.send')
+            button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
+              = t('groups.cancel')

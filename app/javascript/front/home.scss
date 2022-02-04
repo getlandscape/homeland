@@ -168,7 +168,7 @@ h2 {
     line-height: 21px;
   }
   .body {
-    height: 330px;
+    max-height: 330px;
     background-color: #ffffff;
     min-height: 200px;
     margin-left: 24px;
@@ -204,9 +204,16 @@ h2 {
       padding-right: 24px;
       padding-left: 24px;
     }
+    .text-area-content {
+      padding-bottom: 50px;
+      .btn {
+        margin-top: 12px;
+        margin-bottom: 12px;
+      }
+    }
     .btn {
       height: 26px;
-      width: 75px;
+      min-width: 75px;
       margin-left: 10px;
     }
     font-size: 14px;
@@ -311,7 +318,7 @@ h2 {
       padding: 10px;
     }
     .user-list-footer {
-      margin-top: 20px;
+      padding: 10px
     }
   }
   .groups {
@@ -380,9 +387,35 @@ h2 {
   }
 }
 
+.sidebar-text-content {
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  .title {
+    font-size: 18px;
+    line-height: 25px;
+    color: #111111;
+    margin-bottom: 15px;
+  }
+  .body {
+    font-size: 14px;
+    line-height: 20px;
+    color: #666666;
+  }
+  .footer {
+    margin-bottom: 30px;
+  }
+}
+
 .btn-joined {
   border: 1px solid #BBBBBB;
   box-sizing: border-box;
   background-color: white;
   color: #666666;
+}
+
+.new-topic-group-avatar {
+  background: #F4F4F4;
+  border-radius: 4px;
+  margin-bottom: 20px;
 }

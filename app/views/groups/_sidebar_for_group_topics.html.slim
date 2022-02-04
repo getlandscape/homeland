@@ -35,7 +35,7 @@
     .info.content-footer
       - if current_user.present? && group.group_member?(current_user)
         - group_user = GroupUser.find_by(user_id: current_user.id, group_id: group.id)
-        = link_to t('groups.Joined'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: 'btn btn-primary btn-block btn-joined', method: :delete
+        = link_to(t('groups.joined'), edit_group_group_user_path(id: group_user.id, group_id: group.id), class: "btn btn-primary btn-block btn-joined", remote: true)
       - else
         = link_to t('groups.join_group'), main_app.new_group_group_user_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :get, remote: true
 - if current_user.present? && group.group_member?(current_user)

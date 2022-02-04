@@ -8,7 +8,6 @@ class TopicsController < ApplicationController
     action favorites]
   load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
   before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban]
-  before_action :set_group, only: %i[new]
 
   def index
     @suggest_topics = []
@@ -65,6 +64,7 @@ class TopicsController < ApplicationController
   end
 
   def new
+    @group = Group.find_by(id: params[:group_id]) if params[:group_id].present?
     @topic = Topic.new(user_id: current_user.id)
     unless params[:node_id].blank?
       @topic.node_id = params[:node_id]
@@ -175,10 +175,6 @@ class TopicsController < ApplicationController
     return nil if team.blank?
     return nil if cannot?(:show, team)
     team.id
-  end
-
-  def set_group
-    @group_id = params[:group_id] if params[:group_id].present?
   end
 
   def private_group_validation

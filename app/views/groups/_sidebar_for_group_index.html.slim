@@ -1,3 +1,11 @@
 .card
+  .card-body.sidebar-text-content
+    .info.content-body
+      .title
+        = t('groups.create')
+      .body
+        .text
+          = t('groups.create_details')
+.card
   .card-body
     = link_to t('groups.new_group'), main_app.new_group_path, class: 'btn btn-primary btn-block'

@@ -440,8 +440,11 @@ hr {
   .card-body {
     padding-top: 40px;
     padding-left: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 0px;
     padding-right: 0px;
+  }
+  .card-footer {
+    padding-left: 40px;
   }
   .btn-borderless {
     padding: 0px;
@@ -667,7 +670,6 @@ hr {
 
   .group {
     text-align: center;
-    margin-bottom: 20px;
     &:last-child {
       margin-bottom: 0;
     }
