@@ -1,0 +1,32 @@
+#topic-sidebar data-offset-bottom="65" data-spy="affix" 
+  .card
+    .card-body
+      = render ProfileCardComponent.new(user: @topic.user)
+  - if @topic.group.present?    
+    = render "groups/sidebar_group_card_small", group: @topic.group
+  .card
+    .card-body
+      .buttons
+        .group.likes.opts
+          = likeable_tag(@topic)
+        .group
+          .opts
+            = topic_follow_tag(@topic)
+            = topic_favorite_tag(@topic)
+            - if can?(:manage, @topic) || can?(:close, @topic)
+              span.dropdown
+                a data-bs-toggle="dropdown" href="#" 
+                  = icon_tag("ellipsis-v")
+                = render "menu"
+      hr
+      .group
+        = social_share_button_tag h("#{@topic.title}")
+      hr
+      .reply-buttons
+        .total
+          = t("topics.total_replies_html", count: @topic.replies_count)
+        = reward_user_tag(@topic.user)
+  .notify-updated
+    a.update href="#" 
+      i.fa.fa-bell-o
+      = t("topics.new_reply_received_html")

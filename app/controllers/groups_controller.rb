@@ -14,7 +14,6 @@ class GroupsController < ApplicationController
 
   def show
     @current_group_user = GroupUser.find_by(user_id: current_user.id, group_id: @group.id)
-    puts @current_group_user.owner?
     params[:page] ||= 1
     params[:per] ||= 27
     @group_users = GroupUser.where(group_id: @group.id).joins(:user).order(role: :asc, status: :asc).page(params[:page]).per(params[:per])

@@ -47,6 +47,10 @@
         #members-two.tab-pane.show.active aria-labelledby="members-two-tab" role="tabpanel"
           = render "groups/sidebar_group_card_small", group: @group
 
+.modal.edit-group-user-modal.fade#edit-group-user-modal[tabindex='-1' role='dialog']
+  .modal-dialog.modal-dialog-centered[role='document']
+    .modal-content.group-user-modal-content#edit-group-user-modal-body.edit-group-user-modal
+
 javascript:
   $('#info-one-tab').on('click', function (e) {
     e.preventDefault()

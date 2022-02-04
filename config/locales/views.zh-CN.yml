@@ -105,6 +105,7 @@
   menu:
     home: "首页"
     topics: "社区"
+    groups: "小组"
     wiki: "Wiki"
     gems: "Gems"
     users: "会员"
@@ -346,6 +347,7 @@
     no_github: 未设置 GitHub 信息。
     menu:
       topics: "话题"
+      groups: "小组"
       recent_reply_topics: "最近回帖"
       like: "赞"
       overview: "概况"

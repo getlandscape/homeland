@@ -1,9 +1,0 @@
-.card.group-users
-  - if can? :update, @group
-    .card-header= link_to t('groups.new_group_user'), new_group_group_user_path(@group), class: 'btn btn-secondary'
-  .card-body
-    table.table
-      = render partial: '/group_users/group_user'
-  .card-footer
-    = paginate @group_users
-  

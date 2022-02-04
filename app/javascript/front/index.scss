@@ -673,6 +673,16 @@ hr {
     }
   }
 
+  .group-sidebar {
+    .title {
+      max-width: 172px;
+      color: #111111;
+    }
+    .info {
+      max-width: 172px;
+    }
+  }
+
   .buttons {
     .opts {
       font-size: 17px;

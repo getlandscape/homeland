@@ -12,7 +12,7 @@
       .card-tag.text-truncate
         = user.tagline
       .card-button
-        - if @current_group_user.admin? || @current_group_user.owner?
+        - if @current_group_user && (@current_group_user.admin? || @current_group_user.owner?)
           - if group_user.pendding?
             = link_to(t('groups.approve'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'approve'), method: :put, class: 'btn-opt btn-approve', remote: true)
           - if @current_group_user.owner?

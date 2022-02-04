@@ -7,7 +7,7 @@
       .infos.media-body
         .title.media-heading.text-truncate
           - if group.group_member? current_user
-            = link_to(main_app.topics_group_path(group), title: group.name) do
+            = link_to(main_app.topics_group_path(group), title: group.name, class: 'title') do
               = group.name
           - else
             = link_to(main_app.group_path(group), title: group.name) do
@@ -37,7 +37,7 @@
         - group_user = GroupUser.find_by(user_id: current_user.id, group_id: group.id)
         = link_to t('groups.Joined'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: 'btn btn-primary btn-block btn-joined', method: :delete
       - else
-        = link_to t('groups.join_group'), main_app.new_group_group_user_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :get
+        = link_to t('groups.join_group'), main_app.new_group_group_user_path(group_id: group.id), class: 'btn btn-primary btn-block', method: :get, remote: true
 - if current_user.present? && group.group_member?(current_user)
   .card
     .card-body
