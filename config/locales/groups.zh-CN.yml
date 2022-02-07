@@ -42,3 +42,13 @@
     members: "成员管理"
     group_path: "返回小组"
     role_owner: "我是小组组长"
+    public_group: "公开小组"
+    public_group_infos:
+      first_line: "- 小组内容对论坛任何人可见"
+      second_line: "- 小组内容对论坛任何人可见"
+    private_group: "私密小组"
+    private_group_infos:
+      first_line: "- 创建私密小组的行为是公开的"
+      second_line: "- 小组内容仅组员可见"
+      third_line: "- 只有接受组员邀请才能加入小组"
+      fourth_line: "- 以后可以变为公开的小组"

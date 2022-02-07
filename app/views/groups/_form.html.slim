@@ -9,24 +9,24 @@
       = f.radio_button :group_type, 'public_group', class: "radio-button" do
       = f.label :group_type do
         a.heading
-          = '公开小组'
+          = t('groups.public_group')
         br
-        = '- 小组内容对论坛任何人可见'
+        = t('groups.public_group_infos.first_line')
         br
-        = '- 以后可以变为私密小组'
+        = t('groups.public_group_infos.second_line')
     .form-check.form-check-inline.privacy-check-box
       = f.radio_button :group_type, 'private_group', class: "radio-button" do
       = f.label :group_type do
         a.heading
-          = '私密小组'
+          = t('groups.private_group')
         br
-        = '- 创建私密小组的行为是公开的'
+        = t('groups.private_group_infos.first_line')
         br
-        = '- 小组内容仅组员可见'
+        = t('groups.private_group_infos.second_line')
         br
-        = '- 只有接受组员邀请才能加入小组'
+        = t('groups.private_group_infos.third_line')
         br
-        = '- 以后可以变为公开的小组'
+        = t('groups.private_group_infos.fourth_line')
 .form-group
   .input-text.sub-title
     = t('groups.group_name')

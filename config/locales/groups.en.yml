@@ -25,7 +25,7 @@
     downgrade: 'Downgrade to member'
     remove: 'Remove from group'
     reject: 'Refuse to join'
-    create: 'Create'
+    create: 'New Group'
     create_details: 'If you want to communicate with others about a certain type of discussion, you can create a group. Groups are gathering places for people interested in the same discussion.'
     cautions: 'Cautions'
     caution_details: 'Taking into account the requirements of Chinese laws and regulations and related policies, this forum does not welcome pornographic, radical discussions, and ideological discussions, and reserves the right to disband such topic groups.'
@@ -42,3 +42,13 @@
     members: 'Members'
     group_path: 'Go back to group'
     role_owner: 'Owner of this group'
+    public_group: "Public Group"
+    public_group_infos:
+      first_line: "- Content is visible to public"
+      second_line: "- Can be updated as private"
+    private_group: "Private Group"
+    private_group_infos:
+      first_line: "- Creation is public"
+      second_line: "- Only visible to members"
+      third_line: "- Invitation required to join"
+      fourth_line: "- Can be updated as public"
