@@ -52,3 +52,4 @@
       second_line: "- 小组内容仅组员可见"
       third_line: "- 只有接受组员邀请才能加入小组"
       fourth_line: "- 以后可以变为公开的小组"
+    private_group_caution: "这是一个私密小组，只有受邀请的用户才能加入"

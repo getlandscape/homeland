@@ -8,7 +8,7 @@
     .form-check.form-check-inline.privacy-check-box
       = f.radio_button :group_type, 'public_group', class: "radio-button" do
       = f.label :group_type do
-        a.heading
+        a
           = t('groups.public_group')
         br
         = t('groups.public_group_infos.first_line')
@@ -17,7 +17,7 @@
     .form-check.form-check-inline.privacy-check-box
       = f.radio_button :group_type, 'private_group', class: "radio-button" do
       = f.label :group_type do
-        a.heading
+        a
           = t('groups.private_group')
         br
         = t('groups.private_group_infos.first_line')

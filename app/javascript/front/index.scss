@@ -401,10 +401,10 @@ hr {
   font-family: PingFang SC;
   font-style: normal;
   font-weight: normal;
-  color: #111111;
-  border: 1px solid #EEEEEE;
+  border: 1px solid rgba(238, 238, 238, 0.1);
   .group {
-    border: 1px solid #EEEEEE;
+    border: 2px solid rgba(238, 238, 238, 0.3);
+    border-radius: 2px;
     box-sizing: border-box;
     padding: 10px;
     margin-right: 39px;
@@ -482,14 +482,13 @@ hr {
       margin-bottom: 8px;
       font-size: 14px;
       line-height: 20px;
-      color: #111111;
       padding: 0px;
     }
     .privacy-check-box {
       padding: 9px;
       width: 270px;
       height: 136px;
-      border: 2px solid #F4F4F4;
+      border: 2px solid;
       border-radius: 2px;
       font-size: 14px;
       line-height: 20px;
@@ -497,7 +496,6 @@ hr {
       .heading {
         font-size: 14px;
         line-height: 20px;
-        color: #111111;
       }
     }
     .radio-button {
@@ -533,7 +531,6 @@ hr {
     .switch-text {
       font-size: 14px;
       line-height: 20px;
-      color: #111111;
       padding: 0px;
     }
     .form-check-input {
@@ -677,11 +674,7 @@ hr {
 
   .group-sidebar {
     .title {
-      max-width: 172px;
-      color: #111111;
-    }
-    .info {
-      max-width: 172px;
+      max-width: 160px;
     }
   }
 

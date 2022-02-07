@@ -7,8 +7,9 @@
       .card-name
         a
           = user.name
-        a.role-tag class="#{group_user.role}-tag"
-          = group_user.role
+        - if group_user.admin? || group_user.owner?
+          a.role-tag class="#{group_user.role}-tag"
+            = group_user.role
       .card-tag.text-truncate
         = user.tagline
       .card-button

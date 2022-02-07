@@ -130,7 +130,6 @@ h2 {
   font-family: PingFang SC;
   font-style: normal;
   font-weight: normal;
-  color: #111111;
   .sub-title{
     font-size: 13px;
     line-height: 18px;
@@ -153,7 +152,6 @@ h2 {
   font-family: PingFang SC;
   font-style: normal;
   font-weight: normal;
-  color: #111111;
   .header {
     height: 52px;
     background: rgba(34, 94, 218, 0.1);
@@ -226,21 +224,19 @@ h2 {
   font-family: PingFang SC;
   font-style: normal;
   font-weight: normal;
-  color: #111111;
   .content-header {
     padding-bottom: 24px;
     border-bottom: 1px solid rgba(0, 0, 1, 0.03);
     .title {
       font-size: 16px;
       line-height: 22px;
-      max-width: 189px;
-      color: #111111;
+      max-width: 160px;
     }
     .sub-title {
       font-size: 14px;
       line-height: 20px;
       color: #666666;
-      max-width: 196px;
+      max-width: 160px;
     }
   }
   .content-body {
@@ -259,7 +255,6 @@ h2 {
       margin-left: 8px;
       font-size: 16px;
       line-height: 22px;
-      color: #111111;
     }
     .user-title:hover {
       text-decoration: underline;
@@ -278,6 +273,11 @@ h2 {
     .invite-link{
       padding-top: 10px;
     }
+    .caustion {
+      font-size: 14px;
+      line-height: 20px;
+      color: #666666;
+    }
   }
 }
 
@@ -286,9 +286,8 @@ h2 {
     width: 100%;
   }
   .tab-pane {
-    background-color: white;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 2px;
     margin-bottom: 20px;
   }
   .nav-tabs {
@@ -302,15 +301,13 @@ h2 {
     padding-bottom: 14px;
     padding-right: 40px;
     padding-left: 40px;
-    border-radius: 4px 4px 0px 0px;
+    border-radius: 2px 2px 0px 0px;
   }
   .nav-tabs .nav-item .nav-link.active {
     color: #666;
     color: var(--text-color1);
     background: #fff;
     background: var(--card-background-color);
-    border: 1px solid white;
-    border: 1px solid white;
   }
   .group-tab-content {
     padding: 40px;
@@ -341,7 +338,6 @@ h2 {
   .card-name {
     font-size: 14px;
     line-height: 20px;
-    color: #111111;
     height: 20px;
     max-length: 200px;
     .role-tag {
@@ -394,7 +390,6 @@ h2 {
   .title {
     font-size: 18px;
     line-height: 25px;
-    color: #111111;
     margin-bottom: 15px;
   }
   .body {
@@ -410,7 +405,7 @@ h2 {
 .btn-joined {
   border: 1px solid #BBBBBB;
   box-sizing: border-box;
-  background-color: white;
+  background-color: transparent;
   color: #666666;
 }
 

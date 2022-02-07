@@ -52,3 +52,4 @@
       second_line: "- Only visible to members"
       third_line: "- Invitation required to join"
       fourth_line: "- Can be updated as public"
+    private_group_caution: "This is a private group and invitation required"

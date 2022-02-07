@@ -4,6 +4,7 @@ class GroupUsersController < ApplicationController
   before_action :authenticate_user!, except: %i[index]
   before_action :set_group
   before_action :set_group_user, except: %i[index new create destroy]
+  before_action :set_current_group_user
 
   def index
     params[:page] ||= 1
@@ -20,6 +21,7 @@ class GroupUsersController < ApplicationController
   def create
     @group_user = GroupUser.find_or_initialize_by(user_id: current_user.id, group_id: @group.id)
     @group_user.role = 'member'
+    @group_user.msg = group_user_params[:msg]
     @group_user.status = @group.public_group? ? 'accepted' : 'pendding'
     @group_user.save
 
@@ -35,7 +37,6 @@ class GroupUsersController < ApplicationController
   end
 
   def update
-    @current_group_user = GroupUser.find_by(user_id: current_user.id, group_id: @group.id)
     if @group.group_admin?(current_user)
       case params[:opt]
       when 'approve'
@@ -68,6 +69,10 @@ class GroupUsersController < ApplicationController
 
   def set_group_user
     @group_user = @group.group_users.find_by(id: params[:id])
+  end
+
+  def set_current_group_user
+    @current_group_user = GroupUser.find_by(group_id: @group.id, user_id: current_user.id) if @group.present? && current_user.present?
   end
 
   def group_user_params

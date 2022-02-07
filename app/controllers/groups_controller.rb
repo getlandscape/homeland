@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class GroupsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new edit create update destroy]
-  before_action :set_group, only: %i[show edit update destroy join quite topics]
+  before_action :authenticate_user!, except: %i[index show topics]
+  before_action :set_group, except: %i[index]
+  before_action :set_current_group_user
 
   def index
     params[:page] ||= 1
@@ -13,7 +14,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @current_group_user = GroupUser.find_by(user_id: current_user.id, group_id: @group.id)
     params[:page] ||= 1
     params[:per] ||= 27
     @group_users = GroupUser.where(group_id: @group.id).joins(:user).order(role: :asc, status: :asc).page(params[:page]).per(params[:per])
@@ -60,6 +60,10 @@ class GroupsController < ApplicationController
 
   def set_group
     @group ||= Group.find(params[:id])
+  end
+
+  def set_current_group_user
+    @current_group_user = GroupUser.find_by(user_id: current_user.id, group_id: @group.id) if @group.present? && current_user.present?
   end
 
   def group_params

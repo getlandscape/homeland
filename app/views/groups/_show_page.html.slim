@@ -1,0 +1,37 @@
+.row
+  .col-lg-9
+    .card.group-sidebar
+      .card-body
+        .group.topic.media.content-header class="topic-#{@group.id}" data-prefetch="#{main_app.group_path(@group)}" 
+          .avatar
+            - if @group.avatar_url.present?
+              = user_avatar_tag(@group, :md)
+          .infos.media-body
+            .title.name-title.media-heading.text-truncate
+              - if @group.group_member? current_user
+                = link_to(main_app.topics_group_path(@group), title: @group.name, class: 'title') do
+                  = @group.name
+              - else
+                = link_to(main_app.group_path(@group), title: @group.name) do
+                  = @group.name
+            .info.sub-title.text-truncate
+              = @group.description_first_line
+        .info.content-body
+          .title
+            = t('groups.created_at')
+            = @group.created_at.strftime("%Y-%m-%d")
+            = t('groups.@group_owner')
+            = link_to(@group.owner.name, main_app.user_path(@group.owner), title: @group.owner.name, class: 'user-title')
+          .body
+            pre
+              = @group.description
+        .info.content-footer
+          a.caustion
+            = t('@groups.private_@group_caution')
+
+
+  .sidebar.col-lg-3
+    .card
+      .card-body
+        = render ProfileCardComponent.new(user: @group.owner)
+    = render partial: "groups/group_statistics", locals: { group: @group }
