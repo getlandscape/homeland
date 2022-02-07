@@ -15,6 +15,7 @@ class Group < ApplicationRecord
   has_many :users, through: :group_users
 
   has_many :topics
+  has_many :replies, through: :topics
 
   scope :approved_groups, -> { where(status: 'approved') }
 

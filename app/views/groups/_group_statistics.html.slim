@@ -1,0 +1,7 @@
+- cache(["group_sidebar_statistics_#{group.id}",Time.now.strftime("%Y-%m-%d %H")]) do
+  .card
+    .card-header= t("common.statics")
+    ul.list-group.list-group-flush
+      li.list-group-item= t("common.statics_users_count", count: group.users.count)
+      li.list-group-item= t("common.statics_topics_count", count: group.topics.count)
+      li.list-group-item= t("common.statics_replies_count", count: group.replies.count)
