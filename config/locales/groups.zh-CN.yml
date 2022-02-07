@@ -41,3 +41,4 @@
     infos: "小组信息"
     members: "成员管理"
     group_path: "返回小组"
+    role_owner: "我是小组组长"

@@ -12,8 +12,7 @@ class ApplicationController
     end
 
     def user_locale
-      # params[:locale] || cookies[:locale] || http_head_locale || Setting.default_locale || I18n.default_locale
-      'zh-CN'
+      params[:locale] || cookies[:locale] || http_head_locale || Setting.default_locale || I18n.default_locale
     end
 
     def http_head_locale
