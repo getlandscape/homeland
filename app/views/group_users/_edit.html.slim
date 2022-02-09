@@ -37,7 +37,7 @@
   - elsif group_user.pendding?
     .footer
       .content
-        = link_to(t('groups.waiting'), main_app.group_path(group), class: "btn btn-primary btn-join",)
+        = link_to(t('groups.cancel_apply'), main_app.group_path(group), class: "btn btn-primary btn-join",)
         button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
           = t('groups.cancel')
   - elsif group_user.status == nil

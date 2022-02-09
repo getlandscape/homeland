@@ -22,6 +22,10 @@ class Reply < ApplicationRecord
   scope :without_system, -> { where(action: nil) }
   scope :fields_for_list, -> { select(:topic_id, :id, :body, :updated_at, :created_at) }
 
+  scope :without_private, -> {
+    left_joins(topic: :group).where('groups.id is NULL OR groups.group_type = ?', 0)
+  }
+
   validates :body, presence: true, unless: -> { system_event? }
   validates :body, uniqueness: {scope: %i[topic_id user_id], message: I18n.t("replies.duplicate_error")}, unless: -> { system_event? }
   validate do

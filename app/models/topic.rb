@@ -51,6 +51,10 @@ class Topic < ApplicationRecord
   scope :without_users, ->(ids) { exclude_column_ids("user_id", ids) }
   scope :exclude_column_ids, ->(column, ids) { ids.empty? ? all : where.not(column => ids) }
 
+  scope :without_private, -> {
+    left_joins(:group).where('groups.id is NULL OR groups.group_type = ?', 0)
+  }
+
   scope :without_nodes, lambda { |node_ids|
     ids = node_ids + Topic.topic_index_hide_node_ids
     ids.uniq!

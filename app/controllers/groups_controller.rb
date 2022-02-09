@@ -51,8 +51,19 @@ class GroupsController < ApplicationController
   end
 
   def topics
+    if @group.private_group? && !(@current_group_user.present? && @current_group_user.accepted?)
+      redirect_to(group_path(@group), alert: t("groups.join_to_review"))
+    end
+
     params[:page] ||= 1
     @topics = @group.topics.last_actived.page(params[:page])
+    if @topics.count.zero?
+      if @current_group_user.present? && @current_group_user.accepted?
+        flash.now[:notice] = t('groups.post_topic')
+      else
+        flash.now[:notice] = t('groups.join_to_post_topic')
+      end
+    end
     @page_title = t("menu.groups")
   end
 

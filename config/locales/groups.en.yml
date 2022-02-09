@@ -2,6 +2,7 @@
   groups:
     joined: 'Joined'
     waiting: 'Waiting'
+    cancel_apply: 'Withdraw'
     apply: 'Apply'
     join_group: 'Join'
     check_agreements_and_policies: 'Agree Agreements & Policies'
@@ -10,7 +11,7 @@
     welcome_to: 'Welcome to '
     quite: 'Quite'
     join: 'Join'
-    cancel: 'Cancel'
+    cancel: 'Close'
     send: "Send"
     default_apply: "Please enter the reason for the application, within 100 characters"
     group_type: 'Group Type'
@@ -57,3 +58,6 @@
     confirm_quite: "Confirm to quite group"
     confirm: "Quite"
     owner_quite_forbidden: "Transfer ownership before quite"
+    join_to_post_topic: "No topic in this group, join to create a new topic!"
+    post_topic: "No topic in this group, create a new topic!"
+    join_to_review: "Private group requires joining to view topics."

@@ -2,6 +2,7 @@
   groups:
     joined: "已加入"
     waiting: "等待审批"
+    cancel_apply: "撤销"
     apply: "+ 申请加入小组"
     join_group: "+ 加入小组"
     check_agreements_and_policies: "我已认真阅读并同意《社区指导原则》和《法律声明》"
@@ -57,3 +58,6 @@
     confirm_quite: "真的要退出小组吗？"
     confirm: "确定"
     owner_quite_forbidden: "小组组长需要转让组长权限才能退出"
+    join_to_post_topic: "小组没有讨论，加入并发布讨论"
+    post_topic: "小组没有讨论，发布讨论"
+    join_to_review: "私密小组需要加入才能浏览内容"
