@@ -20,6 +20,7 @@
     need_approvement_to_join: "需要管理员同意方可加入"
     show_group_members_to_public: "对外公开显示小组成员列表"
     agreements_and_policies: "《社区指导原则》和《法律声明》"
+    owner_transfer: "转为组长"
     approve: "通过"
     upgrade: "升为管理员"
     downgrade: "降为组员"

@@ -20,6 +20,7 @@
             - if group_user.member?
               = link_to(t('groups.upgrade'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'upgrade'), method: :put, class: 'btn-opt btn-upgrade', remote: true)
             - if group_user.admin?
+              = link_to(t('groups.owner_transfer'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'owner'), method: :put, class: 'btn-opt btn-downgrade', remote: true)
               = link_to(t('groups.downgrade'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'downgrade'), method: :put, class: 'btn-opt btn-downgrade', remote: true)
           - if group_user.member? && group_user.accepted?
             = link_to(t('groups.remove'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'remove'), method: :put, class: 'btn-opt btn-remove', remote: true)

@@ -39,6 +39,11 @@ class GroupUsersController < ApplicationController
   def update
     if @group.group_admin?(current_user)
       case params[:opt]
+      when 'owner'
+        if @current_group_user.owner?
+          @group_user.update(role: 'owner')
+          @current_group_user.update(role: 'admin')
+        end
       when 'approve'
         @group_user.update(status: 'accepted')
       when 'upgrade'

@@ -20,6 +20,7 @@
     need_approvement_to_join: 'Need approvement to join this group?'
     show_group_members_to_public: 'Show the group members to public?'
     agreements_and_policies: 'Agreements & Policies'
+    owner_transfer: 'Owner'
     approve: 'Approve'
     upgrade: 'Upgrade'
     downgrade: 'Downgrade'
