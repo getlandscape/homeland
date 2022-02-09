@@ -30,7 +30,7 @@
     create_details: 'If you want to communicate with others about a certain type of discussion, you can create a group. Groups are gathering places for people interested in the same discussion.'
     cautions: 'Cautions'
     caution_details: 'Taking into account the requirements of Chinese laws and regulations and related policies, this forum does not welcome pornographic, radical discussions, and ideological discussions, and reserves the right to disband such topic groups.'
-    create_group_policy: 'Create group policy'
+    create_group_policy: 'Group needs to pass the review before completing the creation. The review result will be notified to you by the internal letter, please wait patiently.'
     new_group: 'Create New Group'
     created_at: 'Created at '
     people_in_this_group: ' people joined this group'
