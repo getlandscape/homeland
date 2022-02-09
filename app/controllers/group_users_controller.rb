@@ -21,7 +21,7 @@ class GroupUsersController < ApplicationController
   def create
     @group_user = GroupUser.find_or_initialize_by(user_id: current_user.id, group_id: @group.id)
     @group_user.role = 'member'
-    @group_user.msg = group_user_params[:msg]
+    @group_user.msg = group_user_params[:msg] if @group.private_group?
     @group_user.status = @group.public_group? ? 'accepted' : 'pendding'
     @group_user.save
 
@@ -56,7 +56,10 @@ class GroupUsersController < ApplicationController
 
   def destroy
     @group_user = current_user.group_users.find_by(id: params[:id])
-    if @group_user.delete
+
+    if @group_user.owner?
+      redirect_to(group_path(@group_user.group), alert: t("groups.owner_quite_forbidden"))
+    elsif @group_user.delete
       redirect_to(groups_path, notice: t("groups.quite_group_success"))
     end
   end

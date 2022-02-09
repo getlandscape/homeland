@@ -21,10 +21,10 @@
     show_group_members_to_public: 'Show the group members to public?'
     agreements_and_policies: 'Agreements & Policies'
     approve: 'Approve'
-    upgrade: 'Upgrade to admin'
-    downgrade: 'Downgrade to member'
-    remove: 'Remove from group'
-    reject: 'Refuse to join'
+    upgrade: 'Upgrade'
+    downgrade: 'Downgrade'
+    remove: 'Remove'
+    reject: 'Decline'
     create: 'New Group'
     create_details: 'If you want to communicate with others about a certain type of discussion, you can create a group. Groups are gathering places for people interested in the same discussion.'
     cautions: 'Cautions'
@@ -53,3 +53,6 @@
       third_line: "- Invitation required to join"
       fourth_line: "- Can be updated as public"
     private_group_caution: "This is a private group and invitation required"
+    confirm_quite: "Confirm to quite group"
+    confirm: "Quite"
+    owner_quite_forbidden: "Transfer ownership before quite"

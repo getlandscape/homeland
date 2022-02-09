@@ -1,34 +1,39 @@
 .edit-group-user-body
-  .header
-    .content
-      = t('groups.welcome_to_join') + group.name
-      button.close[type='button' data-bs-dismiss='modal' aria-label='Close']
-        span[aria-hidden='true'] &times;
-  .body
-    .content.topic.media.content-hearder
-      .avatar
-        - if group.avatar_url.present?
-          = user_avatar_tag(group, :md)
-      .infos.media-body
-        .title.media-heading
-          = t('groups.group_owner')
-          = link_to(group.owner.name, main_app.user_path(group.owner))
-        .info.sub-title
-          = t('groups.welcome_to') + group.name
-    .content
-      .infos.media-body
-        .info.content-title
-          = t('grouups.group_introduction')
-        .info.content-body
-          pre
-            = group.description
+  - if group_user.accepted?
+    .body
+      .content
+        = t('groups.confirm_quite')
+  - else
+    .header
+      .content
+        = t('groups.welcome_to_join') + group.name
+        button.close[type='button' data-bs-dismiss='modal' aria-label='Close']
+          span[aria-hidden='true'] &times;
+    .body.text-body
+      .content.topic.media.content-hearder
+        .avatar
+          - if group.avatar_url.present?
+            = user_avatar_tag(group, :md)
+        .infos.media-body
+          .title.media-heading
+            = t('groups.group_owner')
+            = link_to(group.owner.name, main_app.user_path(group.owner))
+          .info.sub-title
+            = t('groups.welcome_to') + group.name
+      .content
+        .infos.media-body
+          .info.content-title
+            = t('grouups.group_introduction')
+          .info.content-body
+            pre
+              = group.description
 
   - if group_user.accepted?
     .footer
       .content
-        = link_to(t('groups.quite'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: "btn btn-primary btn-join", method: :delete)
         button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
           = t('groups.cancel')
+        = link_to(t('groups.confirm'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: "btn btn-primary btn-join", method: :delete)
   - elsif group_user.pendding?
     .footer
       .content
@@ -45,7 +50,7 @@
     - else
       .footer
         .content.text-area-content
-          = form_for GroupUser.new(group_id: group.id), url: admin_plugins_path, method: :post, html: { enctype: "multipart/form-data" } do |f|
+          = form_for GroupUser.new(group_id: group.id), url: group_group_users_path, method: :post, html: { enctype: "multipart/form-data" } do |f|
             = f.text_area :msg, rows: 3, placeholder: t('groups.default_apply')
             button.btn.btn-primary.btn-join type='submit'
               = t('groups.send')

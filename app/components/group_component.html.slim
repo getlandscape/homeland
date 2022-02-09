@@ -15,9 +15,6 @@
       - group_user = group.group_users.where(user_id: current_user.id).last if current_user.present?
       - if group_user.present?
         - if group_user.accepted?
-          - if group_user.owner?
-            = link_to(t('groups.role_owner'), '', class: "btn btn-joined btn-borderless", remote: true)
-          - else
             = link_to(t('groups.joined'), edit_group_group_user_path(id: group_user.id, group_id: group.id), class: "btn btn-joined btn-borderless", remote: true)
         - elsif group_user.pendding?
           = link_to(t('groups.waiting'), edit_group_group_user_path(id: group_user.id, group_id: group.id), class: "btn btn-borderless", remote: true)

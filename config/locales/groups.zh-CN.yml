@@ -53,3 +53,6 @@
       third_line: "- 只有接受组员邀请才能加入小组"
       fourth_line: "- 以后可以变为公开的小组"
     private_group_caution: "这是一个私密小组，只有受邀请的用户才能加入"
+    confirm_quite: "真的要退出小组吗？"
+    confirm: "确定"
+    owner_quite_forbidden: "小组组长需要转让组长权限才能退出"

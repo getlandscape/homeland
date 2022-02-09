@@ -167,8 +167,7 @@ h2 {
   }
   .body {
     max-height: 330px;
-    background-color: #ffffff;
-    min-height: 200px;
+    background-color: transparent;
     margin-left: 24px;
     margin-right: 24px;
     .avatar-square-48 {
@@ -191,9 +190,12 @@ h2 {
     font-size: 13px;
     line-height: 18px;
   }
+  .text-body {
+    border-bottom: 1px solid rgba(0, 0, 1, 0.03);
+  }
   .footer {
     min-height: 50px;
-    background-color: #F4F4F4;
+    background-color: transparent;
     border-radius: 0px 0px 10px 10px;
     min-height: 50px;
     .content {
