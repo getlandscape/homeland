@@ -63,7 +63,11 @@ Rails.application.routes.draw do
       get :topics
     end
 
-    resources :group_users
+    resources :group_users do
+      member do
+        get :manage
+      end
+    end
   end
 
   resources :topics do

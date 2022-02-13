@@ -69,6 +69,10 @@ class GroupUsersController < ApplicationController
     end
   end
 
+  def manage
+    @group_user = @group.group_users.find_by(id: params[:id])
+  end
+
   private
 
   def set_group
