@@ -12,17 +12,17 @@ module Users
     end
 
     def topics
-      @topics = @user.topics.fields_for_list.recent
+      @topics = @user.topics.without_private.fields_for_list.recent
       @topics = @topics.page(params[:page])
     end
 
     def replies
-      @replies = @user.replies.without_system.fields_for_list.recent
+      @replies = @user.replies.without_private.without_system.fields_for_list.recent
       @replies = @replies.page(params[:page])
     end
 
     def favorites
-      @topics = @user.favorite_topics.order("actions.id desc")
+      @topics = @user.favorite_topics.without_private.order("actions.id desc")
       @topics = @topics.page(params[:page])
     end
 
@@ -75,8 +75,8 @@ module Users
     end
 
     def user_show
-      @topics = @user.topics.fields_for_list.high_likes.page(params[:page])
-      @replies = @user.replies.without_system.fields_for_list.recent.includes(:topic).limit(10)
+      @topics = @user.topics.without_private.fields_for_list.high_likes.page(params[:page])
+      @replies = @user.replies.without_private.without_system.fields_for_list.recent.includes(:topic).limit(10)
     end
   end
 end

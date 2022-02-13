@@ -11,7 +11,7 @@ module Users
     private
 
     def team_show
-      @topics = Topic.where(user_id: @team.user_ids, team_id: [nil, @team.id])
+      @topics = Topic.without_private.where(user_id: @team.user_ids, team_id: [nil, @team.id])
         .fields_for_list
         .last_actived.includes(:user)
       @topics = @topics.page(params[:page])
