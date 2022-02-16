@@ -6,20 +6,17 @@ module Noitification
       @action = action
     end
 
-    def meta_data
-      case @action
-      when 'update'
-      when 'create'
-      end
+    def raw_data
+      meta_data.merge { target: @group_user, second_target: group }
+    end
+
+    def group
+      @group_user.group
+    end
+
+    def admin_ids
+      group.group_users.admins.pluck(:user_id)
     end
   end
 end
 
-
-Notification.create(
-  notify_type: @klass,
-  target: @target,
-  second_target: @second_target,
-  actor_id: @actor.id,
-  user_id: @receiver.id
-)

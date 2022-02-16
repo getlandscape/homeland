@@ -99,6 +99,7 @@ gem "puma_worker_killer"
 gem "slim-rails"
 gem 'jquery-rails'
 gem 'bootstrap-sass'
+gem 'paranoia'
 
 group :development do
   gem "spring"

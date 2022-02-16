@@ -23,6 +23,7 @@ class GroupUsersController < ApplicationController
     @group_user.role = 'member'
     @group_user.msg = group_user_params[:msg] if @group.private_group?
     @group_user.status = @group.public_group? ? 'accepted' : 'pendding'
+    @group_user.last_actor_id = current_user.id
     @group_user.save
 
     if @group.public_group?
@@ -37,21 +38,22 @@ class GroupUsersController < ApplicationController
   end
 
   def update
-    if @group.group_admin?(current_user)
+    if @group.group_admin?(current_user) && @current_group_user.read_attribute_before_type_cast(:role) < @group_user.read_attribute_before_type_cast(:role)
       case params[:opt]
-      when 'owner'
+      when 'owner_transfer'
         if @current_group_user.owner?
-          @group_user.update(role: 'owner')
-          @current_group_user.update(role: 'admin')
+          @group_user.update(role: 'owner', last_actor_id: current_user.id, last_action_type: params[:opt])
+          @current_group_user.update(role: 'admin', last_actor_id: current_user.id, last_action_type: params[:opt])
         end
       when 'approve'
-        @group_user.update(status: 'accepted')
+        @group_user.update(status: 'accepted', last_actor_id: current_user.id, last_action_type: params[:opt])
       when 'upgrade'
-        @group_user.update(status: 'accepted', role: 'admin') if @current_group_user.owner?
+        @group_user.update(status: 'accepted', role: 'admin', last_actor_id: current_user.id, last_action_type: params[:opt])
       when 'downgrade'
-        @group_user.update(status: 'accepted', role: 'member') if @current_group_user.owner?
+        @group_user.update(status: 'accepted', role: 'member', last_actor_id: current_user.id, last_action_type: params[:opt])
       else
-        @group_user.delete if @current_group_user.read_attribute_before_type_cast(:role) < @group_user.read_attribute_before_type_cast(:role)
+        @group_user.destroy
+        @group_user.update(status: 'declined', last_actor_id: current_user.id, last_action_type: params[:opt])
       end
     end
     params[:page] ||= 1
@@ -64,8 +66,14 @@ class GroupUsersController < ApplicationController
 
     if @group_user.owner?
       redirect_to(group_path(@group_user.group), alert: t("groups.owner_quite_forbidden"))
-    elsif @group_user.delete
-      redirect_to(groups_path, notice: t("groups.quite_group_success"))
+    elsif @group_user.destroy
+      @group_user.update(last_actor_id: current_user.id, last_action_type: params[:opt])
+      msg = if params[:opt] == 'withdraw'
+        t("groups.cancel_apply_success")
+      else
+        t("groups.quite_group_success")
+      end
+      redirect_to(groups_path, notice: msg)
     end
   end
 

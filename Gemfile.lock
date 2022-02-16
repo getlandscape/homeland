@@ -292,6 +292,8 @@ GEM
       omniauth-oauth2 (>= 1.1.1)
     orm_adapter (0.5.0)
     parallel (1.20.1)
+    paranoia (2.5.2)
+      activerecord (>= 5.1, < 7.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
     pg (1.2.3)
@@ -517,6 +519,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection
   omniauth-twitter
   omniauth-wechat-oauth2
+  paranoia
   pg
   pghero
   postmark

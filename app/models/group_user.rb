@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 class GroupUser < ApplicationRecord
+  acts_as_paranoid
+
   enum role: %i[owner admin member]
-  enum status: %i[pendding accepted]
+  enum status: %i[pendding accepted declined]
+  enum last_action_type: %i[apply approve upgrade downgrade owner_transfer decline remove withdraw]
 
   belongs_to :group
   belongs_to :user
@@ -22,5 +25,15 @@ class GroupUser < ApplicationRecord
       @total_pages = 60
     end
     @total_pages
+  end
+
+  after_commit :send_update_notification
+  def send_update_notification
+    if previous_changes.slice("role", "status").present?
+    end
+  end
+
+  after_create :send_create_notification
+  def send_create_notification
   end
 end
