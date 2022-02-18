@@ -24,6 +24,7 @@ class GroupUsersController < ApplicationController
     @group_user.msg = group_user_params[:msg] if @group.private_group?
     @group_user.status = @group.public_group? ? 'accepted' : 'pendding'
     @group_user.last_actor_id = current_user.id
+    @group_user.last_action_type = 'apply'
     @group_user.save
 
     if @group.public_group?
@@ -51,9 +52,10 @@ class GroupUsersController < ApplicationController
         @group_user.update(status: 'accepted', role: 'admin', last_actor_id: current_user.id, last_action_type: params[:opt])
       when 'downgrade'
         @group_user.update(status: 'accepted', role: 'member', last_actor_id: current_user.id, last_action_type: params[:opt])
-      else
-        @group_user.destroy
-        @group_user.update(status: 'declined', last_actor_id: current_user.id, last_action_type: params[:opt])
+      when 'remove'
+        @group_user.update(status: 'removed', last_actor_id: current_user.id, last_action_type: params[:opt], deleted_at: Time.now)
+      when 'decline'
+        @group_user.update(status: 'declined', last_actor_id: current_user.id, last_action_type: params[:opt], deleted_at: Time.now)
       end
     end
     params[:page] ||= 1
@@ -66,13 +68,14 @@ class GroupUsersController < ApplicationController
 
     if @group_user.owner?
       redirect_to(group_path(@group_user.group), alert: t("groups.owner_quite_forbidden"))
-    elsif @group_user.destroy
-      @group_user.update(last_actor_id: current_user.id, last_action_type: params[:opt])
+    else
       msg = if params[:opt] == 'withdraw'
-        t("groups.cancel_apply_success")
-      else
-        t("groups.quite_group_success")
-      end
+              @group_user.update(status: 'withdrew', last_actor_id: current_user.id, last_action_type: params[:opt], deleted_at: Time.now)
+              t("groups.cancel_apply_success")
+            else
+              @group_user.update(status: 'removed', last_actor_id: current_user.id, last_action_type: params[:opt], deleted_at: Time.now)
+              t("groups.quite_group_success")
+            end
       redirect_to(groups_path, notice: msg)
     end
   end

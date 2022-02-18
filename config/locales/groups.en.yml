@@ -70,3 +70,8 @@
     confirm_downgrade: "Downgrade as member?"
     confirm_remove: "Remove from group?"
     confirm_reject: "Decline application?"
+    apply_join_html: "%{actor} apply to join group: %{target}"
+    approved_join_html: "%{actor} approved your group: %{target} join request"
+    owner_transfer_html: "%{actor} transfered group: %{target} ownership to you"
+    upgrade_html: "%{actor} upgraded you as group: %{target} admin"
+    expired: "Expired"

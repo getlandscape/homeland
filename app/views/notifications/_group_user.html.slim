@@ -1,0 +1,25 @@
+- group_user = notification.target
+- if group_user.blank?
+  .media-body
+    = t("notifications.source_deleted")
+- else
+  - group = notification.second_target || group_user.group
+  - if group_user.pendding?
+    .media-heading
+      = t('groups.apply_join_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+    .media-content.summary.markdown
+      - if group_user.msg.present?
+        = group_user.msg
+  - elsif group_user.accepted? 
+    - if group_user.last_action_type == 'owner_transfer'
+      .media-heading
+        = t('groups.owner_transfer_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+    - elsif group_user.last_action_type == 'upgrade'
+      .media-heading
+        = t('groups.upgrade_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+    - elsif group_user.last_action_type == 'approve'
+      .media-heading
+        = t('groups.approved_join_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+    - else
+      .media-heading
+        = t("groups.expired")

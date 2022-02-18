@@ -33,7 +33,7 @@
       .content
         button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
           = t('groups.cancel')
-        = link_to(t('groups.confirm_quite_button'), main_app.group_group_user_path(group_id: group.id, id: group_user.id), class: "btn btn-primary btn-join", method: :delete)
+        = link_to(t('groups.confirm_quite_button'), main_app.group_group_user_path(group_id: group.id, id: group_user.id, opt: 'remove'), class: "btn btn-primary btn-join", method: :delete)
   - elsif group_user.pendding?
     .footer
       .content

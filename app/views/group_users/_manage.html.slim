@@ -18,7 +18,7 @@
           = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'upgrade'), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
-    - elsif params[:opt] == 'owner'
+    - elsif params[:opt] == 'owner_transfer'
       .body
         .content
           = t('groups.confirm_owner_transfer')
@@ -45,7 +45,7 @@
           = link_to(t('groups.remove'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'remove'), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
-    - elsif params[:opt] == 'reject'
+    - elsif params[:opt] == 'decline'
       .body
         .content
           = t('groups.confirm_reject')

@@ -9,7 +9,11 @@
     <%= render partial: "/notifications/#{notification.notify_type.underscore}", locals: { notification: notification } %>
   </div>
   <div class="media-right">
-    <%= notification.created_at.strftime('%H:%M') %>
+    <% if notification.target.class == GroupUser && notification.target.pendding? %>
+      <%= render partial: "/notifications/operation_button", locals: { notification: notification} %>
+    <% else %>
+      <%= notification.created_at.strftime('%H:%M') %>
+    <% end %>
   </div>
 </div>
 <% end %>
