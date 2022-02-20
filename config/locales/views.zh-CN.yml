@@ -408,3 +408,5 @@
     followed_you: "%{actor} 关注了你。"
     mentioned_you: "%{actor} 提及了你。"
     node_changed: "你创建的话题被调整到了 %{node} 节点。"
+    user_was_deleted: "[该用户已被删除]"
+    group_was_deleted: "[该小组已被删除]"

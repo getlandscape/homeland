@@ -6,20 +6,23 @@
   - group = notification.second_target || group_user.group
   - if group_user.pendding?
     .media-heading
-      = t('groups.apply_join_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+      = t('groups.apply_join_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
     .media-content.summary.markdown
       - if group_user.msg.present?
         = group_user.msg
   - elsif group_user.accepted? 
-    - if group_user.last_action_type == 'owner_transfer'
+    - if group_user.user_id != notification.user_id
       .media-heading
-        = t('groups.owner_transfer_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+        = t('groups.approved_by_html', second_target: second_target_tag(notification), actor: actor_tag(notification), receiver: receiver_tag(notification))
+    - elsif group_user.last_action_type == 'owner_transfer'
+      .media-heading
+        = t('groups.owner_transfer_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
     - elsif group_user.last_action_type == 'upgrade'
       .media-heading
-        = t('groups.upgrade_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+        = t('groups.upgrade_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
     - elsif group_user.last_action_type == 'approve'
       .media-heading
-        = t('groups.approved_join_html', target: group_user_group_tag(group_user), actor: group_user_user_tag(group_user))
+        = t('groups.approved_join_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
     - else
       .media-heading
         = t("groups.expired")

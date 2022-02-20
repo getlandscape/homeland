@@ -401,3 +401,5 @@
     followed_you: "%{actor} has been followed you."
     mentioned_you: "%{actor} mentioned you."
     node_changed: "Your topic has moved into %{node} node."
+    user_was_deleted: "[User was deleted]"
+    group_was_deleted: "[Group was deleted]"
