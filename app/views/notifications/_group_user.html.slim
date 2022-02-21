@@ -11,18 +11,18 @@
       - if group_user.msg.present?
         = group_user.msg
   - elsif group_user.accepted? 
-    - if group_user.user_id != notification.user_id
-      .media-heading
-        = t('groups.approved_by_html', second_target: second_target_tag(notification), actor: actor_tag(notification), receiver: receiver_tag(notification))
-    - elsif group_user.last_action_type == 'owner_transfer'
-      .media-heading
-        = t('groups.owner_transfer_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
-    - elsif group_user.last_action_type == 'upgrade'
-      .media-heading
-        = t('groups.upgrade_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
-    - elsif group_user.last_action_type == 'approve'
-      .media-heading
-        = t('groups.approved_join_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
-    - else
-      .media-heading
-        = t("groups.expired")
+    .media-heading
+      - if group_user.user_id != notification.user_id
+        - if group_user.last_action_type == 'approve'
+          = t('groups.approved_by_html', second_target: second_target_tag(notification), actor: actor_tag(notification), receiver: receiver_tag(notification))
+        - else
+          = t("groups.expired")
+      - else
+        - if group_user.last_action_type == 'owner_transfer'
+          = t('groups.owner_transfer_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
+        - elsif group_user.last_action_type == 'upgrade'
+          = t('groups.upgrade_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
+        - elsif group_user.last_action_type == 'approve'
+          = t('groups.approved_join_html', second_target: second_target_tag(notification), actor: actor_tag(notification))
+        - else
+          = t("groups.expired")

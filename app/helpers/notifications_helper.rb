@@ -17,7 +17,7 @@ module NotificationsHelper
   end
 
   def receiver_tag(notification, opts = {})
-    obj = notification.user
+    obj = User.find notification.target.last_actor_id
     return t("notifications.user_was_deleted") if obj.blank?
 
     link_to(obj.name, main_app.user_path(obj), title: obj.name, class: "topic-title")
