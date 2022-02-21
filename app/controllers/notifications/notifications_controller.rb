@@ -3,7 +3,7 @@
 module Notifications
   class NotificationsController < Notifications::ApplicationController
     def index
-      @notifications = notifications.includes(:actor).order("id desc").page(params[:page])
+      @notifications = notifications.order("id desc").page(params[:page])
       @unread_ids = @notifications.reject(&:read?).collect(&:id)
       @notification_groups = @notifications.group_by { |note| note.created_at.to_date }
     end
@@ -21,7 +21,7 @@ module Notifications
     private
 
     def notifications
-      Notification.where(user_id: current_user.id)
+      notifications = Notification.where(user_id: current_user.id)
     end
   end
 end
