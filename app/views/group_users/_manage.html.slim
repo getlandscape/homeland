@@ -6,7 +6,7 @@
           = t('groups.confirm_approve')
       .footer
         .content
-          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'approve'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'approve', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
     - elsif params[:opt] == 'upgrade'
@@ -15,7 +15,7 @@
           = t('groups.confirm_upgrade')
       .footer
         .content
-          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'upgrade'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'upgrade', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
     - elsif params[:opt] == 'owner_transfer'
@@ -24,7 +24,7 @@
           = t('groups.confirm_owner_transfer')
       .footer
         .content
-          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'owner_transfer'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.confirm'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'owner_transfer', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
     - elsif params[:opt]== 'downgrade'
@@ -33,7 +33,7 @@
           = t('groups.confirm_downgrade')
       .footer
         .content
-          = link_to(t('groups.downgrade'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'downgrade'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.downgrade'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'downgrade', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
     - elsif params[:opt] == 'remove'
@@ -42,7 +42,7 @@
           = t('groups.confirm_remove')
       .footer
         .content
-          = link_to(t('groups.remove'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'remove'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.remove'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'remove', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')
     - elsif params[:opt] == 'decline'
@@ -51,6 +51,6 @@
           = t('groups.confirm_reject')
       .footer
         .content
-          = link_to(t('groups.reject'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'decline'), method: :put, class: 'btn btn-primary btn-join', remote: true)
+          = link_to(t('groups.reject'), group_group_user_path(id: group_user.id, group_id: group_user.group_id, opt: 'decline', target: target), method: :put, class: 'btn btn-primary btn-join', remote: true)
           button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
             = t('groups.cancel')

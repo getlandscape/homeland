@@ -58,9 +58,13 @@ class GroupUsersController < ApplicationController
         @group_user.update(status: 'declined', last_actor_id: current_user.id, last_action_type: params[:opt], deleted_at: Time.now)
       end
     end
-    params[:page] ||= 1
-    params[:per] ||= 27
-    @group_users = GroupUser.where(group_id: @group.id).joins(:user).order(role: :asc, status: :asc).page(params[:page]).per(params[:per])
+    if params[:target] == 'notifications'
+      redirect_to(notifications_path)
+    else
+      params[:page] ||= 1
+      params[:per] ||= 27
+      @group_users = GroupUser.where(group_id: @group.id).joins(:user).order(role: :asc, status: :asc).page(params[:page]).per(params[:per])
+    end
   end
 
   def destroy
