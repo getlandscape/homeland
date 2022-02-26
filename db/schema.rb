@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_151310) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "show_members", default: true
-    t.boolean "auto_approvce", default: false
+    t.boolean "auto_approve", default: false
     t.boolean "policy_agree", default: false
   end
 
