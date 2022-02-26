@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_151310) do
+ActiveRecord::Schema.define(version: 2022_02_26_135522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -278,6 +278,24 @@ ActiveRecord::Schema.define(version: 2022_02_15_151310) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "topic_options", force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "topic_profile", force: :cascade do |t|
+    t.integer "topic_id", null: false
+    t.datetime "starts_at", precision: 6
+    t.datetime "ends_at", precision: 6
+    t.boolean "show_members", default: true
+    t.boolean "need_approve", default: false
+    t.integer "select_type", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "node_id", null: false
@@ -301,6 +319,7 @@ ActiveRecord::Schema.define(version: 2022_02_15_151310) do
     t.datetime "closed_at"
     t.integer "team_id"
     t.integer "group_id"
+    t.integer "topic_type", default: 0
   end
 
   create_table "user_ssos", id: :serial, force: :cascade do |t|
@@ -313,6 +332,14 @@ ActiveRecord::Schema.define(version: 2022_02_15_151310) do
     t.text "last_payload", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_topic_options", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "topic_option_id", null: false
+    t.integer "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", id: :serial, force: :cascade do |t|
