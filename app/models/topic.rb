@@ -17,6 +17,7 @@ class Topic < ApplicationRecord
   attr_accessor :read_state
 
   enum topic_type: %i[topic poll activity]
+  enum select_type: %i[single multiple]
 
   belongs_to :user, inverse_of: :topics, counter_cache: true, required: false
   belongs_to :team, counter_cache: true, required: false
@@ -25,6 +26,9 @@ class Topic < ApplicationRecord
   belongs_to :last_reply, class_name: "Reply", required: false
   belongs_to :group
   has_many :replies, dependent: :destroy
+
+  has_many :topic_options, dependent: :destroy
+  has_many :user_topic_options, dependent: :destroy
 
   validates :user_id, :title, :body, :node_id, presence: true
 
