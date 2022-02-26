@@ -285,17 +285,6 @@ ActiveRecord::Schema.define(version: 2022_02_26_135522) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "topic_profile", force: :cascade do |t|
-    t.integer "topic_id", null: false
-    t.datetime "starts_at", precision: 6
-    t.datetime "ends_at", precision: 6
-    t.boolean "show_members", default: true
-    t.boolean "need_approve", default: false
-    t.integer "select_type", default: 0
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "topics", id: :serial, force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "node_id", null: false
@@ -320,6 +309,8 @@ ActiveRecord::Schema.define(version: 2022_02_26_135522) do
     t.integer "team_id"
     t.integer "group_id"
     t.integer "topic_type", default: 0
+    t.datetime "ends_at", precision: 6
+    t.integer "select_type", default: 0
   end
 
   create_table "user_ssos", id: :serial, force: :cascade do |t|

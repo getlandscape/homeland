@@ -16,6 +16,8 @@ class Topic < ApplicationRecord
 
   attr_accessor :read_state
 
+  enum topic_type: %i[topic poll activity]
+
   belongs_to :user, inverse_of: :topics, counter_cache: true, required: false
   belongs_to :team, counter_cache: true, required: false
   belongs_to :node, counter_cache: true, required: false
