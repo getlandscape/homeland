@@ -23,12 +23,22 @@
     .card-title
       = t("topics.form.poll_content")
     = f.text_field :poll_title, class: "form-control", placeholder: t("topics.form.poll_title_placeholder")
+    - n = 0
     .topic-options-body
-      .topic-option-count id="topic-option-#{0}"
-        = f.fields_for :topic_options, @topic.topic_options.build do |t|
-          = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
-          button type='button' onclick="removeOption(0)"
-            span.icon.i.fa-solid.fa-trash-can
+      - if @topic_options.present?
+        - @topic_options.each do |to|
+          .topic-option-count id="topic-option-#{n}"
+            = f.fields_for :topic_options, to do |t|
+              = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
+              button type='button' onclick="removeOption(#{n})"
+                span.icon.i.fa-solid.fa-trash-can
+          - n += 1
+      - else
+        .topic-option-count id="topic-option-#{n}"
+          = f.fields_for :topic_options, @topic.topic_options.build do |t|
+            = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
+            button type='button' onclick="removeOption(#{n})"
+              span.icon.i.fa-solid.fa-trash-can
     button type='button' onclick="addOption()" 
       = t("topics.form.add_option")
   .form-actions.jcsb.hide-ios
@@ -44,7 +54,7 @@ javascript:
   function addOption() {
     if( $('.topic-option-count').length < 10  ) {
       count = count + 1
-      str = '<div class="topic-option-count" id="topic-option-' + count + '"><input class="form-control" type="text" placeholder="' + gon.option_placeholder + '" name="topic[topic_options_attributes][0][name]" id="topic_topic_options_attributes_' + count + '_name"><button onclick="removeOption(' + count + ')" type="button"><span class="icon i fa-solid fa-trash-can"></span></button></div>'
+      str = '<div class="topic-option-count" id="topic-option-' + count + '"><input class="form-control" type="text" placeholder="' + gon.option_placeholder + '" name="topic[topic_options_attributes][' + count + '][name]" id="topic_topic_options_attributes_' + count + '_name"><button onclick="removeOption(' + count + ')" type="button"><span class="icon i fa-solid fa-trash-can"></span></button></div>'
       $('.topic-options-body').append(str)
     }
   }

@@ -75,6 +75,8 @@ class TopicsController < ApplicationController
   end
 
   def edit
+    gon.option_placeholder = t('topics.form.option_name')
+    @topic_options = @topic.topic_options
     @node = @topic.node
   end
 
@@ -95,6 +97,7 @@ class TopicsController < ApplicationController
   end
 
   def update
+    topic_option_params = topic_params[:topic_options_attributes].to_h.values
     if can?(:change_node, @topic)
       @topic.node_id = topic_params[:node_id]
 
@@ -103,10 +106,10 @@ class TopicsController < ApplicationController
         @topic.lock_node = true
       end
     end
-    @topic.team_id = ability_team_id
-    @topic.title = topic_params[:title]
-    @topic.body = topic_params[:body]
-    @topic.save
+    if @topic.update(topic_params.merge(team_id: ability_team_id))
+      @topic.topic_options.where.not(id: topic_option_params.pluck('id')).destroy_all
+      @topic.topic_options.create(topic_option_params.select{ |a| a['id'].nil? })
+    end
   end
 
   def destroy
@@ -172,7 +175,7 @@ class TopicsController < ApplicationController
           .permit(:title, :body, :node_id,
                   :team_id, :group_id, :topic_type,
                   :ends_at, :select_type, :poll_title,
-                  topic_options_attributes: [:name])
+                  topic_options_attributes: [:id, :name])
   end
 
   def ability_team_id
