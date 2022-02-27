@@ -1,0 +1,57 @@
+= form_for @topic, remote: true, class: "form", html: { tb: 'edit-topic' } do |f|
+  = render "shared/error_messages", target: @topic
+  = f.hidden_field :node_id
+  = f.hidden_field :topic_type
+  - if @group.present?
+    = f.hidden_field :group_id, value: @group.id
+    .avatar.form-control.new-topic-group-avatar
+      = user_avatar_tag(@group, :sm)
+      = @group.name
+  .form-group
+    .input-group
+      .input-group-prepend.mr-1
+        = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
+      = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
+  = render "/shared/editor_toolbar"
+  .form-group
+    = f.text_area :body, class: "topic-editor form-control", rows: 20
+  - if Setting.has_module?(:team)
+    - if current_user.team_options.any?
+      .form-group
+        = f.select :team_id, current_user.team_options, { include_blank: t("topics.form.no_team") }, { class: "bootstrap-select", data: { "live-search": true } }
+  - if @topic.poll?
+    .card-title
+      = t("topics.form.poll_content")
+    = f.text_field :poll_title, class: "form-control", placeholder: t("topics.form.poll_title_placeholder")
+    .topic-options-body
+      .topic-option-count id="topic-option-#{0}"
+        = f.fields_for :topic_options, @topic.topic_options.build do |t|
+          = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
+          button type='button' onclick="removeOption(0)"
+            span.icon.i.fa-solid.fa-trash-can
+    button type='button' onclick="addOption()" 
+      = t("topics.form.add_option")
+  .form-actions.jcsb.hide-ios
+    = f.submit t("common.publish"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-topic"
+    .hide-ios
+      a[href="/markdown" target="_blank"]
+        i.fa.fa-life-ring
+        = t("topics.form.markdown_guides")
+
+javascript:
+  var count = 100
+
+  function addOption() {
+    if( $('.topic-option-count').length < 10  ) {
+      count = count + 1
+      str = '<div class="topic-option-count" id="topic-option-' + count + '"><input class="form-control" type="text" placeholder="' + gon.option_placeholder + '" name="topic[topic_options_attributes][0][name]" id="topic_topic_options_attributes_' + count + '_name"><button onclick="removeOption(' + count + ')" type="button"><span class="icon i fa-solid fa-trash-can"></span></button></div>'
+      $('.topic-options-body').append(str)
+    }
+  }
+
+  function removeOption(n) {
+    if( $('.topic-option-count').length > 1  ) {
+      str = "#topic-option-" + n
+      $(str).remove();
+    }
+  }

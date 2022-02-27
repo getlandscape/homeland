@@ -30,6 +30,8 @@ class Topic < ApplicationRecord
   has_many :topic_options, dependent: :destroy
   has_many :user_topic_options, dependent: :destroy
 
+  accepts_nested_attributes_for :topic_options
+
   validates :user_id, :title, :body, :node_id, presence: true
 
   validate :check_topic_ban_words, on: :create

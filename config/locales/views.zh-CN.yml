@@ -267,6 +267,8 @@
       title_placeholder: 在这里输入标题
       no_team: 不关联组织
       markdown_guides: 排版说明
+      poll_title_placeholder: 在这输入投票标题
+      option_name: 在这里输入选项
     menu:
       pin: 置顶话题
       unpin: 取消话题置顶

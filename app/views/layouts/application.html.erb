@@ -32,6 +32,7 @@
     <%= action_cable_meta_tag %>
     <%= csrf_meta_tag %>
     <%= raw Setting.custom_head_html %>
+    <%= Gon::Base.render_data %>
     <meta name="twitter:card" content="summary">
     <meta property="twitter:title" content="<%= @content_title || Setting.app_name %>">
     <% if @content_description %>

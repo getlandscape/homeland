@@ -260,6 +260,8 @@
       title_placeholder: Type a topic title
       no_team: No team
       markdown_guides: Markdown Guides
+      poll_title_placeholder: Type a poll title
+      option_name: Type a option
     menu:
       pin: Pin
       unpin: Unpin

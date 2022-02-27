@@ -311,6 +311,7 @@ ActiveRecord::Schema.define(version: 2022_02_26_135522) do
     t.integer "topic_type", default: 0
     t.datetime "ends_at", precision: 6
     t.integer "select_type", default: 0
+    t.string "poll_title"
   end
 
   create_table "user_ssos", id: :serial, force: :cascade do |t|

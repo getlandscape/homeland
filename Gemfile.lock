@@ -170,6 +170,11 @@ GEM
       ffi (~> 1.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    gon (6.4.0)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
     hashie (4.1.0)
     html-pipeline (2.14.0)
       activesupport (>= 2)
@@ -370,6 +375,8 @@ GEM
     redis-namespace (1.8.1)
       redis (>= 3.0.4)
     regexp_parser (2.1.1)
+    request_store (1.5.1)
+      rack (>= 1.4)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -501,6 +508,7 @@ DEPENDENCIES
   exception-track
   factory_bot_rails
   form-select
+  gon
   html-pipeline
   html-pipeline-auto-correct
   http_accept_language

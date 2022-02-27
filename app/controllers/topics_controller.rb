@@ -64,8 +64,9 @@ class TopicsController < ApplicationController
   end
 
   def new
+    gon.option_placeholder = t('topics.form.option_name')
     @group = Group.find_by(id: params[:group_id]) if params[:group_id].present?
-    @topic = Topic.new(user_id: current_user.id)
+    @topic = Topic.new(user_id: current_user.id, topic_type: params[:topic_type] || 'topic')
     unless params[:node_id].blank?
       @topic.node_id = params[:node_id]
       @node = Node.find_by_id(params[:node_id])
@@ -167,7 +168,11 @@ class TopicsController < ApplicationController
   end
 
   def topic_params
-    params.require(:topic).permit(:title, :body, :node_id, :team_id, :group_id)
+    params.require(:topic)
+          .permit(:title, :body, :node_id,
+                  :team_id, :group_id, :topic_type,
+                  :ends_at, :select_type, :poll_title,
+                  topic_options_attributes: [:name])
   end
 
   def ability_team_id

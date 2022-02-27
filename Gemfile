@@ -100,6 +100,7 @@ gem "slim-rails"
 gem 'jquery-rails'
 gem 'bootstrap-sass'
 gem 'paranoia'
+gem 'gon'
 
 group :development do
   gem "spring"
