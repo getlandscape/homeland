@@ -82,6 +82,11 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+
+    if @topic.poll? && (topic_option_params.empty? || @topic.poll_title.blank?)
+      redirect_to(new_topic_path(@topic, group_id: @topic.group_id, topic_type: @topic.topic_type), alert: t("topics.option_number_validation"))
+    end
+
     @topic.user_id = current_user.id
     @topic.node_id = params[:node] || topic_params[:node_id]
     @topic.team_id = ability_team_id
@@ -97,7 +102,10 @@ class TopicsController < ApplicationController
   end
 
   def update
-    topic_option_params = topic_params[:topic_options_attributes].to_h.values
+    if @topic.poll? && (topic_option_params.empty? || @topic.poll_title.blank?)
+      redirect_to(new_topic_path(@topic, group_id: @topic.group_id, topic_type: @topic.topic_type), alert: t("topics.option_number_validation"))
+    end
+
     if can?(:change_node, @topic)
       @topic.node_id = topic_params[:node_id]
 
@@ -190,5 +198,9 @@ class TopicsController < ApplicationController
     return false unless group.present? && group.private_group?
     return false if current_user.present? && group.group_member?(current_user)
     true
+  end
+
+  def topic_option_params
+    topic_params[:topic_options_attributes].to_h.values.select { |k| k[:name].present? }
   end
 end

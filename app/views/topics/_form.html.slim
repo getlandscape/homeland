@@ -44,24 +44,25 @@
               .input-group-append
                 button.btn.remove-icon-right.form-control[type="button" onclick="removeOption(#{n})"]
                   span.icon.i.fa-solid.fa-trash-can        
-    button.btn.form-control.mb-3 type='button' onclick="addOption()" 
+    button.btn.btn-primary.btn-block.btn-add-option.mb-3 type='button' onclick="addOption()"
       a style="float: left"
         = t("topics.form.add_option")
     .row.mb-3
       label.col-sm-2.col-form-label
-        = 'Select type'
+        = t('topics.form.select_type')
       .col-sm-10.radio-toolbar
         = f.radio_button :select_type, "single", :id=>"select-type-single"
         label[for="select-type-single"]
-          = 'single'
+          = t('topics.form.single')
         = f.radio_button :select_type, "multiple", :id=>"select-type-multiple"
         label[for="select-type-multiple"]
-          = 'multiple'
+          = t('topics.form.multiple')
     .row.mb-3
       label.col-sm-2.col-form-label
-        = 'Ends at'
+        = t('topics.form.ends_at')
       .col-sm-10
-        = f.date_field :ends_at, :value => (@topic.ends_at || Time.now + 1.day).strftime('%Y-%m-%d')
+        - time = @topic.id.present? ? @topic.ends_at : (@topic.ends_at || Time.now + 1.day)
+        = f.date_field :ends_at, :value => time&.strftime('%Y-%m-%d')
   .form-actions.jcsb.hide-ios
     = f.submit t("common.publish"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-topic"
     .hide-ios

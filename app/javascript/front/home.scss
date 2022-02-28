@@ -411,6 +411,12 @@ h2 {
   color: #666666;
 }
 
+.btn-add-option {
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #225EDA;
+}
+
 .noti-opt-button {
   font-size: 13px;
   line-height: 18px;
@@ -424,7 +430,6 @@ h2 {
 }
 
 .new-topic-group-avatar {
-  background: #F4F4F4;
   border-radius: 4px;
   margin-bottom: 20px;
 }

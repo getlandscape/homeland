@@ -228,6 +228,7 @@
     create_topic_success: "Topic created successfully."
     delete_topic_success: "Topic deleted successfully.."
     update_topic_success: "Topic modified successfully.."
+    option_number_validation: "Should have at least one poll option."
     reply_success: "Replied Successfully"
     reply_this_floor: "Reply to this floor"
     topic_was_deleted: "[Topic was deleted]"
@@ -261,7 +262,12 @@
       no_team: No team
       markdown_guides: Markdown Guides
       poll_title_placeholder: Type a poll title
-      option_name: Type a option
+      option_name: Type an option
+      add_option: + Add an option
+      select_type: Select type
+      single: Single
+      multiple: Multiple
+      ends_at: End at
     menu:
       pin: Pin
       unpin: Unpin
