@@ -428,3 +428,41 @@ h2 {
   border-radius: 4px;
   margin-bottom: 20px;
 }
+
+.radio-toolbar input[type="radio"] {
+  display: none;
+}
+
+.radio-toolbar label {
+  display: inline-block;
+  background-color: #F4F4F4;
+  padding: 4px 11px;
+  font-family: Arial;
+  font-size: 16px;
+  cursor: pointer;
+  color: #111111;
+  font-family: PingFang SC;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 4px;
+  margin-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-right: 36px;
+  padding-left: 36px;
+}
+
+.radio-toolbar input[type="radio"]:checked+label {
+  color: #225EDA;
+  background-color: rgba(34, 94, 218, 0.05);
+}
+
+.poll-input-form-control{
+  max-width: 100%;
+}
+
+.remove-icon-right {
+  border-radius: 0 0.25rem 0.25rem 0;
+}

@@ -20,27 +20,48 @@
       .form-group
         = f.select :team_id, current_user.team_options, { include_blank: t("topics.form.no_team") }, { class: "bootstrap-select", data: { "live-search": true } }
   - if @topic.poll?
-    .card-title
+    .card-title style="margin-top: 36px;"
       = t("topics.form.poll_content")
-    = f.text_field :poll_title, class: "form-control", placeholder: t("topics.form.poll_title_placeholder")
+    .input-group.mb-3
+      = f.text_field :poll_title, class: "form-control", placeholder: t("topics.form.poll_title_placeholder")
     - n = 0
     .topic-options-body
       - if @topic_options.present?
         - @topic_options.each do |to|
           .topic-option-count id="topic-option-#{n}"
             = f.fields_for :topic_options, to do |t|
-              = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
-              button type='button' onclick="removeOption(#{n})"
-                span.icon.i.fa-solid.fa-trash-can
+              .input-group.mb-3
+                = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
+                .input-group-append
+                  button.btn.remove-icon-right.form-control[type="button" onclick="removeOption(#{n})"]
+                    span.icon.i.fa-solid.fa-trash-can
           - n += 1
       - else
-        .topic-option-count id="topic-option-#{n}"
-          = f.fields_for :topic_options, @topic.topic_options.build do |t|
-            = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
-            button type='button' onclick="removeOption(#{n})"
-              span.icon.i.fa-solid.fa-trash-can
-    button type='button' onclick="addOption()" 
-      = t("topics.form.add_option")
+        = f.fields_for :topic_options, @topic.topic_options.build do |t|
+          .topic-option-count id="topic-option-#{n}"
+            .input-group.mb-3
+              = t.text_field :name, class: "form-control", placeholder: t('topics.form.option_name')
+              .input-group-append
+                button.btn.remove-icon-right.form-control[type="button" onclick="removeOption(#{n})"]
+                  span.icon.i.fa-solid.fa-trash-can        
+    button.btn.form-control.mb-3 type='button' onclick="addOption()" 
+      a style="float: left"
+        = t("topics.form.add_option")
+    .row.mb-3
+      label.col-sm-2.col-form-label
+        = 'Select type'
+      .col-sm-10.radio-toolbar
+        = f.radio_button :select_type, "single", :id=>"select-type-single"
+        label[for="select-type-single"]
+          = 'single'
+        = f.radio_button :select_type, "multiple", :id=>"select-type-multiple"
+        label[for="select-type-multiple"]
+          = 'multiple'
+    .row.mb-3
+      label.col-sm-2.col-form-label
+        = 'Ends at'
+      .col-sm-10
+        = f.date_field :ends_at, :value => (@topic.ends_at || Time.now + 1.day).strftime('%Y-%m-%d')
   .form-actions.jcsb.hide-ios
     = f.submit t("common.publish"), class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-topic"
     .hide-ios
@@ -54,7 +75,7 @@ javascript:
   function addOption() {
     if( $('.topic-option-count').length < 10  ) {
       count = count + 1
-      str = '<div class="topic-option-count" id="topic-option-' + count + '"><input class="form-control" type="text" placeholder="' + gon.option_placeholder + '" name="topic[topic_options_attributes][' + count + '][name]" id="topic_topic_options_attributes_' + count + '_name"><button onclick="removeOption(' + count + ')" type="button"><span class="icon i fa-solid fa-trash-can"></span></button></div>'
+      str = '<div class="topic-option-count" id="topic-option-'+count+'"><div class="input-group mb-3"><input class="form-control form-control" placeholder="'+gon.option_placeholder+'" type="text" name="topic[topic_options_attributes]['+count+'][name]" id="topic_topic_options_attributes_'+count+'_name"><div class="input-group-append"><button class="btn remove-icon-right form-control " onclick="removeOption('+count+')" type="button"><span class="icon i fa-solid fa-trash-can"></span></button></div></div></div>'
       $('.topic-options-body').append(str)
     }
   }
