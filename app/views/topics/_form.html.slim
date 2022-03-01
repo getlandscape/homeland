@@ -7,12 +7,12 @@
     .avatar.form-control.new-topic-group-avatar
       = user_avatar_tag(@group, :sm)
       = @group.name
-  - if @topic.topic?
-    .form-group
-      .input-group
+  .form-group
+    .input-group
+      - if @topic.topic?
         .input-group-prepend.mr-1
           = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
-        = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
+      = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
   - if @topic.activity?
     .row.mb-3
       label.col-sm-2.col-form-label
