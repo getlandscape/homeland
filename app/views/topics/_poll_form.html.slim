@@ -20,4 +20,7 @@
         = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
         .progress
           .progress-bar[role="progressbar" style="width: #{count}%" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
-  = submit_tag("submit", class: "button btn btn-primary")
+  - if @topic.ended?
+    = button_tag("End", class: "button btn btn-joined")
+  - else
+    = submit_tag("submit", class: "button btn btn-primary")
