@@ -1,6 +1,5 @@
 = form_for @topic, remote: true, class: "form", html: { tb: 'edit-topic' } do |f|
   = render "shared/error_messages", target: @topic
-  = f.hidden_field :node_id
   = f.hidden_field :topic_type
   - if @group.present?
     = f.hidden_field :group_id, value: @group.id
@@ -11,7 +10,10 @@
     .input-group
       - if @topic.topic?
         .input-group-prepend.mr-1
+          = f.hidden_field :node_id
           = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
+      - else
+        = f.hidden_field :node_id, value: Node.find_by(name: @topic.topic_type.capitalize).id
       = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
   - if @topic.activity?
     .row.mb-3

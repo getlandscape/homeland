@@ -203,7 +203,7 @@ class TopicsController < ApplicationController
           .permit(:title, :body, :node_id,
                   :team_id, :group_id, :topic_type,
                   :ends_at, :select_type, :poll_title,
-                  :starts_at, :location,
+                  :starts_at, :location, :show_members, :need_approve,
                   topic_options_attributes: [:id, :name])
   end
 

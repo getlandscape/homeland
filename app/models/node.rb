@@ -8,6 +8,7 @@ class Node < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: true
 
+  default_scope { where.not(name: ['Poll', 'Activity']) }
   scope :hots, -> { order(topics_count: :desc) }
   scope :sorted, -> { order(sort: :desc) }
 
