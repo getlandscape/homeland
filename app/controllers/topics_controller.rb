@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, only: %i[new edit create update destroy
     favorite unfavorite follow unfollow
     action favorites vote mark join]
-  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow vote mark join]
+  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
   before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban vote mark join]
 
   def index
@@ -173,11 +173,10 @@ class TopicsController < ApplicationController
   end
 
   def vote
-    render_404 if @topic.deleted? || !group_member_validation
+    render_404 if @topic.deleted? || @topic.ended? || !group_member_validation
 
-    puts "#{params}"
-
-    render nil
+    current_user.user_topic_options.where(topic_id: @topic.id).delete_all
+    current_user.user_topic_options.create(TopicOption.vote_params(@topic.id, params[:topic_option_ids]))
   end
 
   def mark

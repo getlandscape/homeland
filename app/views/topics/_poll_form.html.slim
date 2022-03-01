@@ -1,0 +1,13 @@
+- max = @topic.topic_options.count
+- current_votes = current_user.user_topic_options
+= form_tag main_app.vote_topic_path(@topic), method: :post, remote: true do
+  .form-check
+    - @topic.topic_options.each do |to|
+      - count = to.user_topic_options.count
+      = check_box_tag("topic_option_ids[]", to.id, current_votes.find_by(topic_option_id: to.id).present?)
+      label.form-check-label[for="flexCheckDefault"]
+        = to.name
+      = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
+      .progress
+        .progress-bar[role="progressbar" style="width: #{count}%" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+  = submit_tag("submit", class: "button btn btn-primary")

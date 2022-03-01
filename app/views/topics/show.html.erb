@@ -38,6 +38,11 @@
         <%= @topic.body_html %>
         <%= raw Setting.after_topic_html %>
       </div>
+      <% if @topic.poll? %>
+        <div class="card-body" id="poll-form-tag">
+          <%= render "poll_form" %>
+        </div>
+      <% end %>
       <div class="card-footer clearfix">
         <%= render "buttons" %>
       </div>

@@ -13,7 +13,7 @@
           = f.hidden_field :node_id
           = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
       - else
-        = f.hidden_field :node_id, value: Node.find_by(name: @topic.topic_type.capitalize).id
+        = f.hidden_field :node_id, value: Node.unscoped.find_by(name: @topic.topic_type.capitalize).id
       = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
   - if @topic.activity?
     .row.mb-3

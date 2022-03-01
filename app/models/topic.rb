@@ -91,6 +91,10 @@ class Topic < ApplicationRecord
     end
   end
 
+  def ended?
+    ends_at.present? && ends_at < Time.now
+  end
+
   # Update the topic last reply
   # Ignore this method if Topic has created at 1 month ago
   def update_last_reply(reply, force: false)

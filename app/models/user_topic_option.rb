@@ -3,5 +3,5 @@
 class UserTopicOption < ApplicationRecord
 	belongs_to :user
 	belongs_to :topic
-	belongs_to :user_topic_option
+	belongs_to :topic_option
 end
