@@ -5,9 +5,9 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, only: %i[new edit create update destroy
     favorite unfavorite follow unfollow
-    action favorites]
-  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
-  before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban]
+    action favorites vote mark join]
+  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow vote mark join]
+  before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban vote mark join]
 
   def index
     @suggest_topics = []
@@ -172,6 +172,26 @@ class TopicsController < ApplicationController
     end
   end
 
+  def vote
+    render_404 if @topic.deleted? || !group_member_validation
+
+    puts "#{params}"
+
+    render nil
+  end
+
+  def mark
+    render_404 if @topic.deleted? || !group_member_validation
+
+    render nil
+  end
+
+  def join
+    render_404 if @topic.deleted? || !group_member_validation
+
+    render nil
+  end
+
   private
 
   def set_topic
@@ -183,6 +203,7 @@ class TopicsController < ApplicationController
           .permit(:title, :body, :node_id,
                   :team_id, :group_id, :topic_type,
                   :ends_at, :select_type, :poll_title,
+                  :starts_at, :location,
                   topic_options_attributes: [:id, :name])
   end
 
@@ -198,6 +219,12 @@ class TopicsController < ApplicationController
     return false unless group.present? && group.private_group?
     return false if current_user.present? && group.group_member?(current_user)
     true
+  end
+
+  def group_member_validation
+    group = @topic.group
+    return true if current_user.present? && group.group_member?(current_user)
+    false
   end
 
   def topic_option_params

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_26_135522) do
+ActiveRecord::Schema.define(version: 2022_02_28_235438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,6 +312,10 @@ ActiveRecord::Schema.define(version: 2022_02_26_135522) do
     t.datetime "ends_at", precision: 6
     t.integer "select_type", default: 0
     t.string "poll_title"
+    t.datetime "starts_at", precision: 6
+    t.string "location"
+    t.boolean "show_members", default: true
+    t.boolean "need_approve", default: false
   end
 
   create_table "user_ssos", id: :serial, force: :cascade do |t|
@@ -330,6 +334,14 @@ ActiveRecord::Schema.define(version: 2022_02_26_135522) do
     t.integer "user_id", null: false
     t.integer "topic_option_id", null: false
     t.integer "topic_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_topics", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "topic_id", null: false
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -275,6 +275,9 @@
       single: 单选
       multiple: 多选
       ends_at: 结束时间
+      starts_at: 开始时间
+      show_join_list: 显示参与活动人员名单
+      need_approvement_to_join: 参与活动需要发起人审核
     menu:
       pin: 置顶话题
       unpin: 取消话题置顶

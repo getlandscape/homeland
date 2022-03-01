@@ -80,6 +80,9 @@ Rails.application.routes.draw do
       # ban popup window
       get :ban
       post :read
+      post :vote
+      post :mark
+      post :join
     end
 
     collection do

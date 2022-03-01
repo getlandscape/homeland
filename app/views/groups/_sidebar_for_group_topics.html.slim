@@ -44,6 +44,8 @@
 - if current_user.present? && group.group_member?(current_user)
   .card
     .card-body
-      = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-primary btn-block'
+      = link_to t('topics.new_topic'), main_app.new_topic_path(group_id: group.id), class: 'btn btn-block btn-outline-primary'
       br
-      = link_to t('topics.new_poll'), main_app.new_topic_path(group_id: group.id, topic_type: 'poll'), class: 'btn btn-primary btn-block'
+      = link_to t('topics.new_poll'), main_app.new_topic_path(group_id: group.id, topic_type: 'poll'), class: 'btn btn-block btn-outline-primary'
+      br
+      = link_to t('topics.new_activity'), main_app.new_topic_path(group_id: group.id, topic_type: 'activity'), class: 'btn btn-block btn-outline-primary'

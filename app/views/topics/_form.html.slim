@@ -7,14 +7,40 @@
     .avatar.form-control.new-topic-group-avatar
       = user_avatar_tag(@group, :sm)
       = @group.name
-  .form-group
-    .input-group
-      .input-group-prepend.mr-1
-        = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
-      = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
+  - if @topic.topic?
+    .form-group
+      .input-group
+        .input-group-prepend.mr-1
+          = f.select :node_id, Node.sorted.name_options, {}, class: "bootstrap-select", data: { "live-search": true }
+        = f.text_field :title, class: "form-control", placeholder: t("topics.form.title_placeholder")
+  - if @topic.activity?
+    .row.mb-3
+      label.col-sm-2.col-form-label
+        = t('topics.form.starts_at')
+      .col-sm-10
+        - time = @topic.starts_at || (Time.now.beginning_of_hour + 1.hour)
+        = f.datetime_field :starts_at, :value => time&.strftime('%Y-%m-%dT%T')
+    .row.mb-3
+      label.col-sm-2.col-form-label
+        = t('topics.form.ends_at')
+      .col-sm-10
+        = f.datetime_field :ends_at, :value => @topic.ends_at&.strftime('%Y-%m-%dT%T')
   = render "/shared/editor_toolbar"
   .form-group
     = f.text_area :body, class: "topic-editor form-control", rows: 20
+  - if @topic.activity?
+    .form-group.sub-title
+      .form-switch style="padding-left: 0px;"
+        .row
+          .switch-text
+            = t('topics.form.show_join_list')
+            = f.check_box :show_members, class: 'form-check-input', style: "margin-left: 10px"
+    .form-group.sub-title
+      .form-switch style="padding-left: 0px;"
+        .row
+          .switch-text
+            = t('topics.form.need_approvement_to_join')
+            = f.check_box :need_approve, class: 'form-check-input', style: "margin-left: 10px"
   - if Setting.has_module?(:team)
     - if current_user.team_options.any?
       .form-group
