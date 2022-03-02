@@ -48,6 +48,7 @@
       </div>
     </div>
     <%= render partial: "ban_reason" %>
+    <%= render "user_topic" %>
     <% if @replies.blank? %>
       <div class="no-result">
         <%= t("topics.no_replies") %>

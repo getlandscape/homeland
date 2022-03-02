@@ -29,6 +29,7 @@ class Topic < ApplicationRecord
 
   has_many :topic_options, dependent: :destroy
   has_many :user_topic_options, dependent: :destroy
+  has_many :user_topics, dependent: :destroy
 
   accepts_nested_attributes_for :topic_options, :reject_if => proc { |att| att['name'].blank? }, :allow_destroy => true
 

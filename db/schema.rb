@@ -342,6 +342,7 @@ ActiveRecord::Schema.define(version: 2022_02_28_235438) do
     t.integer "user_id", null: false
     t.integer "topic_id", null: false
     t.integer "status", default: 0
+    t.text "msg"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

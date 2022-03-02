@@ -1,0 +1,14 @@
+- user = user_topic.user
+.media.group-user-card class="user-topic-#{user.id}"
+  .card-avatar.avatar
+    = user_avatar_tag(user, :md)
+  .media-body
+    .media-heading.text-truncate
+      .card-name
+        a
+          = user.name
+      .card-tag.text-truncate
+        = user_topic.msg
+      .card-button
+        = link_to(t('groups.approve'), nil, method: :get, class: 'btn-opt btn-approve', remote: true)
+        = link_to(t('groups.reject'), nil, method: :get, class: 'btn-opt btn-approve', remote: true)

@@ -55,6 +55,13 @@ class TopicsController < ApplicationController
 
     @has_followed = current_user&.follow_topic?(@topic)
     @has_favorited = current_user&.favorite_topic?(@topic)
+
+    if @topic.activity?
+      params[:page] ||= 1
+      params[:per] ||= 9
+      @penddings = @topic.user_topics.pendding.page(params[:page]).per(params[:per])
+      @none_penddings = @topic.user_topics.none_pendding
+    end
   end
 
   def read

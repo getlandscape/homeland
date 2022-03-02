@@ -4,6 +4,7 @@ class CreateUserTopic < ActiveRecord::Migration[7.0]
       t.integer :user_id, null: false
       t.integer :topic_id, null: false
       t.integer :status, default: 0
+      t.text :msg
 
       t.timestamps
     end
