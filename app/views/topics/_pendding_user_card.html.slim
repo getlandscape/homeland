@@ -4,11 +4,11 @@
     = user_avatar_tag(user, :md)
   .media-body
     .media-heading.text-truncate
-      .card-name
+      .card-name style="max-width: 220px;"
         a
           = user.name
-      .card-tag.text-truncate
-        = user_topic.msg
+      .card-tag.text-truncate style="max-width: 220px;"
+        = user_topic.msg || t('topics.form.no_massges')
       .card-button
-        = link_to(t('groups.approve'), nil, method: :get, class: 'btn-opt btn-approve', remote: true)
-        = link_to(t('groups.reject'), nil, method: :get, class: 'btn-opt btn-approve', remote: true)
+        = link_to(t('topics.form.approve'), edit_activity_topic_path(topic_id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'approve'), method: :get, class: 'btn-opt btn-approve', remote: true)
+        = link_to(t('topics.form.reject'), edit_activity_topic_path(topic_id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'reject'), method: :get, class: 'btn-opt btn-approve', remote: true)

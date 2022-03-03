@@ -1,7 +1,8 @@
-- user_topics = @topic.user_topics
+- if @penddings.present?
+  .topic-detail.card#pending-user-list
+    = render 'pendding_list'
 .topic-detail.card
-  = render 'pendding_list'
-.topic-detail.card
-  .d-flex.flex-row.card-body
-    - @none_penddings.each do |ut|
-      = render partial: 'marked_user_card', locals: { user_topic: ut }
+  - if @none_penddings.present?
+    .d-flex.flex-wrap.card-body
+      - @none_penddings.each do |ut|
+        = render partial: 'marked_user_card', locals: { user_topic: ut }

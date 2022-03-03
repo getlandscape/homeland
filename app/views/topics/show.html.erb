@@ -48,7 +48,11 @@
       </div>
     </div>
     <%= render partial: "ban_reason" %>
-    <%= render "user_topic" %>
+    <% if @topic.activity? %>
+      <div class="card-body" id="poll-form-tag">
+        <%= render "user_topic" %>
+      </div>
+    <% end %>
     <% if @replies.blank? %>
       <div class="no-result">
         <%= t("topics.no_replies") %>
@@ -99,4 +103,11 @@
       <a href="#" class="btn btn-block btn-sm btn-move-page" data-type="bottom"><i class="fa fa-arrow-down"></i></a>
     </div>
   <% end %>
+</div>
+
+<div class="modal edit-group-user-modal fade" id="edit-activiy-modal" role="dialog" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content group-user-modal-content edit-group-user-modal" id="edit-activiy-modal-body">
+    </div>
+  </div>
 </div>

@@ -83,6 +83,8 @@ Rails.application.routes.draw do
       post :vote
       post :mark
       post :join
+      get :edit_activity
+      post :manage_activity
     end
 
     collection do

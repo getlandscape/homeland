@@ -5,9 +5,9 @@ class TopicsController < ApplicationController
 
   before_action :authenticate_user!, only: %i[new edit create update destroy
     favorite unfavorite follow unfollow
-    action favorites vote mark join]
-  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow]
-  before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban vote mark join]
+    action favorites vote mark join edit_activity manage_activity]
+  load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow edit_activity manage_activity]
+  before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban vote mark join edit_activity manage_activity]
 
   def index
     @suggest_topics = []
@@ -196,6 +196,24 @@ class TopicsController < ApplicationController
     render_404 if @topic.deleted? || !group_member_validation
 
     render nil
+  end
+
+  def edit_activity
+    render_404 if @topic.deleted?
+
+    @topic_option = @topic.user_topics.find_by(id: params[:topic_option_id])
+  end
+
+  def manage_activity
+    render_404 if @topic.deleted?
+
+    @topic_option = @topic.user_topics.find_by(id: params[:topic_option_id])
+    case params[:opt]
+    when 'approve'
+      @topic_option.update(status: 'joined')
+    when 'reject'
+      @topic_option.destroy
+    end
   end
 
   private

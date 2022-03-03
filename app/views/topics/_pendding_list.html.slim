@@ -5,5 +5,5 @@
         = render partial: 'pendding_user_card', locals: { user_topic: ut }
     - total_pages = @penddings.total_pages
     - if total_pages.to_i > 1
-      .user-list-footer.clearfix
-        = paginate user_topics, remote: true, total_pages: total_pages
+      .user-list-footer.clearfix style="padding-left: 40px; padding-bottom: 20px;"
+        = paginate @penddings, remote: true, total_pages: total_pages
