@@ -199,6 +199,8 @@
     prev: "上一页"
     gap: "&hellip;"
   topics:
+    activity:
+      join_mark_count: "%{joined}人参加 %{marked}人感兴趣"
     new_topic: "发布新话题"
     edit_topic: "修改话题"
     reply: "回复"

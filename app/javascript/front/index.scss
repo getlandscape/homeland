@@ -566,6 +566,10 @@ hr {
     }
   }
 
+  .mark-bar {
+    padding-bottom: 0px;
+  }
+
   .card-header {
     padding: 25px 25px 0 25px;
 
@@ -1191,4 +1195,8 @@ textarea.div-dropzone-focus {
       color: #aaa;
     }
   }
+}
+
+#pending-user-list{
+  padding-left: 0px;
 }

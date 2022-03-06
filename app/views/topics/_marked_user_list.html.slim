@@ -1,3 +1,8 @@
+.mark-bar.card-body
+  = t('topics.activity.join_mark_count', joined: @topic.user_topics.joined.count, marked: @topic.user_topics.marked.count)
+  a.media-right
+    = link_to('join', '', class: 'btn')
+    = link_to('mark', '', class: 'btn')
 .d-flex.flex-wrap.card-body.none-pendding-user-card-body
   - @none_penddings.each do |ut|
     = render partial: 'marked_user_card', locals: { user_topic: ut }

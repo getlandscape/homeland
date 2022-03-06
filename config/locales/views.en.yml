@@ -195,6 +195,8 @@
     prev: "Prev"
     gap: "&hellip;"
   topics:
+    activity:
+      join_mark_count: "%{joined} people joined and %{marked} people marked."
     new_topic: "New Topic"
     edit_topic: "Edit Topic"
     reply: "Reply"
