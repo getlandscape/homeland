@@ -1,0 +1,7 @@
+(function () {
+    target_1 = "<%= escape_javascript(render 'pendding_list')%>"
+    target_2 = "<%= escape_javascript(render 'marked_user_list')%>"
+	replaceHTML($('#pending-user-list'), target_1);
+    replaceHTML($('#marked-user-list'), target_2);
+    $('#edit-activiy-modal').modal('hide');
+})();

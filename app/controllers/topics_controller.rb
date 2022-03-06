@@ -91,7 +91,8 @@ class TopicsController < ApplicationController
     @topic = Topic.new(topic_params)
 
     if @topic.poll? && (topic_option_params.empty? || @topic.poll_title.blank?)
-      redirect_to(new_topic_path(@topic, group_id: @topic.group_id, topic_type: @topic.topic_type), alert: t("topics.option_number_validation"))
+      @topic.errors.add ' ', t("topics.option_number_validation")
+      return
     end
 
     @topic.user_id = current_user.id
@@ -201,18 +202,25 @@ class TopicsController < ApplicationController
   def edit_activity
     render_404 if @topic.deleted?
 
-    @topic_option = @topic.user_topics.find_by(id: params[:topic_option_id])
+    @user_topic = @topic.user_topics.find_by(id: params[:user_topic_id])
   end
 
   def manage_activity
     render_404 if @topic.deleted?
 
-    @topic_option = @topic.user_topics.find_by(id: params[:topic_option_id])
+    @user_topic = @topic.user_topics.find_by(id: params[:user_topic_id])
     case params[:opt]
     when 'approve'
-      @topic_option.update(status: 'joined')
+      @user_topic.update(status: 'joined')
     when 'reject'
-      @topic_option.destroy
+      @user_topic.destroy
+    end
+
+    if @topic.activity?
+      params[:page] ||= 1
+      params[:per] ||= 9
+      @penddings = @topic.user_topics.pendding.page(params[:page]).per(params[:per])
+      @none_penddings = @topic.user_topics.none_pendding
     end
   end
 

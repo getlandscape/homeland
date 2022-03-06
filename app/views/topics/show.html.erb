@@ -49,9 +49,7 @@
     </div>
     <%= render partial: "ban_reason" %>
     <% if @topic.activity? %>
-      <div class="card-body" id="poll-form-tag">
-        <%= render "user_topic" %>
-      </div>
+      <%= render "user_topic" %>
     <% end %>
     <% if @replies.blank? %>
       <div class="no-result">
