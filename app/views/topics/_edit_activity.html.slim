@@ -2,18 +2,18 @@
   - if params[:opt] == 'approve'
     .body
       .content
-        = t('groups.confirm_approve')
+        = t('topics.activity.confirm_approve')
     .footer
       .content
-        = link_to(t('groups.confirm'), manage_activity_topic_path(id: topic.id, user_topic_id: user_topic.id, opt: 'approve'), method: :post, class: 'btn btn-primary btn-join', remote: true)
+        = link_to(t('topics.activity.confirm'), manage_activity_topic_path(id: topic.id, user_topic_id: user_topic.id, opt: 'approve'), method: :post, class: 'btn btn-primary btn-join', remote: true)
         button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
-          = t('groups.cancel')
+          = t('topics.activity.cancel')
   - elsif params[:opt] == 'reject'
     .body
       .content
-        = t('groups.confirm_reject')
+        = t('topics.activity.confirm_reject')
     .footer
       .content
-        = link_to(t('groups.reject'), manage_activity_topic_path(id: topic.id, user_topic_id: user_topic.id, opt: 'decline'), method: :post, class: 'btn btn-primary btn-join', remote: true)
+        = link_to(t('topics.activity.reject'), manage_activity_topic_path(id: topic.id, user_topic_id: user_topic.id, opt: 'decline'), method: :post, class: 'btn btn-primary btn-join', remote: true)
         button.btn.btn-primary.btn-join.modal-close-button[type='button' data-bs-dismiss='modal' aria-label='Close']
-          = t('groups.cancel')
+          = t('topics.activity.cancel')

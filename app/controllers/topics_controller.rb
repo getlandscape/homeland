@@ -8,6 +8,7 @@ class TopicsController < ApplicationController
     action favorites vote mark join edit_activity manage_activity]
   load_and_authorize_resource only: %i[new edit create update destroy favorite unfavorite follow unfollow edit_activity manage_activity]
   before_action :set_topic, only: %i[edit read update destroy follow unfollow action ban vote mark join edit_activity manage_activity]
+  before_action :set_user_topic, only: %i[show mark join edit_activity manage_activity]
 
   def index
     @suggest_topics = []
@@ -56,12 +57,7 @@ class TopicsController < ApplicationController
     @has_followed = current_user&.follow_topic?(@topic)
     @has_favorited = current_user&.favorite_topic?(@topic)
 
-    if @topic.activity?
-      params[:page] ||= 1
-      params[:per] ||= 9
-      @penddings = @topic.user_topics.pendding.page(params[:page]).per(params[:per])
-      @none_penddings = @topic.user_topics.none_pendding
-    end
+    user_topics_detail
   end
 
   def read
@@ -189,20 +185,35 @@ class TopicsController < ApplicationController
 
   def mark
     render_404 if @topic.deleted? || !group_member_validation
+    if @current_user_topic.is_marked
+      @current_user_topic.is_marked = false
+    else
+      @current_user_topic.is_marked = true
+    end
+    @current_user_topic.save
 
-    render nil
+    user_topics_detail
   end
 
   def join
     render_404 if @topic.deleted? || !group_member_validation
 
-    render nil
+    if @topic.need_approve?
+      @current_user_topic.status = 'pendding'
+    else
+      @current_user_topic.status = 'joined'
+    end
+    @current_user_topic.save
+
+    user_topics_detail
   end
 
   def edit_activity
     render_404 if @topic.deleted?
 
     @user_topic = @topic.user_topics.find_by(id: params[:user_topic_id])
+
+    user_topics_detail
   end
 
   def manage_activity
@@ -216,18 +227,17 @@ class TopicsController < ApplicationController
       @user_topic.destroy
     end
 
-    if @topic.activity?
-      params[:page] ||= 1
-      params[:per] ||= 9
-      @penddings = @topic.user_topics.pendding.page(params[:page]).per(params[:per])
-      @none_penddings = @topic.user_topics.none_pendding
-    end
+    user_topics_detail
   end
 
   private
 
   def set_topic
     @topic ||= Topic.find(params[:id])
+  end
+
+  def set_user_topic
+    @current_user_topic ||= UserTopic.find_or_initialize_by(topic_id: params[:id], user_id: current_user.id) if current_user.present?
   end
 
   def topic_params
@@ -261,5 +271,14 @@ class TopicsController < ApplicationController
 
   def topic_option_params
     topic_params[:topic_options_attributes].to_h.values.select { |k| k[:name].present? }
+  end
+
+  def user_topics_detail
+    if @topic.activity?
+      params[:page] ||= 1
+      params[:per] ||= 9
+      @penddings = @topic.user_topics.pendding.page(params[:page]).per(params[:per])
+      @none_penddings = @topic.user_topics.none_pendding
+    end
   end
 end

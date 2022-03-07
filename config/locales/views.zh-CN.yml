@@ -199,8 +199,19 @@
     prev: "上一页"
     gap: "&hellip;"
   topics:
+    marked: "已感兴趣"
+    mark: "感兴趣"
+    joined: "已报名"
+    join: "加入"
+    more: '展开'
+    hide: '收起'
     activity:
       join_mark_count: "%{joined}人参加 %{marked}人感兴趣"
+      confirm_approve: "允许参加活动？"
+      confirm_remove: "从活动移除？"
+      confirm_reject: "拒绝参加活动？"
+      approve: '同意'
+      reject: '拒绝'
     new_topic: "发布新话题"
     edit_topic: "修改话题"
     reply: "回复"

@@ -195,8 +195,19 @@
     prev: "Prev"
     gap: "&hellip;"
   topics:
+    marked: "Marked"
+    mark: "Mark"
+    joined: "Joined"
+    joined: "Join"
+    more: 'Show more'
+    hide: 'Hide'
     activity:
       join_mark_count: "%{joined} people joined and %{marked} people marked."
+      confirm_approve: "Approve to join?"
+      confirm_remove: "Remove from activity?"
+      confirm_reject: "Decline application?"
+      approve: 'Approve'
+      reject: 'Decline'
     new_topic: "New Topic"
     edit_topic: "Edit Topic"
     reply: "Reply"

@@ -485,7 +485,7 @@ h2 {
     width: 15px;
     border-radius: 7.5px;
     border: 0.5px solid #D1D5DB;
-    background-color: white;
+    background-color: var(--body-background-color);
     position: relative;
     bottom: 15px;
     left: 25px;
@@ -495,6 +495,10 @@ h2 {
     bottom: 5px;
     left: 3.6px;
   }
+}
+
+.progress {
+  background: var(--form-control-background-color);
 }
 
 
@@ -508,6 +512,13 @@ h2 {
   text-decoration: none;
   border: none;
   background-color: transparent;
+  margin-bottom: 15px;
+  svg {
+    margin-left: 3.5px;
+  }
+  .hide-tag {
+    margin-bottom: 5px;
+  }
 }
 
 .show-hide-button:hover {

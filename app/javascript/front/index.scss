@@ -566,8 +566,25 @@ hr {
     }
   }
 
+  .groups {
+    border: none;
+  }
+
   .mark-bar {
+    font-family: PingFang SC;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 25px;
     padding-bottom: 0px;
+
+    .btn-outline-primary {
+      margin-left: 10px;
+    }
+
+    svg {
+      margin-right: 3.5px;
+    }
   }
 
   .card-header {

@@ -33,7 +33,11 @@ class ApplicationController
     end
 
     def set_locale
-      I18n.locale = user_locale
+      if Rails.env = 'development'
+        I18n.locale = 'zh-CN'
+      else
+        I18n.locale = user_locale
+      end
 
       # after store current locale
       cookies[:locale] = params[:locale] if params[:locale]

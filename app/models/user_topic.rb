@@ -4,9 +4,10 @@ class UserTopic < ApplicationRecord
 	belongs_to :user
 	belongs_to :topic
 
-	enum status: %i[pendding joined marked]
+	enum status: %i[pendding joined]
 
 	scope :none_pendding, -> { where.not(status: 'pendding').order(updated_at: :desc) }
+  scope :marked, -> { where(is_marked: true) }
 
 	def self.total_pages
     return @total_pages if defined? @total_pages

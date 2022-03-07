@@ -10,5 +10,5 @@
       .card-tag.text-truncate style="max-width: 220px;"
         = user_topic.msg || t('topics.form.no_massges')
       .card-button
-        = link_to(t('topics.form.approve'), edit_activity_topic_path(id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'approve'), method: :get, class: 'btn-opt btn-approve', remote: true)
-        = link_to(t('topics.form.reject'), edit_activity_topic_path(id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'reject'), method: :get, class: 'btn-opt btn-approve', remote: true)
+        = link_to(t('topics.activity.approve'), edit_activity_topic_path(id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'approve'), method: :get, class: 'btn-opt btn-approve', remote: true)
+        = link_to(t('topics.activity.reject'), edit_activity_topic_path(id: user_topic.topic_id, user_topic_id: user_topic.id, opt: 'reject'), method: :get, class: 'btn-opt btn-approve', remote: true)
