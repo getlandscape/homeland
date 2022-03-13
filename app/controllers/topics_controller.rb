@@ -132,7 +132,12 @@ class TopicsController < ApplicationController
 
   def destroy
     @topic.destroy_by(current_user)
-    redirect_to(topics_path, notice: t("topics.delete_topic_success"))
+
+    if @topic.group_id.present?
+      redirect_to(topics_group_path(@topic.group), notice: t("topics.delete_topic_success"))
+    else
+      redirect_to(topics_path, notice: t("topics.delete_topic_success"))
+    end
   end
 
   def favorite
