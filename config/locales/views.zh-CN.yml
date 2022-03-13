@@ -212,6 +212,8 @@
       confirm_reject: "拒绝参加活动？"
       approve: '同意'
       reject: '拒绝'
+    new_poll: "发布新投票"
+    new_activity: "发布新活动"
     new_topic: "发布新话题"
     edit_topic: "修改话题"
     reply: "回复"

@@ -10,7 +10,10 @@
           = to.name
         = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
         .progress
-          .progress-bar[role="progressbar" style="width: #{count}%" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+          - if to.user_topic_options.pluck(:user_id).include? current_user.id
+            .progress-bar[role="progressbar" style="width: #{count}%;" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+          - else
+            .progress-bar.unselected[role="progressbar" style="width: #{count}%;" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
   - elsif @topic.single?
     - @topic.topic_options.each do |to|
         - count = to.user_topic_options.count

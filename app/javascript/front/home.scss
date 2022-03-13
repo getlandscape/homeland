@@ -499,6 +499,10 @@ h2 {
 
 .progress {
   background: var(--form-control-background-color);
+  height: 10px;
+  .unselected {
+    background-color: var(--text-color2);
+  }
 }
 
 
@@ -523,4 +527,14 @@ h2 {
 
 .show-hide-button:hover {
   text-decoration:underline;
+}
+
+#poll-form-tag {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 60px;
+  margin-right: 60px;
+  padding-top: 30px;
+  background-color: var(--gray);
+  border: 1px solid #DDDDDD;
 }

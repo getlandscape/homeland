@@ -208,6 +208,8 @@
       confirm_reject: "Decline application?"
       approve: 'Approve'
       reject: 'Decline'
+    new_poll: "New Poll"
+    new_activity: "New Activity"
     new_topic: "New Topic"
     edit_topic: "Edit Topic"
     reply: "Reply"
