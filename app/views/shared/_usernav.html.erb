@@ -13,10 +13,10 @@
       </a>
       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-new-menu">
         <%= link_to t("topics.new_topic"), main_app.new_topic_path, class: "dropdown-item" %>
-        <% if can?(:create, Team) && Setting.has_module?(:team) %>
-          <div class="dropdown-divider"></div>
-          <%= link_to t("teams.new_team"), main_app.new_team_path, class: "dropdown-item" %>
-        <% end %>
+        <%# if can?(:create, Team) && Setting.has_module?(:team) %>
+          <!-- <div class="dropdown-divider"></div> -->
+          <%#= link_to t("teams.new_team"), main_app.new_team_path, class: "dropdown-item" %>
+        <%# end %>
       </div>
     </li>
   <% end %>
