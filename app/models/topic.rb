@@ -24,7 +24,7 @@ class Topic < ApplicationRecord
   belongs_to :node, counter_cache: true, required: false
   belongs_to :last_reply_user, class_name: "User", required: false
   belongs_to :last_reply, class_name: "Reply", required: false
-  belongs_to :group
+  belongs_to :group, required: false
   has_many :replies, dependent: :destroy
 
   has_many :topic_options, dependent: :destroy

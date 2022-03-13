@@ -86,7 +86,7 @@ class TopicsController < ApplicationController
   def create
     @group = Group.find(params[:topic][:group_id]) if params[:topic][:group_id].present?
 
-    unless @group.present? && @group.group_member?(current_user)
+    if @group.present? && !@group.group_member?(current_user)
       redirect_to(new_topic_path(group_id: params[:topic][:group_id], topic_type: params[:topic][:topic_type]), alert: t("groups.join_requirement"))
     end
 
