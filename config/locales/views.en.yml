@@ -208,6 +208,10 @@
       confirm_reject: "Decline application?"
       approve: 'Approve'
       reject: 'Decline'
+    polls:
+      end: 'End'
+      submit: 'Vote'
+      joined_people_count: "%{number} people voted"
     new_poll: "New Poll"
     new_activity: "New Activity"
     new_topic: "New Topic"

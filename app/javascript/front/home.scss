@@ -537,4 +537,30 @@ h2 {
   padding-top: 30px;
   background-color: var(--gray);
   border: 1px solid #DDDDDD;
+  font-family: 'PingFang SC';
+  font-style: normal;
+  .title {
+    font-weight: 500;
+    font-size: 21px;
+    line-height: 29px;
+  }
+  .content {
+    margin-top: 10px;
+    margin-bottom: 34px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+  }
+  .progress-title {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    margin-top: 14px;
+    .button-name {
+      margin-left: 10px;
+    }
+  }
+  .submit-button-bar {
+    margin-top: 30px;
+  }
 }

@@ -1,14 +1,22 @@
-- max = @topic.topic_options.count
+- max = @topic.user_topic_options.count
 - current_votes = current_user.user_topic_options
+.title
+  = @topic.poll_title
+.content
+  = t('topics.polls.joined_people_count', number: @topic.user_topic_options.pluck(:user_id).count)
 = form_tag main_app.vote_topic_path(@topic), method: :post, remote: true do
   - if @topic.multiple?
-    .form-check
+    .form-check style="padding-left: 0px;"
       - @topic.topic_options.each do |to|
         - count = to.user_topic_options.count
-        = check_box_tag("topic_option_ids[]", to.id, current_votes.find_by(topic_option_id: to.id).present?)
-        label.form-check-label[for="flexCheckDefault"]
-          = to.name
-        = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
+        - rate = (count.to_f / max) * 100
+        .d-flex.flex-row.progress-title
+          .
+            = check_box_tag("topic_option_ids[]", to.id, current_votes.find_by(topic_option_id: to.id).present?)
+          label.form-check-label.button-name[for="flexCheckDefault"]
+              = to.name
+          .ml-auto style="padding:0px;"
+            = count.to_s + "(#{number_to_percentage(rate.ceil, precision: 0)})"
         .progress
           - if to.user_topic_options.pluck(:user_id).include? current_user.id
             .progress-bar[role="progressbar" style="width: #{count}%;" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
@@ -23,7 +31,8 @@
         = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
         .progress
           .progress-bar[role="progressbar" style="width: #{count}%" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
-  - if @topic.ended?
-    = button_tag("End", class: "button btn btn-joined")
-  - else
-    = submit_tag("submit", class: "button btn btn-primary")
+  .submit-button-bar.d-flex.justify-content-center
+    - if @topic.ended?
+      = button_tag(t("topics.polls.end"), class: "button btn btn-joined", type: 'button')
+    - else
+      = submit_tag(t("topics.polls.submit"), class: "button btn btn-primary")
