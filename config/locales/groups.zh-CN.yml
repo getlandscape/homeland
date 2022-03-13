@@ -76,3 +76,4 @@
     owner_transfer_html: "%{actor}已将小组%{second_target}转移给你"
     upgrade_html: "%{actor}将你晋升为小组%{second_target}的管理员"
     expired: "内容已过期"
+    join_requirement: "加入小组才能发表新话题"

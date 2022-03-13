@@ -76,3 +76,4 @@
     owner_transfer_html: "%{actor} transfered group: %{second_target} ownership to you"
     upgrade_html: "%{actor} upgraded you as group: %{second_target} admin"
     expired: "Expired"
+    join_requirement: "Join group to create a new topic here."
