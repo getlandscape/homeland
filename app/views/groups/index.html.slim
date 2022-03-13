@@ -2,15 +2,37 @@
   - title_tag(@page_title || t('menu.groups'))
 .row
   .col-lg-9
-    div class=("groups groups-#{action_name} card") 
-      .card-body.item-list
-        = render GroupComponent.with_collection(@groups, current_user: current_user)
-      - if  @groups.total_pages > 1
-        .card-footer.clearfix
-          - if (action_name.in? %(index recent)) && (controller_name == "groups")
-            = paginate @groups, total_pages: Group.total_pages
-          - else
-            = paginate @groups
+    - if @pendding_groups.present?
+      div class=("groups groups-#{action_name} card")
+        .card-body.item-list
+          - @pendding_groups.each do |group|
+            - cache([group, group.avatar]) do
+              .group.media class="group-#{group.id}" data-prefetch="#{main_app.group_path(group)}"
+                .avatar
+                  = user_avatar_tag(group, :md)
+                = link_to(main_app.group_path(group), title: group.name, class: 'infos media-body') do
+                  .title.media-heading.group-title.text-truncate
+                    = group.name
+                  .info.text-truncate
+                    = group.description_first_line
+                .media-right
+                  = t('groups.waiting_approve')
+        - if @groups.total_pages > 1
+          .card-footer.clearfix
+            - if (action_name.in? %(index recent)) && (controller_name == "groups")
+              = paginate @pendding_groups, total_pages: @pendding_groups.total_pages
+            - else
+              = paginate @pendding_groups
+    - if @groups.present?
+      div class=("groups groups-#{action_name} card")
+        .card-body.item-list
+          = render GroupComponent.with_collection(@groups, current_user: current_user)
+        - if  @groups.total_pages > 1
+          .card-footer.clearfix
+            - if (action_name.in? %(index recent)) && (controller_name == "groups")
+              = paginate @groups, total_pages: @groups.total_pages
+            - else
+              = paginate @groups
   .sidebar.col-lg-3
     = render "groups/sidebar_for_group_index"
 

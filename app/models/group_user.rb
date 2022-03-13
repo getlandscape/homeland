@@ -27,7 +27,7 @@ class GroupUser < ApplicationRecord
     @total_pages
   end
 
-  after_commit :send_update_notification
+  after_update :send_update_notification
   def send_update_notification
     if previous_changes.slice("role", "status").present?
       Notifications::GroupUser.new(self).notify unless user_id == last_actor_id
@@ -36,6 +36,6 @@ class GroupUser < ApplicationRecord
 
   after_create :send_create_notification
   def send_create_notification
-    Notifications::GroupUser.new(self).notify
+    Notifications::GroupUser.new(self).notify unless owner?
   end
 end

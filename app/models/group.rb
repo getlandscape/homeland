@@ -17,6 +17,7 @@ class Group < ApplicationRecord
   has_many :replies, through: :topics
 
   scope :approved_groups, -> { where(status: 'approved') }
+  scope :pendding_groups, -> { where(status: 'pendding') }
 
   def self.total_pages
     return @total_pages if defined? @total_pages

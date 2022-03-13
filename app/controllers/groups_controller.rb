@@ -8,6 +8,7 @@ class GroupsController < ApplicationController
   def index
     params[:page] ||= 1
     params[:per] ||= 18
+    @pendding_groups = Group.pendding_groups if current_user && current_user.admin?
     @groups = Group.approved_groups
     @group = @groups.includes(:group_users).where(group_users: {user_id: current_user.id}) if current_user.present?
     @groups = @groups.order(:id).page(params[:page]).per(params[:per])
@@ -45,6 +46,21 @@ class GroupsController < ApplicationController
       format.js
       format.html { redirect_to(edit_group_path(@group), notice: t("common.update_success")) }
     end
+  end
+
+  def approve
+    if current_user.admin?
+      @group.update(status: 'approved')
+    end
+    msg = params[:opt] == "restore" ? t("groups.restored_success") : t("groups.approved_success")
+    redirect_to(group_path(@group), notice: msg)
+  end
+
+  def reject
+    if current_user.admin?
+      @group.update(status: 'rejected')
+    end
+    redirect_to(group_path(@group), notice: t("groups.rejected_success"))
   end
 
   def destroy

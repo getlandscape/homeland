@@ -61,6 +61,8 @@ Rails.application.routes.draw do
     member do
       get :members
       get :topics
+      post :approve
+      post :reject
     end
 
     resources :group_users do
