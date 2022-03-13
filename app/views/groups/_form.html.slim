@@ -60,8 +60,13 @@
         = f.check_box :policy_agree, class: 'agreement-checkbox'
         a.agreement-text
           = t('groups.agreements_and_policies')
-.form-actions.jcsb.hide-ios
-  - text = t("common.create") if action_name == 'new'
-  - text ||= t("common.save")
-  = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
+- if @group.group_admin?(current_user)
+  .form-actions.jcsb.hide-ios
+    - text = t("common.create") if action_name == 'new'
+    - text ||= t("common.save")
+    = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
+- elsif action_name == 'new'
+  .form-actions.jcsb.hide-ios
+    - text = t("common.create")
+    = f.submit text, class: "btn btn-primary", 'data-disable-with' => t("common.saving"), 'data-tb' => "save-group"
   
