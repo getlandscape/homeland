@@ -216,6 +216,7 @@
       end: '已结束'
       submit: '投票'
       joined_people_count: "%{number}人参与"
+      vote_to_view: "投票后可查看结果"
     new_poll: "发布新投票"
     new_activity: "发布新活动"
     new_topic: "发布新话题"

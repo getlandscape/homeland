@@ -1,0 +1,34 @@
+- max = @topic.user_topic_options.count
+- current_votes = current_user.user_topic_options
+= form_tag main_app.vote_topic_path(@topic), method: :post, remote: true do
+  - if @topic.multiple?
+    .form-check style="padding-left: 0px;"
+      - @topic.topic_options.each do |to|
+        - count = to.user_topic_options.count
+        - rate = (count.to_f / max) * 100
+        .d-flex.flex-row.progress-title
+          .
+            = check_box_tag("topic_option_ids[]", to.id, current_votes.find_by(topic_option_id: to.id).present?)
+          label.form-check-label.button-name[for="flexCheckDefault"]
+              = to.name
+          .ml-auto style="padding:0px;"
+            = count.to_s + "(#{number_to_percentage(rate.ceil, precision: 0)})"
+        .progress
+          - if to.user_topic_options.pluck(:user_id).include? current_user.id
+            .progress-bar[role="progressbar" style="width: #{count}%;" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+          - else
+            .progress-bar.unselected[role="progressbar" style="width: #{count}%;" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+  - elsif @topic.single?
+    - @topic.topic_options.each do |to|
+        - count = to.user_topic_options.count
+        = radio_button_tag("topic_option_ids[]", to.id, current_votes.find_by(topic_option_id: to.id).present?)
+        label.form-check-label[for="flexCheckDefault"]
+          = to.name
+        = ": " + count.to_s + "(#{@topic.user_topic_options.count})"
+        .progress
+          .progress-bar[role="progressbar" style="width: #{count}%" aria-valuenow="#{count}" aria-valuemin="0" aria-valuemax="#{max}"]
+  .submit-button-bar.d-flex.justify-content-center
+    - if @topic.ended?
+      = button_tag(t("topics.polls.end"), class: "button btn btn-joined", type: 'button')
+    - else
+      = submit_tag(t("topics.polls.submit"), class: "button btn btn-primary")

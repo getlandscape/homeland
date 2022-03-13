@@ -212,6 +212,7 @@
       end: 'End'
       submit: 'Vote'
       joined_people_count: "%{number} people voted"
+      vote_to_view: "Submit vote to view results"
     new_poll: "New Poll"
     new_activity: "New Activity"
     new_topic: "New Topic"

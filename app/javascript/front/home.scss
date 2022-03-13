@@ -563,4 +563,15 @@ h2 {
   .submit-button-bar {
     margin-top: 30px;
   }
+  .bottom-view-text {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color: var(--text-color1);
+  }
+  .vote-form {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--text-color2);
+  }
 }
