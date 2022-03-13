@@ -1,6 +1,5 @@
 - if @penddings.present?
   .topic-detail.card#pending-user-list
     = render 'pendding_list'
-- if @none_penddings.present?
-  .topic-detail.card#marked-user-list
-    = render 'marked_user_list'
+.topic-detail.card#marked-user-list
+  = render 'marked_user_list'
