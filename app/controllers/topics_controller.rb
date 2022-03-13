@@ -198,7 +198,9 @@ class TopicsController < ApplicationController
   def join
     render_404 if @topic.deleted? || !group_member_validation
 
-    if @topic.need_approve?
+    if @current_user_topic.id.present? && @current_user_topic.joined?
+      @current_user_topic.status = 'draft'
+    elsif @topic.need_approve?
       @current_user_topic.status = 'pendding'
     else
       @current_user_topic.status = 'joined'

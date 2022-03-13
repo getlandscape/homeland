@@ -4,7 +4,7 @@ class UserTopic < ApplicationRecord
 	belongs_to :user
 	belongs_to :topic
 
-	enum status: %i[pendding joined]
+	enum status: %i[draft pendding joined]
 
 	scope :none_pendding, -> { where.not(status: 'pendding').order(updated_at: :desc) }
   scope :marked, -> { where(is_marked: true) }
