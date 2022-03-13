@@ -20,6 +20,7 @@
           .title
             = t('groups.created_at')
             = @group.created_at.strftime("%Y-%m-%d")
+          .title
             = t('groups.@group_owner')
             = link_to(@group.owner.name, main_app.user_path(@group.owner), title: @group.owner.name, class: 'user-title')
           .body
