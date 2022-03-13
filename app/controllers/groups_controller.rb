@@ -2,7 +2,7 @@
 
 class GroupsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show topics]
-  before_action :set_group, except: %i[new index]
+  before_action :set_group, except: %i[new index create]
   before_action :set_current_group_user
 
   def index
