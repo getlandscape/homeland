@@ -1,6 +1,6 @@
 .card.group-sidebar
   .card-body
-    .group.topic.media.content-header class="topic-#{group.id}" data-prefetch="#{main_app.group_path(group)}" 
+    .group.topic.media.content-header class="topic-#{group.id}" data-prefetch="#{main_app.group_path(group)}"
       .avatar
         - if group.avatar_url.present?
           = user_avatar_tag(group, :md)
@@ -24,7 +24,7 @@
       .body
         pre
           = group.description
-    .info.content-footer 
+    .info.content-footer
       a
         = link_to(group.group_users.count, main_app.group_path(group))
         = ' '

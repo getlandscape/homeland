@@ -10,7 +10,7 @@
     .media-content.summary.markdown
       - if group_user.msg.present?
         = group_user.msg
-  - elsif group_user.accepted? 
+  - elsif group_user.accepted?
     .media-heading
       - if group_user.user_id != notification.user_id
         - if group_user.last_action_type == 'approve'

@@ -2,7 +2,7 @@
   .col-lg-9
     .card.group-sidebar
       .card-body
-        .group.topic.media.content-header class="topic-#{@group.id}" data-prefetch="#{main_app.group_path(@group)}" 
+        .group.topic.media.content-header class="topic-#{@group.id}" data-prefetch="#{main_app.group_path(@group)}"
           .avatar
             - if @group.avatar_url.present?
               = user_avatar_tag(@group, :md)

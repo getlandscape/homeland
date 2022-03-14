@@ -8,12 +8,12 @@ module Notifications
 
     def create_params
       if @receiver_id.is_a?(Array)
-        @receiver_id.map { |id| { 
+        @receiver_id.map { |id| {
                                   notify_type: @notify_type,
                                   target: @target,
                                   second_target: @second_target,
                                   actor_id: @actor_id,
-                                  user_id: id 
+                                  user_id: id
                                 }
                          }
       else

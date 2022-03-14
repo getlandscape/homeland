@@ -1,8 +1,8 @@
-#topic-sidebar data-offset-bottom="65" data-spy="affix" 
+#topic-sidebar data-offset-bottom="65" data-spy="affix"
   .card
     .card-body
       = render ProfileCardComponent.new(user: @topic.user)
-  - if @topic.group.present?    
+  - if @topic.group.present?
     = render "groups/sidebar_group_card_small", group: @topic.group
   .card
     .card-body
@@ -15,7 +15,7 @@
             = topic_favorite_tag(@topic)
             - if can?(:manage, @topic) || can?(:close, @topic)
               span.dropdown
-                a data-bs-toggle="dropdown" href="#" 
+                a data-bs-toggle="dropdown" href="#"
                   = icon_tag("ellipsis-v")
                 = render "menu"
       hr

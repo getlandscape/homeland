@@ -33,7 +33,7 @@ class ApplicationController
     end
 
     def set_locale
-      if Rails.env = 'development'
+      if Rails.env == 'development'
         I18n.locale = 'zh-CN'
       else
         I18n.locale = user_locale
