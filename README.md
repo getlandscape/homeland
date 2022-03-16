@@ -16,6 +16,67 @@
 - [RELEASE NOTES](https://github.com/ruby-china/homeland/releases)
 - [CONTRIBUTE GUIDE](https://github.com/ruby-china/homeland/blob/master/CONTRIBUTE.md)
 
+## Quick Start For Developer 开发人员快速上手
+
+### Env 环境
+
+1.install asdf: refer to: https://github.com/asdf-vm/asdf
+2.install ruby,nodejs,postgres,redis via asdf:
+
+```
+cd <homeland>
+asdf install
+```
+
+3.install bundler: 2.3.3
+
+```
+gem install bundler -v 2.3.3
+```
+
+4.install npm,yarn,webpack:
+
+```
+npm install -g yarn
+yarn install
+bundle exec rails webpacker:install
+```
+
+5.change .env.local:
+
+```
+DATABASE_URL=postgres://admin:88888888@172.17.0.1:5433/homeland
+```
+
+6.create secret credential:
+
+```
+EDITOR='vim' bundle exec rails credentials:edit
+```
+
+7.run migration:
+
+```
+rake db:create
+rake db:migrate
+```
+
+8.change webpacker server port ( don't be the same with rails port):
+
+```
+# config/webpacker.yml
+    port: 3030
+```
+
+9.run server:
+
+```
+bundle exec rails s -p 3000           # port 3000
+bundle exec bin/webpack-dev-server    # port 3030
+```
+
+10.open browser: "http://localhost:3000"
+
 ## License
 
 Released under the MIT license:
