@@ -24,7 +24,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return
     end
 
-    resource.save
+    wallet_type = params[:user][:wallet_type]
+    if wallet_type.present?
+      resource.email = "#{params[:address]}@#{wallet_type}.com"
+      resource.password = "#{params[:address]}#{Time.now.to_i}"
+
+      # no need to confirm
+      resource.skip_confirmation!
+      resource.confirm
+    end
+
+    resource.save!
+
     yield resource if block_given?
     if resource.persisted?
       session[:omniauth] = nil
@@ -52,4 +63,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def edit
     redirect_to setting_path
   end
+
 end
