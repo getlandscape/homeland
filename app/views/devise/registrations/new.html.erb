@@ -33,8 +33,11 @@ end
         <% end %>
         <%= form_for resource, as: resource_name, url: registration_path(resource_name) do |f| %>
 
-          <%= render partial: (params[:wallet_type].blank? ? 'normal_sign_up_form' : 'decentralized_sign_up_form'),
-            locals: { f: f, resource: resource } %>
+          <% if params[:wallet_type].present? && params[:wallet_type].in?(User::SUPPORTED_WALLET_TYPES)%>
+            <%= render partial: 'decentralized_sign_up_form' , locals: { f: f, resource: resource } %>
+          <% else %>
+            <%= render partial: 'normal_sign_up_form' , locals: { f: f, resource: resource, auth_info: auth_info } %>
+          <% end %>
 
           <%= form_group(f, :base, label: false) do %>
             <div class="input-group input-group-lg">
@@ -58,7 +61,6 @@ end
 </div>
 
 <script>
-
 const buttonEthConnect = document.querySelector('a.eth_connect');
 
 const formNewUser = document.querySelector('form.new_user');

@@ -20,6 +20,7 @@ class User < ApplicationRecord
 
   LOGIN_FORMAT = 'A-Za-z0-9\-\_\.'
   ALLOW_LOGIN_FORMAT_REGEXP = /\A[#{LOGIN_FORMAT}]+\z/
+  SUPPORTED_WALLET_TYPES = ['eth', 'polka']
 
   ACCESSABLE_ATTRS = %i[name email_public location company bio website github twitter tagline avatar by
     current_password password password_confirmation _rucaptcha]
@@ -47,6 +48,9 @@ class User < ApplicationRecord
                     presence: true,
                     uniqueness: {case_sensitive: false}
   validates :name, length: {maximum: 20}
+
+  validates_uniqueness_of :eth_address, allow_nil: true, allow_blank: true
+  validates_uniqueness_of :polka_address, allow_nil: true, allow_blank: true
 
   after_commit :send_welcome_mail, on: :create
 

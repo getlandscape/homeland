@@ -1,11 +1,6 @@
-# frozen_string_literal: true
-require 'digest/md5'
+class AccountsController < Devise::RegistrationsController
 
-class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :require_no_sso!, only: %i[new create]
-
-  # POST /resource
-  def create
+  def sign_up_with_decentralized
     cache_key = ["user-sign-up", request.remote_ip, Date.today]
     # IP limit
     sign_up_count = Rails.cache.read(cache_key) || 0
@@ -20,25 +15,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     unless verify_complex_captcha?(resource)
       Rails.cache.write(cache_key, sign_up_count + 1)
-      clean_up_passwords resource
-      respond_with resource
+      respond_with resource, location: "/account/show_page_sign_up_with_decentralized_form?address=#{111}"
       return
     end
 
-    wallet_type = params[:user][:wallet_type]
-    if wallet_type.present? && wallet_type.in?(User::SUPPORTED_WALLET_TYPES)
-      resource.email = "#{params[:address]}@#{wallet_type}.com"
-      resource.password = "#{params[:address]}#{Time.now.to_i}"
-      resource.send "#{wallet_type}_address=", params[:address]
-      resource.wallet_type = wallet_type
-
-      # no need to confirm
-#      resource.skip_confirmation!
-#      resource.confirm
-    end
-
-    resource.save!
-
+    resource.save
     yield resource if block_given?
     if resource.persisted?
       session[:omniauth] = nil
@@ -58,13 +39,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def after_inactive_sign_up_path_for(resource_or_scope)
-    new_user_session_path
+  def show_page_sign_up_with_decentralized_form
+    @address_name = "#{params[:wallet_type]}_address"
+
+    @user = User.new email: "#{params[:address]}@eth.com",
+      wallet_type: params[:wallet_type],
+      @address_name => params[:address]
   end
 
-  # For Ruby China iOS Edit profile button, visit /account/edit
-  def edit
-    redirect_to setting_path
-  end
 
 end
