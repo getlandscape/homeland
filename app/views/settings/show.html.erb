@@ -3,6 +3,7 @@
   <div class="col-md-10">
     <div class="card card-lg">
       <div class="card-body">
+        <% puts '333333333333333333333' %>
         <%= form_for @user, url: setting_path, method: :put, html: { enctype: "multipart/form-data" } do |f| %>
           <%= render "shared/error_messages", target: @user %>
           <div class="row">
@@ -38,6 +39,15 @@
                   </div>
                 <% end %>
               </div>
+                <div class="form-group">
+                  <label class="form-label">Eth Address</label>
+                  <%= f.text_field :eth_address, disabled: true, class: "form-control", placeholder: "Eth_address" %>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Polka_address</label>
+                  <%= f.text_field :polka_address, disabled: true, class: "form-control", placeholder: "polka_address" %>
+                </div>
               <div class="card-section themes">
                 <div class="heading"><%= t("activerecord.attributes.user.theme") %></div>
                 <div class="flex aic">
