@@ -51,8 +51,8 @@ end
 
         <% end %>
         <div>
-          <%= link_to "signup using ETH", "javascript:void();", class: 'eth_connect' %>,
-          <%= link_to "signup using Polka", "javascript:alert(1)" %>
+          <%= link_to "signup using ETH", "javascript:void(0);", class: 'eth_connect' %>,
+          <%= link_to "signup using Polka", "javascript:void(0);", class: 'polka_connect'  %>
         </div>
       </div>
     </div>
@@ -61,17 +61,26 @@ end
 </div>
 
 <script>
-const buttonEthConnect = document.querySelector('a.eth_connect');
-
-const formNewUser = document.querySelector('form.new_user');
 if (typeof window.ethereum !== 'undefined') {
-  buttonEthConnect.addEventListener('click', async () => {
+  document.querySelector('a.eth_connect').addEventListener('click', async () => {
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
 		console.info("=== accounts: ", accounts)
-    location.href="?address=" + accounts[0] + "&wallet_type=" + "eth"
+    location.href="?address=" + accounts[0] + "&wallet_type=eth"
   });
 }else {
   alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
 }
+
+document.querySelector('a.polka_connect').addEventListener('click', async () => {
+  const extensions = await polka.web3Enable(window.location.hostname);
+
+  if (!extensions.length) {
+    throw new Error('Polkadot extension not found, please go to install it: https://polkadot.js.org/extension/');
+  }
+
+  const accounts = await polka.web3Accounts();
+  console.info("=== accounts: ", accounts)
+  location.href="?address=" + accounts[0].address + "&wallet_type=polka"
+});
 </script>
