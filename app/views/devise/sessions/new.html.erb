@@ -17,11 +17,11 @@ auth_info = auth_session["info"]
         <%= form_for resource, as: resource_name, url: session_path(resource_name) do |f| %>
           <%= render "/shared/error_messages", target: resource %>
           <div class="form-group">
-            <%= f.text_field :login, class: "form-control form-control-lg", 
+            <%= f.text_field :login, class: "form-control form-control-lg",
               placeholder: t("activerecord.attributes.user.login") + " / " + t("activerecord.attributes.user.email") %>
           </div>
           <div class="form-group">
-            <%= f.text_field :password, type: :password, class: "form-control form-control-lg", 
+            <%= f.text_field :password, type: :password, class: "form-control form-control-lg",
               placeholder: t("activerecord.attributes.user.password") %>
           </div>
           <% if devise_mapping.rememberable? -%>
@@ -48,6 +48,7 @@ auth_info = auth_session["info"]
         </div>
       </div>
     <% end %>
+    <%= link_to 'sign in with ETH', 'javascript:void(0)', class: 'eth_connect' %>
   </div>
   <div class="col-md-3">
     <div class="card">
@@ -56,3 +57,24 @@ auth_info = auth_session["info"]
   </div>
   <div class="col"></div>
 </div>
+
+<script>
+const buttonEthConnect = document.querySelector('a.eth_connect');
+
+const formNewUser = document.querySelector('form.new_user');
+if (typeof window.ethereum !== 'undefined') {
+  buttonEthConnect.addEventListener('click', async () => {
+    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+
+		console.info("=== accounts: ", accounts)
+    location.href="?address=" + accounts[0] + "&wallet_type=" + "eth"
+    $('#new_user').append(`
+      <input type="hidden" name="wallet_type" value="eth" />
+      <input type="hidden" name="address" value="${accounts[0]}" />
+    `).submit()
+
+  });
+}else {
+  alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
+}
+</script>
