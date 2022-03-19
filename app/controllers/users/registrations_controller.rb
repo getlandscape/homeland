@@ -27,7 +27,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     wallet_type = params[:user][:wallet_type]
     if wallet_type.present? && wallet_type.in?(User::SUPPORTED_WALLET_TYPES)
-      resource.email = "#{params[:address]}@#{wallet_type}.com"
       resource.password = "#{params[:address]}#{Time.now.to_i}"
       resource.send "#{wallet_type}_address=", params[:address]
       resource.wallet_type = wallet_type
