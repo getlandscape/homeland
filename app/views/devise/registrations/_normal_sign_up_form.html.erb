@@ -12,6 +12,7 @@
 <% end %>
 <%= form_group(f, :email) do %>
   <%= f.text_field :email, type: :email, class: "form-control form-control-lg", placeholder: t("activerecord.attributes.user.email") %>
+  <div id="is_email_available"> </div>
 <% end %>
 <div class="form-group">
   <div class="custom-control custom-checkbox custom-checkbox-lg">

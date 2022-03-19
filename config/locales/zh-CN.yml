@@ -116,3 +116,4 @@
           attributes:
             reset_password_token:
               expired: 重置密码操作已过期
+  email_is_not_available: "Email 已经被占用,请更换"

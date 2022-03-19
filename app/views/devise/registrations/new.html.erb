@@ -74,7 +74,6 @@ end
 </div>
 
 <script>
-
 document.querySelector('a.eth_connect').addEventListener('click', async () => {
   if (typeof window.ethereum !== 'undefined') {
      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -97,4 +96,16 @@ document.querySelector('a.polka_connect').addEventListener('click', async () => 
   console.info("=== accounts: ", accounts)
   location.href="?address=" + accounts[0].address + "&wallet_type=polka"
 });
+
+jQuery('#user_email').change(function(){
+  console.info("value:", $(this).val())
+  var email = $(this).val()
+  if(email.indexOf('@') >= 0){
+    jQuery.get("/api/v3/users/is_email_available?email=" + email, function(data){
+      console.info("data:", data)
+      html_content = data.result ? "" : `<span style="color:#eb5424"><%= t("email_is_not_available") %></span>`
+      jQuery('#is_email_available').html(html_content)
+    })
+  }
+})
 </script>

@@ -4,7 +4,7 @@ module Api
   module V3
     class UsersController < Api::V3::ApplicationController
       before_action :doorkeeper_authorize!, only: %i[me follow unfollow block unblock blocked]
-      before_action :set_user, except: %i[index me]
+      before_action :set_user, except: %i[index me is_email_available]
 
       # Get Hot User List
       #
@@ -173,6 +173,14 @@ module Api
       def unblock
         current_user.unblock_user(@user.id)
         render json: {ok: 1}
+      end
+
+      # for registration use
+      def is_email_available
+        render json: {
+          ok: 1,
+          result: !(User.where('email = ?', params[:email]).size > 0)
+        }
       end
 
       private

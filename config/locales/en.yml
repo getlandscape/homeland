@@ -85,3 +85,4 @@ en:
         body: "Content"
         locked: "Lock"
         change_desc: "Change Description"
+  email_is_not_available: "Email is not available, please try another one."

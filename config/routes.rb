@@ -187,6 +187,7 @@ Rails.application.routes.draw do
       resources :users do
         collection do
           get :me
+          get :is_email_available
         end
         member do
           get :topics
