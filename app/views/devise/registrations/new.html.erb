@@ -74,16 +74,16 @@ end
 </div>
 
 <script>
-if (typeof window.ethereum !== 'undefined') {
-  document.querySelector('a.eth_connect').addEventListener('click', async () => {
-    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
-		console.info("=== accounts: ", accounts)
-    location.href="?address=" + accounts[0] + "&wallet_type=eth"
-  });
-}else {
-  alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
-}
+document.querySelector('a.eth_connect').addEventListener('click', async () => {
+  if (typeof window.ethereum !== 'undefined') {
+     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+     console.info("=== accounts: ", accounts)
+     location.href="?address=" + accounts[0] + "&wallet_type=eth"
+  }else {
+    alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
+  }
+});
 
 document.querySelector('a.polka_connect').addEventListener('click', async () => {
   const extensions = await polka.web3Enable(window.location.hostname);

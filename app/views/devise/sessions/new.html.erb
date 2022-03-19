@@ -79,20 +79,20 @@ auth_info = auth_session["info"]
 </div>
 
 <script>
-if (typeof window.ethereum !== 'undefined') {
-  document.querySelector('a.eth_connect').addEventListener('click', async () => {
+document.querySelector('a.eth_connect').addEventListener('click', async () => {
+  if (typeof window.ethereum !== 'undefined') {
     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
-		console.info("=== accounts: ", accounts)
+    console.info("=== accounts: ", accounts)
     $('#new_user').append(`
       <input type="hidden" name="wallet_type" value="eth" />
       <input type="hidden" name="address" value="${accounts[0]}" />
     `).submit()
+  }else {
+    alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
+  }
+});
 
-  });
-}else {
-  alert('You have not installed a wallet(e.g. Metamask) yet, please go to install it')
-}
 
 document.querySelector('a.polka_connect').addEventListener('click', async () => {
   const extensions = await polka.web3Enable(window.location.hostname);
