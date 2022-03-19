@@ -89,7 +89,8 @@ document.querySelector('a.polka_connect').addEventListener('click', async () => 
   const extensions = await polka.web3Enable(window.location.hostname);
 
   if (!extensions.length) {
-    throw new Error('Polkadot extension not found, please go to install it: https://polkadot.js.org/extension/');
+    alert('Polkadot extension not found, please go to install it: https://polkadot.js.org/extension/');
+    return
   }
 
   const accounts = await polka.web3Accounts();
